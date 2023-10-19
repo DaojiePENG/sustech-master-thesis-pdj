@@ -3,4 +3,30 @@
 \chapter{简介}
 
 量子计算因其潜在的应用前景而受到广泛关注强大的计算能力。在量子算法
-的配合下，量子计算机可以实现许多通过经典计算机难以实现的计算，如大素数分解、量子多体系统仿真等。
+的配合下，量子计算机可以实现许多通过经典计算机难以实现的计算，如大素数分解\cite[]{Shor_1997}、量子多体系统仿真\cite[]{Feynman_1982, Lloyd_1996}、加速搜索过程\cite[]{Grover_2002}等。
+
+和经典计算机的实现方式类似，量子计算机也采用\emph{比特(Bit)}作为计算单元来实现计算。与经典计算机使用的\emph{经典比特(Bit)}不同的是量子计算的计算单元是\emph{量子比特(Qubit)}。在量子计算机中，这个最小的计算单元通常被表示为：$\ket{0}$和$\ket{1}$。经典比特可能处于的状态只有两个，一般来说$0$（低电平）或$1$（高电平），而量子比特不仅可能处于$\ket{0}态$或$\ket{1}$态，还可能处于两者的概率叠加状态。采用\emph{狄拉克符号(Dirac-Notation)}的方式，一个量子比特可以被表示为概率叠加：$$\ket{\phi}=a_0\ket{0}+a_1\ket{1}$$
+
+其中$a_0^2+a_1^2=1$。对于多个量子比特共同存在的情况，整个系统$(N-qubits)$的状态可以被表示为：$$\ket{\phi}=a_0\ket{0\dots0}+\dots+a_{2^N-1}\ket{1\dots1}$$
+
+这就是所谓的\emph{量子叠加原理(Principle of Quantum Superposition, PQS)}\cite[]{Fedorov_Manko}。这也是量子计算机的\emph{量子并行性(Quantum Parallelism)}这一强大特性的来源。
+
+为了实现量子比特，量子计算机的最小计算单元，我们必须有某种定义明确的两级系统，并且对要编码的信息具有量子效应。David DiVincenzo对量子计算机的实现要素进行了总结\cite[]{DiVincenzo_2000}：
+\begin{enumerate}
+    \item 一个定义明确的两级系统来编码量子比特；
+    \item 足够长的相干时间来执行量子操作；
+    \item 能够将量子比特近乎完美的初始化到确定性纯态；
+    \item 定义的量子比特能够组合实现通用量子门；
+    \item 接近完美的量子比特状态读出；
+\end{enumerate}
+
+以上的这些原则被用于选择合适的物理平台来进行量子计算的实现，经过筛选后目前已经被证明有实现通用量子计算机潜力的物理系统平台有：离子阱系统、超导系统、线性光学系统、硅基量子点、原子系统、拓扑系统等。
+
+迄今为止，作为1995年提出的量子计算的第一个候选者的激光冷却\emph{离子阱系统(Ion trap system)}仍然是实现大规模量子计算机最有前途的平台之一。离子已经很好地定义了具有极长相干时间\cite[]{Fisk_Sellars_Lawn_Coles_1997}的内部状态，它保证了出色的纠缠和初始化特性\cite[]{Blatt_Wineland_2008}。储存在单个离子中的的量子比特状态可以有长达几秒钟的寿命\cite[]{Langer_Ozeri_Jost_Chiaverini_DeMarco_Ben_Kish_Blakestad_Britton_Hume_Itano_et_al_2005}，在\emph{动态解耦技术(Dynamic Decoupling Technology, DCT)}的帮助下这个寿命可以超过$10$分钟\cite[]{Wang_Um_Zhang_An_Lyu_Zhang_Duan_Yum_Kim_2017}，这是在所有现有量子计算物理平台中保持最长的相干时间记录。关于纠缠态的制备，离子阱系统在2011年已经实现了$14$个纠缠态的制备\cite[]{Monz_Schindler_Barreiro_Chwalla_Nigg_Coish_Harlander_Hänsel_Hennrich_Blatt_2011}。同时，四量子比特多部纠缠态的存储时间达到$1.1$秒\cite[]{Kaufmann_Ruster_Schmiegelow_Luda_Kaushal_Schulz_von_Lindenfels_Schmidt_Kaler_Poschinger_2017}。
+此外，运动自由度可以用于实现不同量子位之间的通信，确保全量子位连接\cite[]{Debnath_Linke_Figgatt_Landsman_Wright_Monroe_2016}。离子的状态也可以用几乎完美的效率读出\cite[]{Myerson_Szwer_Webster_Allcock_Curtis_Imreh_Sherman_Stacey_Steane_Lucas_2008}，在此基础上可以构建高保真量子逻辑门\cite[]{Ballance_Harty_Linke_Sepiol_Lucas_2016}。
+
+\textcolor{red}{随后这里可以再补充一些量子测控方面的内容...}
+
+尽管到目前为止离子阱量子计算发展迅速，但在实现通用量子计算机之前仍有许多问题有待解决。最近，许多研究这致力于芯片离子阱\cite[]{Mehta_Eltony_Bruzewicz_Chuang_Ram_Sage_Chiaverini_2014}、离子穿梭和规模化\cite[]{Monroe_Kim_2013, Sterling_Rattanasonti_Weidt_Lake_Srinivasan_Webster_Kraft_Hensinger_2014, Lee_Jeong_Park_Jung_Kim_Cho_2021}、光学集成\cite[]{Niffenegger_Stuart_Sorace_Agaskar_Kharas_Bramhavar_Bruzewicz_Loh_Maxson_McConnell_Reens_et_al_2020, Mehta_Zhang_Malinowski_Nguyen_Stadler_Home_2020}、多离子的单独寻址\cite[]{Ivory_Setzer_Karl_McGuinness_DeRose_Blain_Stick_Gehl_Parazzoli_2020}和量子比特纠错\cite[]{Cramer_Kalb_Rol_Hensen_Blok_Markham_Twitchen_Hanson_Taminiau_2016,Reichardt_2021}等技术，以实现最终目标——\emph{通用量子计算机(Universal Quantum Computer, UQC)}。
+
+\textcolor{red}{简要阐述一下后续章节的主要内容...}

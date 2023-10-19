@@ -202,3 +202,25 @@
 
 \newcommand\undefcolumntype[1]{\expandafter\let\csname NC@find@#1\endcsname\relax}
 \newcommand\forcenewcolumntype[1]{\undefcolumntype{#1}\newcolumntype{#1}}
+
+% ------------------------另外自添加的外部文档引入包---------------------------
+\usepackage{thmtools}
+\usepackage{tcolorbox}
+\usepackage{fontenc} % 保证英文字体加粗有效
+\usepackage{graphicx}
+% \usepackage{amsmath, amsthm, amssymb, amsfonts}
+% \usepackage[amsmath,thmmarks,hyperref]{ntheorem}
+
+\declaretheoremstyle[name=Addition,]{thmsty} % 这个name决定了显示的时候的问题文字内容
+\declaretheorem[style=thmsty,numberwithin=section]{note}
+\tcolorboxenvironment{note}{colback=white} % green, gray, lightgray, 
+
+\hypersetup{hidelinks,
+	colorlinks=true,
+	allcolors=blue,
+	pdfstartview=Fit,
+	breaklinks=true}% 设置超链接颜色为蓝色。
+
+
+\usepackage{braket} % 量子算符宏包
+% ------------------------另外自添加的外部文档引入包---------------------------
