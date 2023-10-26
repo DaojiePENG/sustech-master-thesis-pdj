@@ -13,11 +13,255 @@
 
 
 
+% \section[离子阱的囚禁]{离子阱的囚禁}
+
+\section[离子在RF阱中的经典运动]{离子在RF阱中的经典运动\label{section:ion_classical_motion}}
+% \textcolor{red}{主要参考文献\cite[chap2-A]{Leibfried_Blatt_Monroe_Wineland_2003}}
+
+离子阱采用射频阱对离子进行动态囚禁，最具代表性的一类是四极阱，它及它的一些变型也是目前在离子阱量子计算研究中应用最广泛的一类离子阱。四极阱的电势描述如下：
+\begin{align}
+    % \label{eq:quadrupolar_trap_potential}
+    \Phi(x, y, z, t) = &U\frac{1}{2}(\alpha x^2 + \beta y^2 + \gamma z^2) \label{eq:time_independent_part}\\
+    \label{eq:time_dependent_part}
+    &+ \tilde{U}\cos (\omega_{rf}t)\frac{1}{2}(\alpha ' x^2 + \beta ' y^2 + \gamma ' z^2) 
+\end{align}
+其中$\Phi(x, y, z, t)$是四极阱的电势，公式\eqref{eq:time_independent_part}是不依赖时间的项，公式\eqref{eq:time_dependent_part}是随时间变化的项。整个电势的表达式每时每刻都要满足拉普拉斯方程(Laplace equation)$\Delta \Phi=0$的约束条件，从中可以导出整个四极阱的几何参数约束：
+\begin{align}
+    \alpha + \beta + \gamma =0,\\
+    \alpha ' + \beta ' + \gamma ' =0
+\end{align}
+
+其中各参数的定义在公式\eqref{eq:time_independent_part}和公式\eqref{eq:time_dependent_part}定义。从这些限制可以明显看出，在自由空间中电势不可能稳定地产生局部三维最小值，因此电势只可能以动态方式来对离子进行囚禁。幸运的是，通过对四极阱几何参数的选择，再结合适当的驱动微波的频率和驱动电压我们可以做到这一点。其中一种几何参数选择如下：
+\begin{align}
+    -(\alpha + \beta )= \gamma > 0,\\
+    \alpha ' = - \beta '
+\end{align}
+这种几何参数的设置会使离子在$x,y$平面上动态地被囚禁，在$z$方向上静态地被囚禁。在这种设置的离子阱中，多个离子会沿着$z$轴形成线性的离子链，这便是人们所知的\emph{线性离子阱(Linear Trap)}，也被称为\emph{Paul Trap}\cite[]{Paul_1990}。在接下来的两小节里我将介绍囚禁离子的经典运动方程及其解析解（第\ref{section:classical_motion}节），并给出这些解的低阶近似（第\ref{section:lowest_order_approximation}节）。
+
+\subsection[经典运动方程]{经典运动方程\label{section:classical_motion}}
+
+一个质量为$m$电荷量为$Z|e|$的粒子在如公式\eqref{eq:time_independent_part}所描述的电场中的经典运动方程由Paul等人\cite[p415]{Paul1958}给出。粒子的运动在空间坐标方向上中是解耦的。下面只讨论$x$方向上的运动；其他方向可以类似地处理。运动方程如下：
+\begin{align}
+    \ddot{x}=-\frac{Z|e|}{m}\frac{\partial \Phi}{\partial x}=-\frac{Z|e|}{m}[U\alpha + \tilde{U}\cos(\omega_{rf}t)\alpha ']x
+\end{align}
+
+经过下面的参数代换，这个方程可以转化为标准的\emph{马修方程(Mathieu Equation, ME)}形式：
+\begin{align}
+    \frac{d^2x}{d\xi^2}+[a_x-2q_x\cos(2\xi)]x=0\label{eq:mathieu_equation}
+\end{align}
+
+相应的参数代换为：
+\begin{align}
+    \xi=\frac{\omega_{rf}t}{2},\ a_x=\frac{4Z|e|U\alpha}{m\omega_{rf}^2},\ q_x=\frac{2Z|e|\tilde{U}\alpha '}{m\omega_{rf}^2}\label{eq:parameters_substitution}
+\end{align}
+
+ME方程属于一般的周期系数微分方程。它的稳定解的一般形式可以由\emph{弗洛奎定理(Floquet Theorem)}导出\cite[]{McLachlan, McQuarrie}：
+\begin{align}
+    x(\xi)=&Ae^{i\beta_x\xi}\sum_{n=-\infty}^{\infty}C_{2n}e^{i2n\xi}\\
+    &+ Be^{-i\beta_x\xi}\sum_{n=-\infty}^{\infty}C_{2n}e^{-i2n\xi}\label{eq:mathieu_solution}
+\end{align}
+
+其中实值特征指数$\beta_x$和系数$C_{2n}$仅是$a_x$和$q_x$的函数，不依赖于初始条件。$A$和$B$是任意常数，可用于满足边界条件或规格化特解。将公式\eqref{eq:mathieu_solution}代入公式\eqref{eq:mathieu_equation}可以得到一个递归关系：
+\begin{align}
+    C_{2n+2}-D_{2n}C_{2n}+C_{2n-2}=0,\\
+    D_{2n}=[a_x-(2n+\beta_x)^2]/q_x\label{eq:recursion_raltion}
+\end{align}
+
+这一递归关系将实值特征指数$\beta_x$、系数$C_{2n}$与$a_x$、$q_x$联系起来。通过进一步地整理也可以得到$C_{2n}$的表达式：
+\begin{align}
+    C_{2n+2}=\frac{C_{2n}}{D_{2n}-\frac{1}{D_{2n+2}-\frac{1}{\dots}}}\\
+    C_{2n}=\frac{C_{2n-2}}{D_{2n}-\frac{1}{D_{2n-2}-\frac{1}{\dots}}}\label{eq:c_2n_fraction}
+\end{align}
+
+利用结合上述公式$\beta_x$也可以计算：
+\begin{align}
+    \beta_x^2=a_x-q_x\left(\frac{1}{D_0-\frac{1}{D_2-\frac{1}{\dots}}} + \frac{1}{D_0-\frac{1}{D_{-2}-\frac{1}{\dots}}}\right) \label{eq:beta_x_fraction}
+\end{align}
+
+可以根据所需的精度，选择截断公式\eqref{eq:c_2n_fraction}和公式\eqref{eq:beta_x_fraction}中的连分式来获取相应的结果。
+实际上，对于实验中常用到的典型$a_x$和$q_x$值，连分式中高阶项的贡献会迅速下降。
+
+\textcolor{red}{这里的$a_x, q_x$具体的含义后面有时间了可以再看看。}
+\subsection[低阶近似]{低阶近似\label{section:lowest_order_approximation}}
+实际实验系统中采用的在公式\eqref{eq:parameters_substitution}中定义的参数往往是满足$(|a_x|,q_x^2)\ll 1$的。在此条件下，假设$C_{\pm 4}\simeq 0$，则可以得到$x(t)$轨迹的\emph{低阶近似(Lowest-order Approximation)}。再同时设置初始条件$A=B$，公式\ref{eq:recursion_raltion}可以得到：
+\begin{align}
+    \beta_x\approx \sqrt{a_x+q_x^2/2},\\
+    x(t)\approx2AC_0\cos\left(\beta_x\frac{\omega_{rf}}{2}t\right)\left[1-\frac{q_x}{2}\cos(\omega_{rf}t)\right]\label{eq:classical_motion_solution}
+\end{align}
+
+囚禁离子在$x$方向上的轨迹$x(t)$的由频率为$\nu=\beta_x\omega_{rf}/2\ll \omega_{rf}$的谐波振荡叠加频率为$\omega_{rf}$的RF频率造成的\emph{驱动位移}组成，分别称为\emph{长期运动(Secular-motion)}和\emph{微运动(Micro-motion)}两者相位相差$180^\circ$；
+离子在离子阱中的微运动的频率为$\omega_{rf}\ll \nu$，且其振幅为长期运动振幅的$q_x/2\ll 1$，这也是它被称为微运动的原因。如果忽略微运动，则长期运动可以近似为频率为$\nu$的谐振子的运动。在大多数情况下，如果离子处于相当低的动能，即使我们用量子力学的方法来处理离子的质心运动，这个处理也是合理的。
+
+
+\section[离子在RF阱中的量子力学运动]{离子在RF阱中的量子力学运动\label{section:quantum_motion}}
+% \textcolor{red}{主要参考文献\cite[chap2-B]{Leibfried_Blatt_Monroe_Wineland_2003}}
+
+如第\ref{section:ion_classical_motion}节中已经讨论过的，经典中的运动分析似乎已经可以很好地描述离子在离子阱中的运动了。但是，由于四极阱产生的囚禁势场不是静态的而是与时间相关的，因此不能理所当然地认为在有效时间平均势中量化运动已经为我们提供了囚禁离子足够的图景。实际上，在离子阱的实验中，即使是对离子陷阱中的冷却过程的简单解释，以及对非经典状态的描述，也都依赖于运动的量子力学图景的。
+
+在接下来的两小节里，我将根据文献\cite[]{Arimondo_Phillips_Strumia_1992}中的方法导出囚禁离子在射频场中的量子力学表述。同时在这里讨论，在实验中使用的捕获参数范围内，囚禁离子的量子化运动可以用静态谐振子来近似。
+
+\subsection[量子力学运动方程]{量子力学运动方程}
+对于囚禁离子运动的量子力学处理，我们假设与时间相关的势在囚禁离子质心的三个笛卡尔坐标中的每一个中都是二次的（一维谐振子势\cite[]{Solimeno_Di_Porto_Crosignani}）。然后，与经典运动一样，问题可分为三个一维问题。在一维中，用各自的算子$\hat{x}$替换坐标$x$，于是可以将与时间相关的势$V(T)$写为：
+\begin{align}
+    V(t)=\frac{m}{2}W(t)\hat{x}^2
+\end{align}
+
+其中，
+\begin{align}
+    W(t)=\frac{\omega_{rf}^2}{4}\left[a_x+2q_x\cos(\omega_{rf}t)\right]
+\end{align}
+
+可以被认为是一个时变弹簧常数，它的作用类似于在静态势谐振子中$\omega^2$的作用。在以上的定义下，囚禁离子运动的哈密顿量$H^{(m)}$的形式和我们在量子力学中处理的静态谐振子的哈密顿量很相似：
+\begin{align}
+    \hat{H}^{(m)}=\frac{\hat{p}^2}{2m}+\frac{m}{2}W(t)\hat{x}^2
+\end{align}
+
+于是我们可以很轻松地写出这些运动算子在\emph{海森堡图景(Heisenberg Picture)}下的的方程：
+\begin{align}
+    \dot{\hat{x}}= \frac{1}{i\hbar}\left[\hat{x,\hat{H}^{(m)}}=\frac{\hat{p}}{m}\right],\\
+    \dot{\hat{p}}= \frac{1}{i\hbar}\left[\hat{p},\hat{H}^{(m)}\right]=-mW(t)\hat{x}
+\end{align}
+
+他们的一个更紧凑的方程形式如下：
+\begin{align}
+    \ddot{\hat{x}}+W(t)\hat{x}=0 \label{eq:quantum_motion_equation}
+\end{align}
+
+如果用函数$u(t)$替换算子$\hat{x}$，我们可以很容易验证这个公式\eqref{eq:quantum_motion_equation}与\emph{马修方程}\eqref{eq:mathieu_equation}是等价的。这就是我们能够借助前面所叙述的马修方程的解来寻找公式\eqref{eq:quantum_motion_equation}的解。添加边界条件：
+\begin{align}
+    u(0)=1,\ \hat{u}(0)=i\nu \label{eq:boundary_condition}
+\end{align}
+
+这对应于公式\eqref{eq:mathieu_solution}中的$A=1,\ B=0$，可以得到：
+\begin{align}
+    u(t)=e^{i\beta_x\omega_{rf}/2}\sum_{n=-\infty}^{\infty} C_{2n}e^{i n\omega_{rf}t}\equiv e^{i\beta_x\omega_{rf}t/2}\Phi(t) \label{eq:ut_expression}
+\end{align}
+
+其中$\Phi(t)$是一个周期为$T=2\pi/\omega_{rf}$的周期函数。于是公式\eqref{eq:boundary_condition}变为：
+\begin{align}
+    u(0)=\sum_{n=-\infty}^{\infty}C_{2n}=1,\ \nu = \omega_{rf}\sum_{n=-\infty}^{\infty}C_{2n}(\beta_x/2+n)
+\end{align}
+
+这个解及其复共轭是线性独立的;因此，它们服从\emph{Wronskian恒等式}：
+\begin{align}
+    u^*(t)\dot{u}(t)-u(t)\dot{u}^*(t)=u^*(0)\dot{u}(0)-u(0)\dot{u}^*(0)=2 i \mu
+\end{align}
+
+未知坐标$\hat{x}(t)$和$u(t)$满足相同的微分方程，因此复杂的线性组合：
+\begin{align}
+    \hat{C}(t)=\sqrt{\frac{m}{2\hbar \nu}}i\left\{u(t)\dot{\hat{x}(t)-\dot{u}(t)\hat{x}(t)}\right\} \label{eq:complex_combination}
+\end{align}
+
+与其如下的Wronskian恒等式成正比，并且在时间上也是恒定的：
+\begin{align}
+    \hat{C}(t)=\hat{C}(0)=\frac{1}{\sqrt{2m \hbar \nu}}\left[m\nu\hat{x}(0)+i\hat{p}(0)\right]
+\end{align}
+
+此外，等式右边恰好是质量$m$和频率$\nu$的在静态谐振子势场中的湮灭算符：
+\begin{align}
+    \hat{C}(t)=\hat{C}(0)=\hat{a}
+\end{align}
+也就是说有如下式：
+\begin{align}
+    \left[\hat{C},\hat{C}^\dagger\right]=\left[\hat{a},\hat{a}^\dagger=1\right]
+\end{align}
+
+这个静态势场中的谐振子在后续将被称为\emph{参考谐振子(Reference Oscillator)}。
+
+海森堡算符$\hat{x}(t)$和$\hat{x}(t)$可以用$u(T)$和参考振荡器的算符用公式\eqref{eq:complex_combination}重新表示：
+
+\begin{align}
+    \hat{x}(t)=\sqrt{\frac{\hbar}{2m\nu}}\left\{\hat{a}u^*(t)+\hat{a}^\dagger u^(t)\right\},\\
+    \hat{p}(t)=\sqrt{\frac{\hbar m}{2\nu}}\left\{\hat{a}\dot{u}^*(t)+\hat{a}^\dagger \dot{u}^(t)\right\}
+\end{align}
+
+所以囚禁离子的整个时间依赖性由特殊解$u(t)$及其复共轭给出。
+这样一来，对于接下来的计算，在海森堡图景中表述一些列的时间依赖波函数就很方便了。同样，上面使用的参考振荡子也将非常有帮助。与静态势的情况类似，我们将考虑一系列的基态$\ket{n,t}$，其中$n=1,2,\dots,\infty$。这些状态被称为谐波振荡器\emph{数态(Fock States)}的动态对应物。参考振荡子$\ket{n=0}_\nu$的基态满足条件：
+\begin{align}
+    \hat{a}\ket{n=0}_\nu=\hat{C}(t)\ket{n=0}_\nu=0 \label{eq:obey_condition}
+\end{align}
+
+由于海森堡算子$\hat{C}$是通过$\hat{C}(t)=\hat{U}^\dagger(t)\hat{C}_S\hat{U}(t)$与$\hat{C}_S$联系起来的，我们可以很快得到（其中$\hat{U}(t)=\exp{\left[-(i/\hbar)\hat{H}^{(m)}\right]}$）：
+\begin{align}
+    \hat{C}_S(t)\hat{U}(t)\ket{n=0}_\nu=\hat{C}_S(t)\ket{n=0,t}=0 \label{eq:oscillator_condition}
+\end{align}
+
+只需要通过将公式\eqref{eq:obey_condition}左侧与$\hat{U}(t)$相乘，并注意到$\hat{U}(t)\ket{n=0}_\nu$是从静态潜在参考振荡子的基态演变而来的时间相关振荡器的薛定谔态。由于薛定谔算子$C_S(t)$的时间依赖完全取决于$u(t)$的时间演化，于是公式\eqref{eq:oscillator_condition}等价于：
+\begin{align}
+    \left[u(t)\hat{p}-m\dot{u}\hat{x}\right]\ket{n=0,t}=0
+\end{align}
+
+在坐标空间表述为：
+\begin{align}
+    \left\{u(t)\frac{\hbar}{i}\frac{\partial}{\partial x'}\right\}\braket{x'|n=0,t}=0
+\end{align}
+
+归一化后的解为：
+\begin{align}
+    \braket{x'|n=0,t}=\left(\frac{mv}{\pi\hbar}\right)^{1/4}\frac{1}{\{u(t)\}^{1/2}}\exp\left[\frac{i m}{2\hbar}\frac{\dot{u}(t)}{u(t)}x'^2\right]
+\end{align}
+
+与静态势谐振子完全类似，可以通过创建算子$\hat{C}_S^\dagger(t)$对基态重复操作来创建完全正交基的所有其它状态：
+\begin{align}
+    \ket{n,t}=\frac{\left[\hat{C_S^\dagger(t)}\right]^n}{\sqrt{n!}}\ket{n=0,t}
+\end{align}
+
+将$u(t)$如公式\eqref{eq:ut_expression}重写后，在坐标空间表述为：
+
+\begin{align}
+    \braket{x'|n,t}=\exp\left[-i\left(n+\frac{1}{2}\right)\nu t\right]\chi_n(t) \label{eq:quantum_states_expression}
+\end{align}
+
+其中，$H_n$是$n$阶厄米多项式，$\chi_n(t)$表达式如下：
+\begin{align}
+    \chi_n(t)=\frac{1}{\sqrt{2^n n!}}\left(\frac{m\nu}{\pi  \hbar}\right)^{1/4}
+    \frac{\exp\{-i n \arg\left[\Phi(t)\right]\}}{\{\Phi(t)\}^{1/2}}\\
+    \times H_n\left\{\left[\frac{m\nu}{\hbar|\Phi|^2}\right]^{1/2}x'\right\}\\
+    \times \exp\left\{\frac{m\nu }{2\hbar}\left[1-\frac{i\Phi(t)}{\nu\Phi(t)}\right]x'^2\right\}
+\end{align}
+
+经典的微运动作为射频驱动场周期的脉动出现在波函数中。对于静态势谐振子，能量本征态的演化只将波函数乘以相位因子(这就是为什么它们被称为静止态)。在此处研究的时间相关电势场中，同样如此，不同之处仅在于这里时间只能取得RF周期$T=2\pi/\omega_{rf}$的整数倍。公式\ref{eq:quantum_states_expression}给出的状态并不是能量本征态(它们周期性地与驱动场交换能量，类似于经典的微运动)，但它们是时间相关势中可能的平稳状态的很好的近似。因此，它们通常被称为\emph{准平稳状态(Quasistationary States)}。
+
+紧接着的小结节中将介绍与第\ref{section:lowest_order_approximation}节中提出的经典伪势解类似的量子力学中的运动解的低阶近似，找到对静态势谐振子图像的最低阶修正。
+
+
+\subsection[量子低阶近似]{量子低阶近似}
+量子力学中的低阶近似从导出$u(t)$的近似表达开始。与经典的情况类似，低阶近似需要满足条件：$|a_x|,q_x^2\ll 1$、$C_{\pm 4}=0$。结合公式\eqref{eq:boundary_condition}中的初始条件可以得到：
+\begin{align}
+    \beta_x\approx\sqrt{a_x+q_x^2/2},\ \nu\approx\beta_x\omega_{rf}/2,\\
+    u(t)\approx\exp{i\nu t}\frac{1+(q_x/2)\cos(\omega_{rf}t)}{1+q_x/2}
+\end{align}
+
+这实质上就是前面第\ref{section:lowest_order_approximation}节在公式\eqref{eq:classical_motion_solution}中找到的经典解。
+仍然必须强调的是，只有在这种低阶近似中，参考谐振子的频率$\nu$才等于特征指数$\beta_x\omega_{rf}/2$。现在很明显地可以看出$\chi_n(t)$以周期$T_{rf}$进行周期性呼吸。具体可以从基态波函数的近似表达式$\chi_0(t)$中看到:
+\begin{align}
+    \chi_0(t)=\left(\frac{m\nu}{\pi \hbar}\right)^{1/4}\sqrt{\frac{1+q_x/2}{1+(q_x/2)\cos(\omega_{rf}t)}}
+    \times \exp\left(\left\{i\frac{m\omega_{rf}\sin(\omega_{rf}t)}{2\hbar\left[1/q_x+\cos(\omega_{rf}t)\right]}-\frac{m\nu}{2\hbar}\right\}x'^2\right)
+\end{align}
+
+而公式\eqref{eq:quantum_states_expression}中的相位因子由基态伪能量$\hbar\nu/2$控制。如果设置$\omega_{rf}=0$，则这个表达式与静态谐波势基态波函数相同。
+
+
+
+
+\section[阱中离子的一些特别的运动量子态]{阱中离子的一些特别的运动量子态}
+\textcolor{red}{主要参考文献\cite[chap2-C]{Leibfried_Blatt_Monroe_Wineland_2003}}
+
+接着会讨论一些类似于静态势谐振子的数量和离子阱中一些特殊类别的运动态。
+
+\subsection[数算子和它的本征态]{数算子和它的本征态}
+
+\subsection[相干态]{相干态}
+
+\subsection[压缩真空态]{压缩真空态}
+
+
+\subsection[热分布]{热分布}
 
 
 \section[囚禁离子的光场耦合]{囚禁离子的光场耦合}
 \textcolor{red}{这部分主要参考文献\cite[p3-8]{Leibfried_Blatt_Monroe_Wineland_2003}}
-\subsection[离子阱的囚禁原理]{离子阱的囚禁原理}
+
 
 % \subsection[囚禁离子的光场耦合]{囚禁离子的光场耦合}
 \subsection[二能级近似]{二能级近似}
