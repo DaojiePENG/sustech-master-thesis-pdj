@@ -203,7 +203,7 @@ ME方程属于一般的周期系数微分方程。它的稳定解的一般形式
 
 与静态势谐振子完全类似，可以通过创建算子$\hat{C}_S^\dagger(t)$对基态重复操作来创建完全正交基的所有其它状态：
 \begin{align}
-    \ket{n,t}=\frac{\left[\hat{C_S^\dagger(t)}\right]^n}{\sqrt{n!}}\ket{n=0,t}
+    \ket{n,t}=\frac{\left[\hat{C_S^\dagger(t)}\right]^n}{\sqrt{n!}}\ket{n=0,t}\label{eq:basic_sattes}
 \end{align}
 
 将$u(t)$如公式\eqref{eq:ut_expression}重写后，在坐标空间表述为：
@@ -247,16 +247,162 @@ ME方程属于一般的周期系数微分方程。它的稳定解的一般形式
 \section[阱中离子的一些特别的运动量子态]{阱中离子的一些特别的运动量子态}
 \textcolor{red}{主要参考文献\cite[chap2-C]{Leibfried_Blatt_Monroe_Wineland_2003}}
 
-接着会讨论一些类似于静态势谐振子的数量和离子阱中一些特殊类别的运动态。
+接着会讨论一些类似于静态势谐振子的数量和离子阱中一些特殊类别的运动态。这其中有些是非经典的但却让人不禁联想到经典的运动。这部分介绍的运动态都已经被实验观测和验证过了，因此也将介绍如何创建这些运动态。
+
 
 \subsection[数算子和它的本征态]{数算子和它的本征态}
 
+为了能更好地探索离子阱中的囚禁离子和静态势阱中的谐振子的联系，把运动态表述为以参考谐振子的本征态为基矢的形式将很有帮助。我们首先在海森堡途径中讨论。因为$\hat{C}(t)$是时间独立的，因此这个$\hat{N}$算子也是时间独立的：
+\begin{align}
+    \hat{N}=\hat{C}^\dagger(t)\hat{C}(t)=\hat{a}^\dagger\hat{a}
+\end{align}
+
+它的本征态也是时间独立的，也就是我们在静态势阱中所熟知的\emph{数态或Fock态}，它拥有一套相应的升降算符：
+
+\begin{align}
+    \hat{a}\ket{n}_\nu=\sqrt{n}\ket{n-1}_\nu,\ \hat{a}^\dagger\ket{n}_\nu=\sqrt{n+1}\ket{n+1}_\dagger,\ \hat{N}\ket{n}_\nu=n\ket{n}_\nu
+\end{align}
+
+转换到薛定谔图景后可以得到：
+\begin{align}
+    \hat{U}^\dagger(t)\hat{N}\hat{U}(t)=\hat{U}^\dagger(t)\hat{C}^\dagger(t)\hat{U}(t) \hat{U}^\dagger(t)\hat{C}(t)\hat{U}(t) = \hat{C}_S^\dagger(t)\hat{C}_S(t)
+\end{align}
+
+这个算子的本质态和本征值可以用上节中的公式\eqref{eq:basic_sattes}得到：
+\begin{align}
+    \hat{C}_S(t)\ket{n,t}=\sqrt{n}\ket{n-1,t},\\
+    \hat{C}_S^\dagger(t)\ket{n,t}=\sqrt{n+1}\ket{n+1,t}
+\end{align}
+
+如果使：
+\begin{align}
+    \hat{N}_S(t)\ket{n,t}=n\ket{n,t}
+\end{align}
+
+那么这些薛定谔图景下的本征态就可以像静势场谐振子那样使用了，并且静势场中升降算符的所有代数性质都可以对应到$\hat{C}_S(t)$和$\hat{C}_S^\dagger(t)$。
+唯一的区别就是这里计算得到的并不是整个系统能量的本征态，因为微运动会周期地改变离子的动能。
+
+任何运动态都可以表示为这些数态的叠加态：
+\begin{align}
+    \Psi = \sum_{0}^{\infty}c_n\ket{n,t}\label{eq:superposition_states}
+\end{align}
+
+这样的态表述会在后续章节的叙述中用到，简单起见，除了专门研究时间相关问题外后面通常会将$\ket{n,t}$简写成$\ket{n}$。
+
+
+
+
+
+
 \subsection[相干态]{相干态}
+
+在静势场谐振子中，离子的运动$\ket{\alpha}$的相干态对应于位置表示中的高斯最小不确定性波包，其中心在谐波中经典地振荡并保持其形状。
+波包的形状与基态波函数相同。Glauber表明，在动态囚禁电势中从初始相干状态演变的状态也是如公式\eqref{eq:quantum_states_expression}描述的高斯基态的位移形式\cite[]{Arimondo_Phillips_Strumia_1992}。
+位移的高斯与基态具有相同的呼吸，但不扩散，其重心遵循陷阱中离子的经典轨迹(现在长期运动和微运动)。
+这种情况最先由薛定谔在试图构造反映谐振子经典运动的波包时提出\cite[]{Schrödinger1926}。
+\textcolor{red}{这里的 breathing 应该怎么翻译？}
+
+“相干态”的称呼最早是由Glauber提出的\cite[]{Glauber1963Photon,Dewitt_Blandin_Cohen_Tannoudji}，与光场的量子态有关。定义相干态的方式有很多种（详见文献\cite[]{Klauder_Skagerstam_1985}）。比如，它们是湮灭算子的本征态，相应的本征值为复数$\alpha$：
+\begin{align}
+    \hat{C}_S(t)\ket{\alpha}=\alpha\ket{\alpha}
+\end{align}
+
+这个态很容易用公式\eqref{eq:superposition_states}中的形式表示：
+\begin{align}
+    c_n=\frac{\alpha^n}{\sqrt{n!}}\exp(-|\alpha|^2/2)
+\end{align}
+
+这便是这个算子的本征态，它的数态概率密度分布是\emph{泊松分布(Poissonian Distribution)}：
+\begin{align}
+    P_n=|c_n|^2=|\braket{n|\alpha}|^2=(\bar{n}^n e^{-\bar{n}})/n!, \bar{n}=|\alpha|^2
+\end{align}
+
+另一个流行的方式是将相干态表述为位移算符的动作：
+\begin{align}
+    \hat{D}(\alpha)=\exp\left[\alpha\hat{C}_S^\dagger(t)-\alpha^* \hat{C}_S(t)\right]
+\end{align}
+
+在真空态中，
+\begin{align}
+    \hat{D}(\alpha)\ket{0}=\ket{\alpha}
+\end{align}
+
+连续应用一些列的位移算子的作用结果在相因子上也是相加的：
+
+\begin{align}
+    \hat{D}(\alpha)\hat{D}(\beta)=\hat{D}(\alpha+\beta)e^{\alpha\beta^*-\alpha^*\beta}
+\end{align}
+
+因此这些位移构成了一个自然单元为$\hat{D}(0)=\hat{I}$的群。
+注意由于等式右边的额外相位，使得位移算子通常是不对易的。
+
 
 \subsection[压缩真空态]{压缩真空态}
 
+\emph{海森堡不确定性关系(Heisenberg Uncertainty Relation)}表明在任何量子态中位置和动量的方差的乘积的下界为$\hbar^2/4$。
+静势场中谐振子与所有其它相干态的基态是最小不确定度状态，其中位置的方差为$(\Delta x)^2=\braket{x^2}-\braket{x}^2=1/(m\nu)\hbar/2$；动量的方差为$(\Delta p)^2=\left(m\nu\right)\hbar/2$。
+
+如果现在我们“挤压”位置方差，那么动量方差必须变宽以满足海森堡不确定性关系。在时间演化过程中，压缩位置波包不会保持其形状，但在全周期后收缩回原始宽度之前，振荡周期的一半将变得更加宽。
+动量波包相应地收缩或扩展，以便在任何时候不确定性最小\cite[]{Wallentowitz_Vogel_2002,Wallentowitz_Vogel_U_2002}。
+
+\emph{压缩真空态(Squeezed vacuum state)}用公式\eqref{eq:superposition_states}的形式表述如下：
+\begin{align}
+    c_n=\begin{cases}
+        \left(\frac{2\sqrt{\beta_s}}{\beta_s+1}\right)^{1/2} \left(\frac{\beta_s-1}{\beta_s+1}\right)^{n/2}(-1/2)^{n/2}\frac{\sqrt{n!}}{(n/2)!}e^{i n \phi}, &n\ even\\
+        0, &n\ odd
+    \end{cases}
+\end{align}
+
+参数$\beta_s$描述了状态压缩程度，压缩状态的位置方差在一定时间内减少：
+\begin{align}
+    \Delta x_s=\Delta x_0/\beta_s
+\end{align}
+
+\textcolor{red}{这里的 variance 应该是指的飘动范围还是方差？}
+
+其中$\Delta x_0$是基态的方差。基态时$\beta_s=1$（因此名称为“压缩真空态”）。
+对于$\beta_s>1$的的情况位置波函数比相干态情况时要窄，而对于$0<\beta_s<1$的情况动量波函数比相干态情况时要窄。
+角度$\phi$描述了压缩状态相对于位置和动量方向的对齐，这可以在相空间中最好地可视化。
+压缩状态的\emph{Wigner函数}具有椭圆等轮廓线\cite[]{Caldeira_Leggett_2002}。如果这些椭圆的主轴之一与位置坐标轴对齐，$\phi$等于零。压缩真空态Wigner函数的质心与相空间的原点重合。
+
+压缩真空状态的概率分布$P_n$是独立的，这里局限于偶数状态：
+
+\begin{align}
+    P_n=\frac{2\sqrt{\beta_s}}{\beta_s+1} \left(\frac{\beta_s-1}{\beta_s+1}\right)^{n}(2)^{-n}\frac{n!}{[(n/2)!]^2},\ n\ even
+\end{align}
+
+对于强压缩，这个分布有一个持续到非常大$n$的拖尾；例如，对于 $\beta_s=40$，压缩真空的统计状态中有$16\%$处于$n=20$以上的状态。
+
+挤压真空状态，如相干状态，具有非常紧凑的算子表示。它们是由操作员从基态生成的：
+\begin{align}
+    \hat{S}(\epsilon)=\exp\left\{\frac{1}{2}\epsilon^* \hat{C}_S(t)^2-\frac{1}{2}\epsilon [\hat{C}_S^\dagger(t)]^2\right\}
+\end{align}
+
+其中$\epsilon=r e^{i\phi}$，$r$是和$\beta_s$相关的，关系为$\beta_s=e^{2r}$。
 
 \subsection[热分布]{热分布}
+
+如果离子在高温$T$下与外部储层处于热平衡状态，则激发态$\ket{n}$的平均权重将与玻尔兹曼因子$\exp[-n\hbar\nu/(k_B T)]$成正比，其中$k_B$是玻尔兹曼常数。
+当然，讨论单个离子的温度是没有意义的。然而，如果离子与储存器耦合，则多次测量数算子$\hat{N}$(确保每次测量后离子再平衡)，可以根据许多不同的实现集合从平均结果$\bar{n}$中提取温度：
+\begin{align}
+    T=\frac{\hbar\nu}{k_B\ln\left(\frac{\bar{n}+1}{\bar{n}}\right)}
+\end{align}
+
+在考虑系综时，可以用密度矩阵来表征这个状态。
+此外，本着选择具有最大\textcolor{red}{无知}（因此最大熵）的密度矩阵的精神，非对角元素必须为零。
+这使得无法以如公式\eqref{eq:superposition_states}的形式写出热分布，使它相对应的密度矩阵在$T>0$时具有非零非对角元素。因此，即使文献中经常使用术语“热状态”，“热分布”似乎是对系综这种性质更合适的称呼。
+
+经过一些简单的代数来归一化由玻尔兹曼因子加权的状态的轨迹后，密度矩阵可以写成：
+\begin{align}
+    \rho_{th}=\frac{1}{\bar{n}+1}\sum_{n=0}^{\infty}\left(\frac{\bar{n}}{\bar{n}+1}\right)^n\ket{n}\bra{n}
+\end{align}
+
+总体概率水平为：
+\begin{align}
+    P_n=\frac{\bar{n}^n}{(\bar{n}+1)^{n+1}}
+\end{align}
+
+
 
 
 \section[囚禁离子的光场耦合]{囚禁离子的光场耦合}
