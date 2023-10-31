@@ -113,7 +113,7 @@ ME方程属于一般的周期系数微分方程。它的稳定解的一般形式
 
 可以被认为是一个时变弹簧常数，它的作用类似于在静态势谐振子中$\omega^2$的作用。在以上的定义下，囚禁离子运动的哈密顿量$H^{(m)}$的形式和我们在量子力学中处理的静态谐振子的哈密顿量很相似：
 \begin{align}
-    \hat{H}^{(m)}=\frac{\hat{p}^2}{2m}+\frac{m}{2}W(t)\hat{x}^2
+    \hat{H}^{(m)}=\frac{\hat{p}^2}{2m}+\frac{m}{2}W(t)\hat{x}^2\label{eq:static_harmiltonian_oscillator}
 \end{align}
 
 于是我们可以很轻松地写出这些运动算子在\emph{海森堡图景(Heisenberg Picture)}下的的方程：
@@ -229,7 +229,7 @@ ME方程属于一般的周期系数微分方程。它的稳定解的一般形式
 量子力学中的低阶近似从导出$u(t)$的近似表达开始。与经典的情况类似，低阶近似需要满足条件：$|a_x|,q_x^2\ll 1$、$C_{\pm 4}=0$。结合公式\eqref{eq:boundary_condition}中的初始条件可以得到：
 \begin{align}
     \beta_x\approx\sqrt{a_x+q_x^2/2},\ \nu\approx\beta_x\omega_{rf}/2,\\
-    u(t)\approx\exp{i\nu t}\frac{1+(q_x/2)\cos(\omega_{rf}t)}{1+q_x/2}
+    u(t)\approx\exp{i\nu t}\frac{1+(q_x/2)\cos(\omega_{rf}t)}{1+q_x/2}\label{eq:quantum_lowest_order_approximation}
 \end{align}
 
 这实质上就是前面第\ref{section:lowest_order_approximation}节在公式\eqref{eq:classical_motion_solution}中找到的经典解。
@@ -405,43 +405,160 @@ ME方程属于一般的周期系数微分方程。它的稳定解的一般形式
 
 
 
+
+
+
 \section[囚禁离子的光场耦合]{囚禁离子的光场耦合}
 \textcolor{red}{这部分主要参考文献\cite[p3-8]{Leibfried_Blatt_Monroe_Wineland_2003}}
 
+在合适的电磁场的帮助下，囚禁离子的内部能级可以相互相干耦合，并且与离子的外部运动自由度耦合。
+强力囚禁和耦合良好的离子可以等价于
+\emph{Jaynes-Cummings 哈密顿量(Jaynes-Cummings Hamiltonian)}\cite[]{Janszky_Yushin_1986}
+因此，许多致力于囚禁离子相干相互作用的工作都受到这种耦合在量子光学中所起的重要作用的启发。除了这种特殊情况之外，剩下的许多可能性会到多个运动量子之间的相互交换，类似于量子光学中的多光子跃迁。
+此外，产生耦合的光场可以作为的能量来源，因此原子-光子耦合中隐含的能量守恒不必局限在囚禁离子的内部态和运动态之间的转换，也可以实现囚禁离子内部态的相互转换，比如吸收能量跃迁到更高的能级上。
+最后，如果考虑了运动的全量子力学图，包括微运动引起的修正，则可能存在另一类跃迁，涉及在离子阱的RF电势中运动态整数倍数的相互转换或驱动场整数倍数的组合和长期运动(微运动边带)。
 
 % \subsection[囚禁离子的光场耦合]{囚禁离子的光场耦合}
-\subsection[二能级近似]{二能级近似}
+\subsection[二能级近似]{二能级近似\label{section:two_level_approximation}}
+在常规的离子阱研究中，会把囚禁离子的电子能级结构近似为\emph{二能级系统(Two-level System)}，这为研究提供了很大的方便。这个二能级系统表示为$\ket{g}$和$\ket{e}$，他们之间有着$\hbar \omega=\hbar(\omega_e-\omega_g)$的能量差。这对于实际的囚禁离子不总是适用的，仅在广场与离子两能级近似共振耦合且耦合的拉比频率远强于衰减到其它态的强度时才成立。不过这个条件对当今研究的多数实验系统中的离子（如镱离子、钡离子、钙离子等等）来说都是成立的。
+相应的二能级哈密顿量$\hat{H}^{(e)}$的表述如下：
+\begin{align}
+    \hat{H}^{(e)}=\hbar(\omega_g\ket{g}\bra{g}+\omega_e\ket{e}\bra{e})\\
+    =\hbar\frac{\omega_e+\omega_g}{2}(\ket{g}\bra{g}+\ket{e}\bra{e})\\
+    +\hbar\frac{\omega}{2}(\ket{g}\bra{g}-\ket{e}\bra{e}) \label{eq:two_level_hamiltonian}
+\end{align}
+
+任何二能级系统有关的算子都可以被映射到$1/2$自旋算子基矢上，因此上述的$\hat{H}^{(e)}$及其相关的算子也可以被表示为公式\eqref{eq:pauli_matrices}中描述的泡利矩阵的形式，它们之间的映射关系如下：
+\begin{align}
+    \ket{g}\bra{g}+\ket{e}\bra{e}\mapsto \hat{I},\ \ket{g}\bra{e}+\ket{e}\bra{g}\mapsto \hat{\sigma}_x,\ \\
+    i(\ket{g}\bra{e}-\ket{e}\bra{g})\mapsto \hat{\sigma}_y,\ \ket{e}\bra{e}-\ket{g}\bra{g}\mapsto \hat{\sigma}_z
+\end{align}
+
+在这种映射情况下，$\hat{H}^{(e)}$可以被表述为：
+\begin{align}
+    \hat{H}^{(e)}=\hbar\frac{\omega}{2}\sigma_z
+\end{align}
+
+相应的能量以$-\hbar(\omega_e+\omega_g)/2$重新缩放，以抑制公式\eqref{eq:two_level_hamiltonian}中与状态无关的能量贡献。
 
 \subsection[耦合的理论表述]{耦合的理论表述}
 
+为了以一种简单而充分的方式描述囚禁离子与光场的相互作用，如前一节所述，我们假设囚禁离子的运动在所有三个维度上都是谐波的。
+下面的描述将包括囚禁电势的显式时间依赖，但在许多情况下，将离子的运动建模为三维静态势谐振子是足够的。
+因为如果无量纲Paul阱参数$a_x$和$q_x^2$的模量相对于与静态势和射频势(见第\ref{section:ion_classical_motion}节)远小于1，则一般理论只会引入非常微小的变化。这对于实验中常用的离子阱是成立的。
+内部状态和运动耦合的广义描述遵循文献\cite[]{Cirac_Garay_Blatt_Parkins_Zoller_2002,1996Paul}中的方法。
+
+另外还假定，在光场的多极展开中处理最低阶展开就足够了，在所讨论的近共振电子状态之间产生一个不退化的矩阵元。
+电子波函数的扩展远小于耦合场的波长这一事实证明了这一假设是合理的。
+对于偶极允许跃迁，将用偶极近似来处理场，而对于偶极禁止跃迁，只考虑场的四极分量。
+对于拉曼跃迁，近共振的中间能级将绝热消除，使这些跃迁在形式上等同于其它类型的跃迁。
+
+\subsubsection[总哈密顿量和相互作用哈密顿量]{总哈密顿量和相互作用哈密顿量\label{section:total_hamiltonian}}
+系统的总哈密顿量可以写作如下形式：
+\begin{align}
+    \hat{H}=\hat{H}^{(m)}+\hat{H}^{(e)}+\hat{H}^{(i)}
+\end{align}
+
+其中$\hat{H}^{(m)}$是沿着离子阱轴向的运动哈密顿量，如在第\ref{section:quantum_motion}节公式\eqref{eq:static_harmiltonian_oscillator}中讨论过的；
+$\hat{H}^{(e)}$代表如第\ref{section:two_level_approximation}节中所述的离子的内部电子能级结构；
+$\hat{H}^{(i)}$代表本部分将要讨论施加的光场与离子之间的耦合。
+
+电偶极跃迁、电四极跃迁和激发拉曼跃迁可以在一个统一的框架中描述，该框架将某个共振拉比频率$\Omega$、有效光频率$\omega$和有效的波矢量$\mathbf{k}$与这些跃迁类型中的每一种相关联。
+电偶极跃迁和电四级跃迁的耦合光场的频率和波矢量是相同的，但两者驱动受激拉曼跃迁的光场频率差$\omega=\omega_1-\omega_2$，波矢量差$\mathbf{k}=\mathbf{k_1}-\mathbf{k_2}$。
+
+对于行波光场，所有三种跃迁类型都可以用以下形式的耦合哈密顿量来描述：
+\begin{align}
+    \hat{H}^{(i)}=(\hbar/2)\Omega(\ket{g}\bra{e}+\ket{e}\bra{g})\\
+    \times\left[e^{i(k\hat{x}_S-\omega t + \phi)}+e^{-i(k\hat{x}_S-\omega t + \phi)}\right]
+\end{align}
+
+在$1/2$自旋代数中我们可以将其重新表述为：
+\begin{align}
+    \ket{e}\bra{g}\mapsto\hat{\sigma}_+=1/2(\hat{\sigma}_x+i\hat{\sigma}_y),\\
+    \ket{g}\bra{e}\mapsto\hat{\sigma}_+=1/2(\hat{\sigma}_x-i\hat{\sigma}_y)
+\end{align}
+
+为了便于说明和理解，我们以一个维度的阐述为例。有效波矢量$\mathbf{k}$选为沿着离子阱中的$x$轴方向。转换到相互作用表象，可以得到自由哈密顿量$\hat{H}_0=hat{H}_{(m)}+hat{H}_{(e)}$与相互作用哈密顿量$\hat{V}=\hat{H}_{(i)}$的最简单的一个动力学图景。记$\hat{U}_0=\exp[-(i/\hbar)\hat{H}_0t]$，转换后的相互作用哈密顿量为：
+
+\begin{align}
+    \hat{H}_{int} &=\hat{U}_0^\dagger\hat{H}^{(i)}\hat{U}_0\\
+    &=(\hbar/2)\omega e^{(i/\hbar)\hat{H}^{(e)}t}(\sigma_++\sigma_-)\\
+    &\times e^{-(i/\hbar)\hat{H}^{(e)}t}e^{(i/\hbar)\hat{H}^{(m)}t}\left[e^{i(k\hat{x}-\omega t + \phi)}+e^{-i(k\hat{x}-\omega t + \phi)}\right]e^{-(i/\hbar)\hat{H}^{(m)}t}\\
+    &=(\hbar/2)\Omega(\sigma_+e^{i\omega_0 t}+\sigma_-e^{-i\omega_0 t}) e^{(i/\hbar)\hat{H}^{(m)}t} \\
+    &\left[e^{i(k\hat{x}-\omega t + \phi)}+e^{-i(k\hat{x}-\omega t + \phi)}\right]e^{-(i/\hbar)\hat{H}^{(m)}t}
+\end{align}
+
+上面公式表述中与时间相关的振动项提取出来后就是$\exp[\pm i (\omega\pm \omega_0)t]$。这两项一项振动频率为$\delta_f=\omega+\omega_0$，是快速振荡项；另一项振动为$\delta=\omega-\omega_0\ll \omega_0$，是慢速振荡项。在研究中我们一般会忽略快速振动项的贡献，也就是所谓的\emph{旋波近似(Rotating-wave Approximation)}。
+
+引入\emph{Lamb-Dick参数}$\eta=kx_0$，其中$x_0=\sqrt{\hbar/(2m\nu)}$是参考振荡子基态波函数的$x$轴方向的扩展，海森堡图景下的$\hat{x}(t)$表述为：
+\begin{align}
+    k\hat{x}(t)=\eta\left\{\hat{a}u^*(t)+\hat{a}^\dagger u(t)\right\}
+\end{align}
+
+旋转波近似中的相互作用哈密顿量取其最终形式为：
+
+\begin{align}
+    \hat{H}_{int}(t)=(\hbar/2)\Omega\hat{\sigma}_+ \exp(i\{\phi+\eta[\hat{a}u^*(t)+\hat{a}^\dagger u(t)]-\delta t\})+H.c.
+\end{align}
+
+指数项中的时间依赖性由频率差$\delta$和$u(t)$控制。
+考虑公式\eqref{eq:ut_expression}中的解形式及Lamb-Dicke 参数下的拓展有：
+\begin{align}
+    &\exp(i\{\phi + \eta [\hat{a}u^*(t)+\hat{a}^\dagger u(t)]-\delta t\})\\
+    &=e^{i(\phi-\delta t)}\sum_{m=0}^{\infty} \frac{(i\eta)^m}{m!}\left\{\hat{a}e^{-i\beta_x\omega_{rf}t} \sum_{n=-\infty}^{\infty}C_{2n}^* \times e^{-i n\omega_{rf}t+H.c.}\right\}^m
+\end{align}
+
+很容易验证任何时刻的衰减满足下式：
+\begin{align}
+    (l'+l\beta_x)\omega_{rf}=\delta
+\end{align}
+
+其中$l$和$l'$为整数且$l\neq l', if l'\neq 0$，它们是哈密顿量中的两项慢速变化，贡献了含时变化的主要部分（其余部分可以忽略）。如果其中一个调制边带与静止离子的跃迁频率$\omega_0$重合，则该边带可以诱导离子内部状态跃迁。实际上，由于实验中$(|a_x|,q_x^2)\ll 1$，因此公式\eqref{eq:quantum_lowest_order_approximation}中的$\beta_x\omega_{rf}\approx\nu$且$C_o\approx(1+q_x/2)^{-1}$。于是相互作用哈密顿量就可以简化成如下形式：
+\begin{align}
+    \hat{H}_{int}(t)=(\hbar/2)\Omega_0\sigma_+ \exp\{i\eta(\hat{a}e^{-i\nu t}+\hat{a}^\dagger e^{i\nu t})\}e^{i(\phi-\delta t)}+ H.c. \label{eq:interaction_hamiltonian}
+\end{align}
+
+其中缩放的相互作用强度为$\Omega_0=\Omega/(1+q_x/2)$，这个缩放反映了射频驱动频率下波包\textcolor{red}{呼吸}引起的耦合减少。
+
+\subsubsection[拉比频率]{拉比频率\label{section:rabi_frequency}}
+
+依赖失谐变量$\delta$，公式\eqref{eq:interaction_hamiltonian}中的哈密顿量会耦合一定的内态和运动态。如果公式\eqref{eq:interaction_hamiltonian}在$\eta$范围内，这会产生一个包含$\sigma_{\pm}$的组合项，它有$l$个$\hat{a}$算符和$m$个$\hat{a}^\dagger$算符并以频率$(l-m)\nu=s\nu$转动。如果$\delta\approx s\nu$的话，这些组合将是共振的，并将多态$\ket{g}\ket{n}$和$\ket{e}\ket{n+s}$耦合起来。对于$s>0(s<0)$的情况，耦合强度通常称为$|s|$级\emph{蓝(红)边带}拉比频率，表达为\cite[]{Leibfried_Meekhof_King_Monroe_Itano_Wineland_2002, Beige_Bose_Braun_Huelga_Knight_Plenio_Vedral_2000}：
+\begin{align}
+    \Omega_{n,n+s}=\Omega_{n+s,n}=\Omega_0|\braket{n+s|e^{i\eta(a+a^\dagger)}|n}|\\
+    =\Omega_0 e^{-\eta^2/2}\eta^{|s|}\sqrt{\frac{n_<!}{n_>!}}L_{n_<}^{|s|}(\eta^2)
+\end{align}
+
+其中$n_<$是比$n+s$和$n$小，$n_>$是比$n+s$和$n$大，$L_n^\alpha(X)$是广义拉盖尔多项式：
+\begin{align}
+    L_n^\alpha(X)=\sum_{m=0}^{n}(-1)^m\begin{pmatrix}
+        n+\alpha \\ n-m
+    \end{pmatrix}\frac{X^m}{m!}
+\end{align}
+
 \subsection[离子内态测量]{离子内态测量}
 
+上述的两部分（第\ref{section:total_hamiltonian}和\ref{section:rabi_frequency}节）介绍了光与离子耦合的主要基础。实际上关于光与离子的耦合还有许多内容可以介绍，这些耦合特性也在离子量子计算中被使用到了，不过我并不打算在这里就将其一一说明。作为替代，我将在后续结合离子量子计算的相关操作来对这些特性做出相应的介绍，比如离子量子比特的冷却（第\ref{section:yb_laser_cooling}节）、初始化（第\ref{section:yb_state_init}节）、探测（第\ref{section:yb_state_detection}节）、操作（第\ref{section:yb_state_manipulation}节）等。
 
-\subsection[离子运动态测量]{离子运动态测量}
+\textcolor{red}{
+这章剩下的离子本身部分考虑暂时不写，留到讲离子量子比特的时候写吧。}
+% \subsection[离子内态测量]{离子内态测量}
 
-
-
-
-
-
-
+% \subsection[离子运动态测量]{离子运动态测量}
 
 
 
 
 
+% \section[离子的激光冷却]{离子的激光冷却}
+% \textcolor{red}{主要介绍原理，不讲太多实验细节和结果，\textcolor{red}{这部分主要参考文献\cite[p16-19]{Leibfried_Blatt_Monroe_Wineland_2003}}}
+% \subsection[多普勒冷却]{多普勒冷却}
 
-
-\section[离子的激光冷却]{离子的激光冷却}
-\textcolor{red}{主要介绍原理，不讲太多实验细节和结果，\textcolor{red}{这部分主要参考文献\cite[p16-19]{Leibfried_Blatt_Monroe_Wineland_2003}}}
-\subsection[多普勒冷却]{多普勒冷却}
-
-\subsection[边带冷却]{边带冷却}
+% \subsection[边带冷却]{边带冷却}
 
 
 
-\section[Mølmer-Sørensen门]{Mølmer-Sørensen门}
-\textcolor{red}{这部分主要参考文献\cite[]{Azuma_2023}}
+% \section[Mølmer-Sørensen门]{Mølmer-Sørensen门}
+% \textcolor{red}{这部分主要参考文献\cite[]{Azuma_2023}}
 
 
 
