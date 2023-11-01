@@ -153,7 +153,7 @@ $OR$门有一种很常见变体，称为\emph{异或门(Exclusive-OR Gate)}(通�
 
 
 
-\subsubsection[可逆逻辑门：NOT、SWAP、CNOT]{可逆逻辑门：NOT、SWAP、CNOT}
+\subsubsection[可逆逻辑门：NOT、SWAP、CNOT]{可逆逻辑门：NOT、SWAP、CNOT\label{section:reversible_gates}}
 
 上节介绍到的如$AND$门、$OR$门、$XOR$门等不可逆门在实践中应用十分广泛。随着数字芯片技术的不断发展，由于集成化的散热问题，不可逆门天然存在的限制逐渐被人们关注。基础物理理论告诉我们当信息被擦除时，一定伴随着能量的耗散\cite[]{Kastner_Schlatter_2023}。具体来说，每一比特信息的擦除会释放的能量为$kT\ln 2$，其中$k$是玻尔兹曼常数($k=1.3805\times 10^{-23}JK^{-1}$)而$T$是以\emph{凯尔文(Kelvin)}为单位的绝对温度。因此，即使所有其它能量损失机制从电路中消除了，由于信息擦除时发生的不可避免的能量损失，电路在操作时仍然会耗散能量。尽管当今在逻辑电路中由于逻辑不可逆性而导致的这种能量耗散与其它机制导致的能量耗散相比还比较小。然而，随着其它机制导致的能量耗散不断被克服，这种不可避免的信息擦除能量耗散将成为重要贡献，这将会阻碍计算芯片的进一步小型化和集成化。
 
@@ -170,7 +170,7 @@ $OR$门有一种很常见变体，称为\emph{异或门(Exclusive-OR Gate)}(通�
 
 \begin{table}
     \centering
-    \caption[\emph{NOT}门]{\emph{NOT}门\label{tb:not_gate}}
+    \caption[\emph{NOT}门真值表]{\emph{NOT}门真值表\label{tb:not_gate}}
     \begin{tabular}{C{1.5cm}C{1.5cm}}
         \toprule 
         \multicolumn{2}{c}{\textbf{NOT}}\\
@@ -192,7 +192,7 @@ $OR$门有一种很常见变体，称为\emph{异或门(Exclusive-OR Gate)}(通�
 
 \begin{table}
     \centering
-    \caption[\emph{CNOT}门]{\emph{CNOT}门\label{tb:cnot_gate}}
+    \caption[\emph{CNOT}门真值表]{\emph{CNOT}门\label{tb:cnot_gate}}
     \begin{tabular}{C{1cm}C{1cm}C{1cm}C{1cm}}
         \toprule 
         \multicolumn{4}{c}{\textbf{CNOT}}\\
@@ -255,7 +255,7 @@ $OR$门有一种很常见变体，称为\emph{异或门(Exclusive-OR Gate)}(通�
 注意$CNOT$门不仅是一种RLG，还是一种\emph{通用逻辑门(Universal Logic Gate, ULG)}。也就是说以它为基础可以实现任何其它类型的门，比如$AND$、$OR$等等，进一步地可以只用$CNOT$搭建网络实现任何计算。ULG除了$CNOT$门外，还有$TOFFOLI$门\cite[]{Maslov_Dueck_Miller_2005}、$FREDKIN$门\cite[]{Adamatzky_2017}等等。$TOFFOLI$门和$FREDKIN$门都属于RLG，比如$TOFFOLI$门的真值表如表\ref{tb:toffoli_gate}所示，它的图标如图\ref{fig:toffoli_gate}所示。
 \begin{table}
     \centering
-    \caption[TOFFOLI]{\emph{TOFFOLI}门真值表}
+    \caption[TOFFOLI门真值表]{\emph{TOFFOLI}门真值表}
     \label{tb:toffoli_gate}
     \begin{tabular}{C{1cm}C{1cm}C{1cm}C{1cm}C{1cm}C{1cm}}
         \toprule
