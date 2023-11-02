@@ -99,7 +99,7 @@
 
 \section[镱离子的态操控]{镱离子的态操控\label{section:yb_state_manipulation}}
 量子门可以通过微波\cite[]{Olmschenk_Younge_Moehring_Matsukevich_Maunz_Monroe_2007}或脉冲激光\cite[]{Lee_2005}实现。微波对离子的态操控实现简单，但是由于所用微波的长波太长，使用微波技术方案往往仅限于单比特门；激光操控离子有诸多优点，尤其是在大规模的集成和寻址方面。接下来的小节将具体介绍这两类离子比特门操控方式。
-\subsection[微波操控镱离子]{微波操控镱离子}
+\subsection[微波操控镱离子]{微波操控镱离子\label{section:microwave_operation}}
 在本小节中，我将简要介绍微波操控的离子量子门，以帮助建立离子态操控的一般方式。
 在微波场下的离子哈密顿量为（保持$\hbar=1$）：
 \begin{align}
@@ -111,7 +111,7 @@
     \hat{H}_I&=e^{iH_0t}(\hat{H}-\hat{H}_0)e^{-iH_0t}\\
     &=-\frac{\mu}{2}\hat{\sigma}_z+\frac{\Omega}{2}\left(\hat{\sigma}_+e^{i\omega t}+\hat{\sigma}_-e^{-i\omega t}\right)\left(e^{i(\omega t-\phi)}+e^{-i(\omega t-\phi)}\right)\\
     &\approx -\frac{\mu}{2}\hat{\sigma}_z+\Omega(\hat{\sigma}_+e^{i\phi}+\hat{\sigma}_-e^{-i\phi})\\
-    &=-\frac{\mu}{2}\hat{\sigma}_z+\frac{\Omega\cos{\phi}}{2}\hat{\sigma}_x+\frac{\Omega\sin{\phi}}{2}\hat{\sigma}_y
+    &=-\frac{\mu}{2}\hat{\sigma}_z+\frac{\Omega\cos{\phi}}{2}\hat{\sigma}_x+\frac{\Omega\sin{\phi}}{2}\hat{\sigma}_y\label{eq:interaction_hamiltonian_microwave}
 \end{align}
 
 其中$\mu=\omega=\omega_q$是量子比特和单微波光子之间的能量差。在$\approx$这步，我们采用了在第\ref{section:total_hamiltonian}节中介绍过的\emph{旋波近似}，将含$2\omega$的快速振动项忽略掉了。相互作用表象\textcolor{red}{(dressed-state)}的优点在于最终的哈密顿量是不含时的，这样各个泡利矩阵的成分的概率幅就完全由施加的微波场决定了。
@@ -123,11 +123,11 @@
 
 如果给定$\ket{\Psi(0)}=\ket{0}$，那么可以解析地写出这个态的演化后的概率幅：
 \begin{align}
-    c_1(t)=-i\frac{\Omega}{\Omega_{eff}}e^{i\phi}\sin{\frac{\Omega_{eff}t}{2}},\\
-    c_0(t)=\cos{\frac{\Omega_{eff}t}{2}}-i\frac{\mu}{\Omega_{eff}}\sin{\frac{\Omega_{eff}t}{2}}
+    c_1(t)&=-i\frac{\Omega}{\Omega_{eff}}e^{i\phi}\sin{\frac{\Omega_{eff}t}{2}},\\
+    c_0(t)&=\cos{\frac{\Omega_{eff}t}{2}}-i\frac{\mu}{\Omega_{eff}}\sin{\frac{\Omega_{eff}t}{2}}
 \end{align}
 
-其中$\Omega_{eff}=\sqrt{\Omega^2+\mu^2}$是有效拉比频率[77]。$\ket{1}$态的概率$p_1(t)=|c_1(t)|^2$在时间$t=\pi/\Omega_{eff}$时取得最大值，最大值为$\Omega^2/(\Omega^2+\mu^2)$。不同失谐$\mu$情况下的拉比振荡如图所示。
+其中$\Omega_{eff}=\sqrt{\Omega^2+\mu^2}$是有效拉比频率\cite[]{Foot_2005}。$\ket{1}$态的概率$p_1(t)=|c_1(t)|^2$在时间$t=\pi/\Omega_{eff}$时取得最大值，最大值为$\Omega^2/(\Omega^2+\mu^2)$。不同失谐$\mu$情况下的拉比振荡如图所示。
 
 \begin{figure}
     \centering
@@ -135,7 +135,7 @@
     \includegraphics[width=1.0\linewidth]{rabi_oscillations}
 \end{figure}
 
-碎玉量子计算的实现，我们总是使$\mu\approx0$以实现任意单比特的旋转操控：
+在量子计算的实现中，我们总是使$\mu\approx0$以实现任意单比特的旋转操控：
 \begin{align}
     R_\phi(\theta)=U\left(\frac{\theta}{\Omega},P\phi\right)=\exp[-i\frac{\theta}{2}\sigma_\phi]
 \end{align}
@@ -144,13 +144,100 @@
 
 
 
-
-
-
-
-
 \subsection[连续激光操控镱离子]{连续激光操控镱离子}
 
+离子的内态也可以用激光通过称为\emph{受激拉曼跃迁(Stimulated Raman Transition, SRT)}的过程来操控。与微波场操控的方式相比，光学激光器的波长更短，提供了强大量子比特寻址的优势，这对于多量子比特情况下的单个量子比特操作至关重要，接下来的部分介绍了这种方法。
+
+信息储存在镱离子的超精细能级上，$\ket{0}$和$\ket{1}$能级之间有着$12.6$GHz的能量差。尽管激光的能量远大于这个能级间隔以至于无法用激光直接操控$\ket{0}$态和$\ket{1}$态之间的跃迁，我们仍然可以通过两光子的受激拉曼跃迁来实现对离子内态的操控，如图\ref{fig:raman_transition}所示。
+\begin{figure}
+    \centering
+    \caption[镱离子受激拉曼跃迁示意图]{镱离子受激拉曼跃迁示意图\label{fig:raman_transition}}
+    \includegraphics[width=1.0\linewidth]{raman_transition}
+\end{figure}
+
+通过同时激发从$\ket{0}$和$\ket{1}$到一个中间激发态$\ket{e}$的电偶极跃迁，整个系统的自由空间哈密顿量可以写为：
+\begin{align}
+    \hat{H}&=\frac{\omega_q}{2}\hat{\sigma}_z+\left(\omega_e+\frac{\omega_q}{2}\right)\ket{e}\bra{e}\\
+    &+\frac{\Omega_1}{2}(\ket{e}\bra{0}+\ket{e}\bra{1}+H.c.)\left(e^{i(\vec{k}_1\cdot\vec{r}-\omega_1t+\phi_1)}+H.c.\right)\\
+    &+\frac{\Omega_2}{2}(\ket{e}\bra{0}+\ket{e}\bra{1}+H.c.)\left(e^{i(\vec{k}_2\cdot\vec{r}-\omega_2t+\phi_2)}+H.c.\right)
+\end{align}
+
+其中$\Omega_i,\vec{k}_i, \phi_i$分别为第$i$个拉曼激光的电偶极跃迁强度、波矢和光相位。$H.c.$表示厄米共轭。如果在旋转坐标系$\hat{H}_0=\frac{\omega_1\hat{\sigma}_z}{2}+\left(\omega_e+\frac{\omega_q}{2}\right)\ket{e}\bra{e}$下看，相互作用的哈密顿量变为了：
+\begin{align}
+    \hat{H}=
+    &\left(\frac{\Omega_1}{2}e^{i(-\Delta-\mu)t}e^{i(\vec{k}_1\cdot \vec{r}+\phi_1)}
+    +\frac{\Omega_2}{2}e^{i(-\Delta+\omega_q)t}e^{i(\vec{k}_2\cdot \vec{r}+\phi_2)}\right)\ket{e}\bra{0}\\
+    +&\left(\frac{\Omega_1}{2}e^{i(-\Delta-\mu-\omega_q)t}e^{i(\vec{k}_1\cdot \vec{r}+\phi_1)}
+    +\frac{\Omega_2}{2}e^{i(-\Delta)t}e^{i(\vec{k}_2\cdot \vec{r}+\phi_2)}\right)\ket{e}\bra{1}+H.c.\label{eq:interaction_hamiltonian_yb}
+\end{align}
+
+其中失谐$-\Delta$如图\ref{fig:raman_transition}所示.考虑$\Delta\gg\Omega_1,\Omega_2$且$|\Delta|\gg\omega_q\gg\mu$的情况，这时中间激发态$\ket{e}$可以绝热消除，最终离子比特系统中有效的哈密顿量如下：
+\begin{align}
+    \hat{H}_{eff}=\frac{\delta_{diff}}{2}\hat{\sigma}_z+\frac{\Omega}{2}\left(\hat{\sigma}_+e^{i\left(\vec{k}\cdot\vec{r}-\mu t+\phi\right)}
+    +\hat{\sigma}_-e^{-i\left(\vec{k}\cdot\vec{r}-\mu t+\phi\right)}\right)\label{eq:effective_hamiltonian_raman}
+\end{align}
+
+其中$\Omega=\frac{\Omega_1\Omega_2}{2\Delta}$，$\vec{k}=\vec{k}_1-\vec{k}_2$，$\phi=\phi_1-\phi_2$分别是有效拉比频率、有效波矢和激光的相对相位。$\delta_{diff}$有如下形式\cite[]{James_Jerke_2007}：
+\begin{align}
+    \delta_{diff}&=-\left(\frac{\Omega_1^2}{4(-\Delta-\mu-\omega_q)+\frac{\Omega_2^2}{4(-\Delta)}}\right)+\left(\frac{\Omega_1^2}{4(-\Delta+\mu)+\frac{\Omega_2^2}{4(-\Delta+\omega_q)}}\right)\\
+    &\approx-\frac{\Omega_1^2+\Omega_2^2}{4\Delta}\frac{\omega_q}{\Delta}
+\end{align}
+这个是量子比特能级的差分光位移，由于在一般的实验设置中$\omega_a/|\Delta|\sim 10^{-3}\ll 1$，$\delta_{diff}$的值非常小。这项可以通过将原来的旋转坐标$\omega_q$重新选择为$(\omega_q+\delta_{diff})$来吸收掉。
+
+另外注意，这里的有效哈密顿量与公式\eqref{eq:interaction_hamiltonian_microwave}的共振情况相同，后者是用微波进行的操控。因此如果我们让$\vec{k}_1=\vec{k}_2$且$\mu=\delta_{diff}\approx0$，那么这两种离子比特的操控方式从结果上看没有什么不同。不过实际上，两者还有所不同。除了上面提高过的受激发的拉曼跃迁方法有单比特寻址的能力外，它还通过改变传播拉曼光束的角度$\vec{k}\in[0,4\pi/\lambda]$（激光方向从同向到反向传播）来提供波矢$\vec{k}$的操控自由度。因为波长$\lambda$是在光学波段，最大的波矢模$|\vec{k}|$能达到$10um^{-1}$，这为离子的运动耦合提供了可能性。离子也可以看作是一个以频率$\nu$振动的量化的谐振子（第\ref{section:ion_classical_motion}节），这时公式\eqref{eq:effective_hamiltonian_raman}中的哈密顿量为:
+\begin{align}
+    H_{eff}=\nu a^\dagger a+\frac{\Omega}{2}\left(\sigma_+e^{i(\eta(a^\dagger a)-\mu t+\phi)}+H.c.\right) \label{eq:effective_hamiltonian_rotating}
+\end{align}
+其中$a,a^\dagger$分别是产生和湮灭算子。这里我们通过研究一个维度的情况来具体说明，比如$x$方向。此时$\vec{k}\cdot\vec{r}\to k\cdot x$等价于$k\Delta x(a+a^\dagger)=\eta(a+a^\dagger)$，其中$\Delta x=\sqrt{\hbar/2M\nu}$是基态波函数的拓展，$\eta=k\Delta x$是在第\ref{section:total_hamiltonian}节介绍过的LDP。将公式\eqref{eq:effective_hamiltonian_rotating}转换到$H_0=\nu a^\dagger a$的表象下并将$\exp{i\vec{k}\cdot \vec{r}}$进行一阶展开，可以得到近似的相互作用哈密顿量：
+\begin{align}
+    H_I\approx\frac{\Omega}{2}\left[\sigma_+(1+i\eta a e^{-i\nu t}+i\eta a^\dagger e^{i\nu t})e^{-i\mu t+i\phi}+H.c.\right]
+\end{align}
+
+这个近似形式仅在$\eta\sqrt{\braket{(a+a^\dagger)^2}}\ll1$时成立，这也被称为\emph{Lamb-Dick近似(Lamb-Dick Approximation)}，其中$\braket{\cdot}$表示量子态平均。在实验中这个条件是成立的，不然就会产生高阶的跃迁。通过调节$\mu$等于$0,-\nu,\nu$，我们可以得到三种类型的跃迁：
+\begin{align}
+    H_{car}&=\frac{\Omega}{2}(\sigma_+e^{i\phi}+H.c.)\\
+    H_{rsb}&=\frac{i\eta\Omega}{2}(\sigma_+ae^{i\phi}+H.c.)\\
+    H_{bsb}&=\frac{i\eta\Omega}{2}(\sigma_+a^\dagger e^{i\phi}+H.c.)
+\end{align}
+$H_{car}$， $H_{rsb}$， $H_{bsb}$分别被称为载带跃迁、红边带跃迁和蓝边带跃迁，如图\ref{fig:red_carray_blue_sideband}所示。
+\begin{figure}
+    \centering
+    \caption[载带跃迁、红边带跃迁和蓝边带跃迁示意图]{载带跃迁、红边带跃迁和蓝边带跃迁示意图。\label{fig:red_carray_blue_sideband}}
+    \includegraphics[width=1.0\linewidth]{red_carray_blue_sideband}
+\end{figure}
+
+载带跃迁可以用来实现如微波操控一样（第\ref{section:microwave_operation}节）的单比特门翻转$R_\phi(\theta)$。
+红边带跃迁和蓝边带跃迁的哈密顿量分别称为\emph{Jaynes-Cummings}或\emph{anti-Jaynes-Cummings}模型\cite[]{Karnieli_Fan_2023}。这类跃迁可以将量子比特与其外部量化运动耦合，这对于实现多个离子量子比特纠缠至关重要。
 \subsection[脉冲激光操控镱离子]{脉冲激光操控镱离子}
+如上一节所述的在用激光操控离子的技术方案下，$\ket{0}$和$\ket{1}$态耦合的主要方式是通过受激拉曼跃迁。脉冲激光控制离子的原理本质上与连续激光的情况没有不同。主要区别在于连续激光是通过驱动拉曼跃迁来控制的，而脉冲激光是通过同时驱动一系列小间隔的拉曼跃迁来控制的。原理图如图\ref{fig:pulsed_laser_interaction}所示。
+\begin{figure}
+    \centering
+    \caption[脉冲激光操控镱离子]{脉冲激光操控镱离子\label{fig:pulsed_laser_interaction}}
+    \includegraphics[width=1.0\linewidth]{pulsed_laser_interaction}
+\end{figure}
+
+在空间中的固定点上，理想化的激光脉冲束有一个时间独立的电场，可以表述为:
+\begin{align}
+    E(t)=\sum_{n=1}^{N}f(t-nT)e^{i\omega_0t}
+\end{align}
+
+其中$f(t)$是脉冲激光的包络，$T$是激光脉冲的重复周期，$N
+$是整数激光包含的脉冲数，$\omega_0$是脉冲激光的波长。脉冲激光在频域中可以表示为：
+\begin{align}
+    E(\omega)=\sum_{n=0}^{\infty}\tilde{f}(\omega)(\omega_0\pm n\omega_R)
+\end{align}
+
+其中$\tilde{f}(\omega)=\mathcal{F}(f(t))$表示$f(t)$傅里叶变换的结果，$\omega_R=2\pi\nu_R$是脉冲激光的重复频率。如图\ref{fig:pulsed_laser_comb}所示，脉冲激光在频域上是一些列频率梳齿，离子比特态之间拉曼跃迁的共振拉比频率由梳齿的所有谱分量的总和给出，如图\ref{fig:pulsed_laser_interaction}所示。在绝热近似消除激发态$^2P_{1/2}$并执行旋转波近似后，脉冲激光的受激拉曼跃迁拉比频率有以下形式\cite[]{Hayes_Matsukevich_Maunz_Hucul_Quraishi_Olmschenk_Campbell_Mizrahi_Senko_Monroe_2010}：
+\begin{align}
+    \Omega=\frac{|\mu|^2\sum_{l}^{}E_lE_{l-q}}{\Delta}\approx\Omega_0\left(\frac{\omega_q\tau}{e^{\frac{\omega_q\tau}{2}}-e^{-\frac{\omega_q\tau}{2}}}\right)
+\end{align}
+
+\begin{figure}
+    \centering
+    \caption[脉冲激光在频域中的梳齿]{脉冲激光在频域中的梳齿\label{fig:pulsed_laser_comb}}
+    \includegraphics[width=1.0\linewidth]{pulsed_laser_comb}
+\end{figure}
+
+其中$\mu$是地面之间的偶极子矩阵元素,$\tau\approx 1 psec$是每个脉冲的持续时间，$E_k\equiv \nu_R\tilde{f}(2\pi k\nu_R)$是激发态电子态，$q\equiv\omega_q/\omega_R$是整数。在上述的近似表述中，求和被表述为积分，每个脉冲表示为$f(t)=\sqrt{\pi/2}E_0 sech(\pi t/\tau)$（$\tau\ll T$）。$\Omega_0=\nu_R\tau|\nu E_0|^2/\Delta=s\gamma^2/2\Delta$脉冲束的时间平均谐振拉比频率，$\gamma/2\pi=20MHz$是$^2P_{1/2}$态的辐射线宽,$s=\bar{I}/T_{sat}$是$^2S_{1/2}\leftrightarrow ^2P_{1/2}$的饱和强度。在假设单脉冲带宽与我们的实验系统中满足的超精细频率（$\omega_q\tau\ll 1$）相比较大的情况下，可以得到$\Omega\approx\Omega_0$。
 
 \section[Mølmer-Sørensen 门]{Mølmer-Sørensen 门}
