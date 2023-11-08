@@ -5,14 +5,14 @@
 % \textcolor{red}{
 % 这部分讲解镱离子的基本情况以及镱离子用来做量子计算的各种基本操作原理... 
 % }
-目前所有实现的用于离子量子计算的离子都属于\emph{类氢离子(Hydrogen-like ions)}， 比如$Be^+$(NIST\cite[]{Monroe_Meekhof_King_Itano_Wineland_2002,Lin_Gaebler_Reiter_Tan_Bowler_Wan_Keith_Knill_Glancy_Coakley_et_al_2016})，$Mg^+$(NIST\cite[]{Barrett_Schaetz_DeMarco_Britton_Chiaverini_Itano_Jelenkovic_Jost_Langer_Leibfried_et_al_2003, Wan_Kienzler_Erickson_Mayer_Tan_Wu_Vasconcelos_Glancy_Knill_Wineland_et_al_2019})，$Ca^+$(Univer-sity of Innsbruck\cite[]{Lanyon_Hempel_Nigg_Müller_Gerritsma_Zähringer_Schindler_Barreiro_Rambach_Kirchmair_et_al_2011,Monz_Nigg_Martinez_Brandl_Schindler_Rines_Wang_Chuang_Blatt_2016}, University of Oxford\cite[text]{Ballance_Harty_Linke_Sepiol_Lucas_2016,Schäfer_Ballance_Thirumalai_Stephenson_Ballance_Steane_Lucas_2018})，$Ba^+$(Washington University\cite[]{Dietrich_2009,Dietrich_Kurz_Noel_Shu_Blinov_2010},UCLA\cite[]{Hucul_Christensen_Hudson_Campbell_2017})，$Yb^+$(University of Maryland\cite[]{Olmschenk_Younge_Moehring_Matsukevich_Maunz_Monroe_2007,Debnath_Linke_Figgatt_Landsman_Wright_Monroe_2016}, University of Sussex\cite[]{Weidt_Randall_Webster_Lake_Webb_Cohen_Navickas_Lekitsch_Retzker_Hensinger_2016})。
+目前所有实现的用于离子量子计算的离子都属于\emph{类氢离子(Hydrogen-like ions)}， 比如$Be^+$（NIST\cite[]{Monroe_Meekhof_King_Itano_Wineland_2002,Lin_Gaebler_Reiter_Tan_Bowler_Wan_Keith_Knill_Glancy_Coakley_et_al_2016}），$Mg^+$（NIST\cite[]{Barrett_Schaetz_DeMarco_Britton_Chiaverini_Itano_Jelenkovic_Jost_Langer_Leibfried_et_al_2003, Wan_Kienzler_Erickson_Mayer_Tan_Wu_Vasconcelos_Glancy_Knill_Wineland_et_al_2019}），$Ca^+$（Univer-sity of Innsbruck\cite[]{Lanyon_Hempel_Nigg_Müller_Gerritsma_Zähringer_Schindler_Barreiro_Rambach_Kirchmair_et_al_2011,Monz_Nigg_Martinez_Brandl_Schindler_Rines_Wang_Chuang_Blatt_2016}, University of Oxford\cite[]{Ballance_Harty_Linke_Sepiol_Lucas_2016,Schäfer_Ballance_Thirumalai_Stephenson_Ballance_Steane_Lucas_2018}），$Ba^+$（Washington University\cite[]{Dietrich_2009,Dietrich_Kurz_Noel_Shu_Blinov_2010},UCLA\cite[]{Hucul_Christensen_Hudson_Campbell_2017}），$Yb^+$（University of Maryland\cite[]{Olmschenk_Younge_Moehring_Matsukevich_Maunz_Monroe_2007,Debnath_Linke_Figgatt_Landsman_Wright_Monroe_2016}, University of Sussex\cite[]{Weidt_Randall_Webster_Lake_Webb_Cohen_Navickas_Lekitsch_Retzker_Hensinger_2016}）。
 类氢离子具有最简单的能量结构，处理起来相对其它类型的离子要简单很多。它们具有的内态$S_{1/2}$到$P_{1/2}$之间的闭环光学跃迁，能方便地实现激光冷却、高保真初始化和内态读出操作\cite[]{Harty_Allcock_Ballance_Guidoni_Janacek_Linke_Stacey_Lucas_2014}，这对于量子计算的实现至关重要。要挑选出合适的类氢离子，还有一些其它的参数需要被考虑，如离子的质量、循环跃迁的波长、核自旋的值和$^2D$能级的亚稳态的寿命等\cite[]{Bruzewicz_Chiaverini_McConnell_Sage_2019}。
 
 出于历史和现实的原因，我们实验室选择$Yb^+$离子作为实现量子计算的物理平台。
 在接下的几节中，我将阐述用镱离子实现量子计算的一些重要的概念，如镱离子的能级结构和比特编码方式、镱离子的态初始化、镱离子的探测、镱离子的操控等。
 
 \section[镱离子的能级结构和和比特编码方式]{镱离子的能级结构和和比特编码方式}
-在第\ref{section:introduction}章中我们介绍过实现量子计算对物理平台的要求，最基本的要求是要能找到合适的量子系统来编码量子比特，即$\ket{0}$、$\ket{1}$。离子的内态是十分稳定并且易于操控的，因此一般选择离子的两个内部状态来编码量子信息并执行计算。对于我们现在系统中采用的$^{171}Yb^+$离子来说，用来编码量子比特的是有着$1/2$自旋的处于$S_{1/2}$基态的超精细能级\cite[]{Olmschenk_Younge_Moehring_Matsukevich_Maunz_Monroe_2007}。如图\ref{fig:energy_structure}所示，$\ket{0}$和$\ket{1}$分别被编码到了基态的相应状态，具体来说是分别是$\ket{0}=\ket{F=0,m_F=0}$和$\ket{1}=\ket{F=1,m_F=0}$，当$B=0$两个能级的能量差为$12.64$GHz。
+在第\ref{section:introduction}章介绍中我们介绍过实现量子计算对物理平台的要求，最基本的要求是要能找到合适的量子系统来编码量子比特，即$\ket{0}$、$\ket{1}$。离子的内态是十分稳定并且易于操控的，因此一般选择离子的两个内部状态来编码量子信息并执行计算。对于我们现在系统中采用的$^{171}Yb^+$离子来说，用来编码量子比特的是有着$1/2$自旋的处于$S_{1/2}$基态的超精细能级\cite[]{Olmschenk_Younge_Moehring_Matsukevich_Maunz_Monroe_2007}。如图\ref{fig:energy_structure}所示，$\ket{0}$和$\ket{1}$分别被编码到了基态的相应状态，具体来说是分别是$\ket{0}=\ket{F=0,m_F=0}$和$\ket{1}=\ket{F=1,m_F=0}$，当$B=0$两个能级的能量差为$12.64$GHz。
 
 \begin{figure}
     \centering
@@ -57,7 +57,7 @@
 \end{figure}
 如图\ref{fig:doppler_cooling}所示，由于多普勒效应，在离子局部坐标系下看入射激光的波长会产生$-\vec{k}\cdot\vec{v}$的频移。因此如果施加红是失谐的激光，那么与激光方向相反的离子将比与激光方向相同的离子吸收更多的光子；另一方面，对打的激光会抵消激光本身对离子的加速效应，最终离子会失去较多的动量，被激光“冷却”下来。
 
-对$Yb^+$离子来说，在这个过程中跃迁$^2S_{1/2}\ket{F=1}\to {^2P}_{1/2\ket{F=0}}$和$^2S_{1/2}\ket{F=0}\to {^2P}_{1/2\ket{F=1}}$同时被驱动以覆盖离子的所有超精细能级，避免离子陷入暗态（变黑）。
+对$Yb^+$离子来说，在这个过程中跃迁$^2S_{1/2}\ket{F=1}\to {^2P}_{1/2}\ket{F=0}$和$^2S_{1/2}\ket{F=0}\to {^2P}_{1/2}\ket{F=1}$同时被驱动以覆盖离子的所有超精细能级，避免离子陷入暗态（变黑）。
 
 此外，冷却激光的所有偏振都施加上去来提高冷却效率，相关跃迁回路和离子散射图如图\ref{fig:doppler_cooling_level}所示。
 \begin{figure}
@@ -241,3 +241,99 @@ $是整数激光包含的脉冲数，$\omega_0$是脉冲激光的波长。脉冲
 其中$\mu$是地面之间的偶极子矩阵元素,$\tau\approx 1 psec$是每个脉冲的持续时间，$E_k\equiv \nu_R\tilde{f}(2\pi k\nu_R)$是激发态电子态，$q\equiv\omega_q/\omega_R$是整数。在上述的近似表述中，求和被表述为积分，每个脉冲表示为$f(t)=\sqrt{\pi/2}E_0 sech(\pi t/\tau)$（$\tau\ll T$）。$\Omega_0=\nu_R\tau|\nu E_0|^2/\Delta=s\gamma^2/2\Delta$脉冲束的时间平均谐振拉比频率，$\gamma/2\pi=20MHz$是$^2P_{1/2}$态的辐射线宽,$s=\bar{I}/T_{sat}$是$^2S_{1/2}\leftrightarrow ^2P_{1/2}$的饱和强度。在假设单脉冲带宽与我们的实验系统中满足的超精细频率（$\omega_q\tau\ll 1$）相比较大的情况下，可以得到$\Omega\approx\Omega_0$。
 
 \section[Mølmer-Sørensen 门]{Mølmer-Sørensen 门}
+
+两量子比特纠缠门可以通过利用不同离子之间共享的集体运动实现。该策略利用了囚禁离子链的一个非常有利的特性，称为\emph{完全连通性(Full Connectivity)}，这意味着整个离子链的离子都有相互作用。
+
+Ignacio Cirac和Peter Zoller最早在1995年中提出了双量子比特纠缠门的第一个方案\cite[]{Cirac_Zoller_2002}，称为\emph{Cirac-Zoller门(Cirac-Zoller Gate, CZ-Gate)}，并在2003年在实验中实现\cite[]{Schmidt_Kaler_Häffner_Riebe_Gulde_Lancaster_Deuschle_Becher_Roos_Eschner_Blatt_2003}。
+然而，如果离子不冷却到它们的运动基态，CZ-Gate的性能会急剧下降。这种苛刻的要求限制了CZ-Gate的扩展。
+Klaus Mølmer和Anders Sørensen在1999年提出了另一种运动状态不敏感门的技术方案\cite[]{Sørensen_Mølmer_2002},被称为\emph{Mølmer-Sørensen门(Mølmer-Sørensen Gate, MS-Gate)}。
+由于MS-Gate的更鲁棒的特征，它广泛用于囚禁离子量子计算中。在本节中，我们将详细介绍MS型双量子比特纠缠门的实现。
+
+如果我们对离子施加二色场$\mu_b=mu, \mu_r=-\mu$，就可以得到状态相关力，相应的哈密顿量可以表述为：
+\begin{align}
+    H_{SDF}=\sum_{j=1}^{2}\sum_{m=1}^{2}\frac{\eta_{j,m}\Omega}{2}\left(a_m^\dagger e^{i\delta_m t}e^{-i\phi_p}+a_m e^{-i\delta_m t}e^{i\phi_p}\right)\hat{\sigma}_{\phi_s}^j
+\end{align}
+
+其中$\eta_{j.m}$是缩放的Lamb-Dicke参数（其中包括来自正常模式变换矩阵的因子）\cite[]{James_1998}，$\hat{\sigma}_j$是第$j$个离子比特的泡利矩阵。
+$a_m$和$a_m^\dagger$是第$m$个模式的湮灭和产生算子，相应的模态频率表示为$\nu_m$。$\delta_m=\nu_m-\mu$是相对于第$m$个模式的失谐，它对于红蓝两个相应的跃迁的拉比频率相等为$\Omega_r=\Omega_b=\Omega$。
+光学相位$\phi_b$和$\phi_r$可以分解为运动和量子比特两部分，其形式分别为$\phi_p=(\phi_r-\phi_b)/2, \phi_s=(\phi_r+\phi_b+\pi)/2$。我们可以定义形式为$f_{j,m}=\eta_{j,m}\Omega e^{i\phi_p}/2$的一个复合力。不失一般性，我们可以设定$\phi_p=\phi_s=0$，从而得到一个由$\hat{\sigma}_x$决定的力，哈密顿量为：
+\begin{align}
+    H_{SDF}=\sum_{j=1}^{2}\sum_{m=1}^{2}\frac{\eta_{j, m}\Omega}{2}\left(a_m^\dagger e^{i\delta_mt}+a_m e^{-i\delta_mt}\right)\hat{\sigma}_x^j\label{eq:sigma_x_dependent_force}
+\end{align}
+
+那么由公式\eqref{eq:sigma_x_dependent_force}所描述的哈密顿量控制的演化可以推导出为：
+\begin{align}
+    U(\tau)=\mathscr{T}\exp\left[-i\int_{0}^{\tau}H_{SDF}(t)dt\right]\label{eq:unitary_evolution_operator}
+\end{align}
+
+这是一个时间顺序的积分，因为$[H_{SDF}(t_2),H_{SDF}(t_1)]\neq 0, t_1\neq t_2$。幸运的是，通过利用Magnus公式，方程\eqref{eq:unitary_evolution_operator}可以解析计算如下\cite[]{Lee_Brickman_Deslauriers_Haljan_Duan_Monroe_2005}：
+\begin{align}
+    U(\tau)=\exp\left\{-i\int_{0}^{\tau}H_{SDF}(t)dt-\frac{1}{2}\int_{0}^{\tau}dt_2\int_{0}^{t_2}[H_{SDF}(t_2),H_{SDF}(t_1)]dt_1\right\}\label{eq:hamiltonian_with_magnus}
+\end{align}
+
+具体来看，公式\eqref{eq:hamiltonian_with_magnus}中第一个积分变为：
+\begin{align}
+    T_1=&-i\int_{0}^{\tau}H_{SDF}(t)dt\\
+    =&-i\int_{0}^{\tau}\sum_{j=1}^{2}\sum_{m=1}^{2}\frac{\eta_{j,m}\Omega}{2}\left(a_m^\dagger e^{i\delta_mt}+a_m e^{-i\delta_mt}\right)\hat{\sigma}_x^j dt\\
+    =&\sum_{j=1}^{2}\sum_{m=1}^{2}\left(\alpha_{j,m}(\tau)a_m^\dagger-\alpha_{j,m}^*(\tau)a_m\right)\hat{\sigma}_x^j\label{eq:integral_t1}
+\end{align}
+
+其中，
+\begin{align}
+    \alpha_{j,m}(\tau)=-i\frac{\eta_{j,m}\Omega}{2}\int_{0}^{\tau}e^{i\sigma_m t}dt=\frac{\eta_{j,m}\Omega}{2}\frac{1-e^{i\delta_m\tau}}{\delta_m}\label{eq:alpha_j_m}
+\end{align}
+
+显然，第一个积分的结果揭示了在多个运动模式上的状态相关位移算子，它将量子比特状态与其在位置动量相空间中的位移纠缠在一起。
+
+公式\eqref{eq:hamiltonian_with_magnus}中第二个双重积分可以简化为：
+\begin{align}
+    T_2=&-\frac{1}{2}\int_{0}^{\tau}dt_2\int_{0}^{t_2}[H_{SDF}(t_2),H_{SDF}(t_1)]dt_1\\
+    =&-\sum_{j,j'=1}^{2}\sum_{m,m'=1}^{2}\frac{\eta_{j,m}\eta_{j',m'}\Omega^2}{8}\hat{\sigma}_x^j\hat{\sigma}_x^{j'}\\
+    &\int_{0}^{\tau}dt_2\int_{0}^{t_2}dt_1\left[a_m^\dagger e^{i\delta_m t_2}+a_m e^{i\delta_m t_2}, a_{m'}^\dagger e^{i\delta_{m'} t_1}+a_{m'} e^{i\delta_{m'} t_1}\right]\\
+    =&i\sum_{j,j'=1}^{2}\sum_{m,m'=1}^{2}\frac{\eta_{j,m}\eta_{j',m'}\Omega^2}{4}\hat{\sigma}_x^j\hat{\sigma}_x^{j'}\int_{-}^{\tau}dt_2\int_{0}^{t_2}dt_1\sin[\delta_m(t_2-t_1)]\\
+    =&i\sum_{j,j'=1}^{2}\sum_{m,m'=1}^{2}\frac{\eta_{j,m}\eta_{j',m'}\Omega^2}{4}\left(\frac{\tau}{\delta_m}-\frac{\sin(\delta_m\tau)}{\delta_m^2}\right)\hat{\sigma}_x^j\hat{\sigma}_x^{j'}\\
+    =&-i\theta_{1,2}(\tau)\hat{\sigma}_x^1\hat{\sigma}_x^2\label{eq:integral_t2}
+\end{align}
+
+其中，
+\begin{align}
+    \theta_{1,2}(\tau)=-2\sum_{m=1}^{2}\frac{\eta_{1,m}\eta_{2,m}\Omega^2}{4}\left(\frac{\tau}{\delta_m}-\frac{\sin(\delta_m\tau)}{\delta_m^2}\right)
+\end{align}
+
+由于$\hat{\sigma}_x^j\hat{\sigma}_x^j=\mathbb{I}$，所有自交互项都消失了，仅导致可忽略的恒定相位。耦合强度$\theta_{1,2}$中的两个因子是由于$\hat{\sigma}_x^1\hat{\sigma}_x^2$和$\hat{\sigma}_x^2\hat{\sigma}_x^1$的对称贡献产生的。
+这里的量子比特-量子比特耦合项提供了纠缠不同量子比特的可能性。这里注意，由于$[H_{SDF}(t_3),[H_{SDF}(t_2),H_{SDF}(t_1)]]=0$，即使是高阶积分也会消失。
+
+通过将公式\eqref{eq:integral_t1}和公式\eqref{eq:integral_t1}带入公式\eqref{eq:hamiltonian_with_magnus}中，我们可以得到简化的演化算子：
+\begin{align}
+    U(\tau)=\exp\left[\sum_{j=1}^{2}\sum_{m=1}^{2}\left(\alpha_{j,m}(\tau)a_m^\dagger-\alpha_{j,m}^*(\tau)a_m\right)\hat{\sigma}_x^j-i\theta_{1,2}(\tau)\hat{\sigma}_x^1\hat{\sigma}_x^2\right]
+\end{align}
+
+为了具有纯量子比特耦合，量子比特运动应该在时间$\tau$处解纠缠，这表明对于任何$j,m$来说$\alpha_{j,m}(\tau)$应该为零。由公式\eqref{eq:alpha_j_m}可知，这些等价于$\delta_m\tau$对任意$m$来说都是$2\pi$的整数倍。
+对于两量子比特链来说，这可以通过设置$\mu=(\nu_1+\nu_2)/2$和$\tau=2n\pi\times2/(\nu_1-\nu_2)$（假设$\nu_1>\nu_2$），其中$n$是正整数。这样一来，耦合力变为：
+\begin{align}
+    \theta_{1,2}=-\frac{n\pi\Omega^2}{\delta_1}\left(\frac{\eta_{1,1}\eta_{2,1}}{\delta_1}+\frac{\eta_{1,2}\eta_{2,2}}{\delta_2}\right)\approx-\frac{2n\pi\eta_{1,1}^2\Omega^2}{\delta_1^2}
+\end{align}
+
+最后的简化是由于$\delta_1=-\delta_2$和$\eta_{1,1}=\eta_{2,1}\approx\eta_{1,2}=-\eta_{2,2}$的关系。最终的演化算子揭示了双量子位纠缠操作，可以写为：
+\begin{align}
+    XX_{1,2}(\theta_{1,2})=U(\tau)=\exp[-i\theta_{1,2}\hat{\sigma}_x^1\hat{\sigma}_x^2]
+\end{align}
+
+这是\emph{镜像型门(Ising-Type Gate)}之一，表示为XX门。通过改变驱动激光$\Omega$的功率来调节耦合强度。
+
+如前面第\ref{section:quantum_computation}章中所述，在量子计算社区中，CNOT门是最著名的双量子比特门。XX门可以通过夹在几个单量子旋转门之间转换为CNOT门\cite[]{Debnath_Linke_Figgatt_Landsman_Wright_Monroe_2016}，如图\ref{fig:xx_gate}所示。
+从这个意义上说，我们总是选择任意单量子比特旋转和双量子比特XX门，而不是CNOT门，作为我们的囚禁离子平台的通用门集。
+
+
+XX门最重要的功能之一是制备纠缠态，如下公式所描述的：
+\begin{align}
+    XX(\theta)\ket{00}=\cos\theta\ket{00}-i\sin\theta\ket{11}
+\end{align}
+
+在选择$\theta$为$\pm\pi/4$时，制备出的状态是最大纠缠态$\ket{00}\pm i\ket{11}/\sqrt{2}$，相当于贝尔态。通常用这些状态的状态保真度来表征XX门的性能。
+
+\begin{figure}
+    \centering
+    \caption[XX门转换为CNOT门]{XX门转换为CNOT门\label{fig:xx_gate}}
+    \includegraphics[width=1.0\linewidth]{xx_gate}
+\end{figure}
