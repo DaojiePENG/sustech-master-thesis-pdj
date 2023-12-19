@@ -1,0 +1,122 @@
+%% Creator: Inkscape 1.3.2 (091e20e, 2023-11-25, custom), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'booth_multiplier_16bits_basic_s_svg-tex.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{786.69241333bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.64140588)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{booth_multiplier_16bits_basic_s_svg-tex.pdf}}%
+    \put(0.10642206,0.42043118){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}P8\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{booth_multiplier_16bits_basic_s_svg-tex.pdf}}%
+    \put(0.19431219,0.42043118){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}P7\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{booth_multiplier_16bits_basic_s_svg-tex.pdf}}%
+    \put(0.28220327,0.42043118){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}P6\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{booth_multiplier_16bits_basic_s_svg-tex.pdf}}%
+    \put(0.3700934,0.42043118){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}P5\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{booth_multiplier_16bits_basic_s_svg-tex.pdf}}%
+    \put(0.45798449,0.42043118){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}P4\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{booth_multiplier_16bits_basic_s_svg-tex.pdf}}%
+    \put(0.54587462,0.42043118){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}P3\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{booth_multiplier_16bits_basic_s_svg-tex.pdf}}%
+    \put(0.63267602,0.42043118){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}P2\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{booth_multiplier_16bits_basic_s_svg-tex.pdf}}%
+    \put(0.72056615,0.42043118){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}P1\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{booth_multiplier_16bits_basic_s_svg-tex.pdf}}%
+    \put(0.80845628,0.42043118){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}P0\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{booth_multiplier_16bits_basic_s_svg-tex.pdf}}%
+    \put(0.16881747,0.35369607){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}CSA2\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{booth_multiplier_16bits_basic_s_svg-tex.pdf}}%
+    \put(0.43248977,0.35750951){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}CSA1\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=12]{booth_multiplier_16bits_basic_s_svg-tex.pdf}}%
+    \put(0.69507143,0.35369607){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}CSA0\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=13]{booth_multiplier_16bits_basic_s_svg-tex.pdf}}%
+    \put(0.30138008,0.28791433){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}CSA1\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=14]{booth_multiplier_16bits_basic_s_svg-tex.pdf}}%
+    \put(0.56868373,0.28791433){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}CSA1\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=15]{booth_multiplier_16bits_basic_s_svg-tex.pdf}}%
+    \put(0.46688791,0.22117922){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}CSA1\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=16]{booth_multiplier_16bits_basic_s_svg-tex.pdf}}%
+    \put(0.38309626,0.15349076){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}CSA1\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=17]{booth_multiplier_16bits_basic_s_svg-tex.pdf}}%
+    \put(0.35918317,0.08389558){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Full Adder\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=18]{booth_multiplier_16bits_basic_s_svg-tex.pdf}}%
+    \put(0.36990464,0.01525376){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Product\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=19]{booth_multiplier_16bits_basic_s_svg-tex.pdf}}%
+    \put(0.88388411,0.35750951){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Stage1\end{tabular}}}}%
+    \put(0.88388411,0.28505425){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Stage2\end{tabular}}}}%
+    \put(0.88475167,0.21355235){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Stage3\end{tabular}}}}%
+    \put(0.88388411,0.15158404){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Stage4\end{tabular}}}}%
+    \put(0.88475167,0.07817543){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Stage5\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=20]{booth_multiplier_16bits_basic_s_svg-tex.pdf}}%
+    \put(0.91481106,0.61491634){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{extra}\end{tabular}}}}%
+    \put(0.50790425,0.61491634){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{data}\end{tabular}}}}%
+    \put(0.0715215,0.61491634){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{sign}\end{tabular}}}}%
+    \put(0.91481106,0.57773535){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}B[\end{tabular}}}}%
+    \put(0.93420238,0.57773535){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}-\end{tabular}}}}%
+    \put(0.94564268,0.57773535){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}1]\end{tabular}}}}%
+    \put(0.82111498,0.57773535){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}B[0]\end{tabular}}}}%
+    \put(0.72741508,0.57773535){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}B[1]\end{tabular}}}}%
+    \put(0.63371613,0.57773535){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}B[2]\end{tabular}}}}%
+    \put(0.54001719,0.57773535){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}…\end{tabular}}}}%
+    \put(0.44631824,0.57773535){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}…\end{tabular}}}}%
+    \put(0.35261834,0.57773535){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}B[13]\end{tabular}}}}%
+    \put(0.2589194,0.57773535){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}B[14]\end{tabular}}}}%
+    \put(0.16522045,0.57773535){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}B[15]\end{tabular}}}}%
+    \put(0.0715215,0.57773535){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}B[16]\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=21]{booth_multiplier_16bits_basic_s_svg-tex.pdf}}%
+    \put(0.83720195,0.49097971){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}P0\end{tabular}}}}%
+    \put(0.64761991,0.49097971){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}P1\end{tabular}}}}%
+    \put(0.26845584,0.49097971){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}P7\end{tabular}}}}%
+    \put(0.0788738,0.49479315){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}P8\end{tabular}}}}%
+    \put(0.0024113,0.57773535){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}0\end{tabular}}}}%
+    \put(0.44502549,0.53197414){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}…\end{tabular}}}}%
+  \end{picture}%
+\endgroup%

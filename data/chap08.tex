@@ -1,9 +1,9 @@
 % !TeX root = ../sustechthesis-example.tex
 
 \chapter[螺线管谐振腔]{螺线管谐振腔}
-\textcolor{red}{
-这部分将对之前谐振腔的研究进行整理和总结...
-}
+% \textcolor{red}{
+% 这部分将对之前谐振腔的研究进行整理和总结...
+% }
 \section[离子阱系统中的螺线管谐振腔]{离子阱系统中的螺线管谐振腔}
 
 如前面在第\ref{section:ion_trap_quantum_computation_system}章中所介绍的，Paul阱是离子阱量子计算实验平台上普遍使用的阱，它也是一类具有代表性的离子阱，利用交替电流(Alternating-Current, AC)电场来动态囚禁带电原子或粒子。上述交流场的频率总是落在射频(RF)范围内，而相应的电压可以达到几百伏。通常，将这种高压射频信号直接应用于Paul阱的电极是具有挑战性的，因为阱本身可以被视为纯电容器件；因此，信号发生器和阱之间的阻抗失配使得功率注入效率低下。
@@ -35,7 +35,7 @@
 \begin{figure}
     \centering
     \caption[HFSS中建立的3D模型图]{HFSS中建立的3D模型图\label{fig:helical_HFSS_3d}}
-    \includegraphics[width=0.5\linewidth]{helical/helical_HFSS_3d}
+    \includegraphics[width=0.4\linewidth]{helical/helical_HFSS_3d}
 \end{figure}
 
 离子阱实验中的谐振频率通常在$10-100$MHz之间，主线圈的典型直径和螺距间距分别为$50-60 $mm和$5-8$mm。为了测试HFSS模拟和实验之间的一致性，我们选择了三组几何设置，如表\ref{tb:helical_simulation_parameters}所示。
@@ -85,7 +85,7 @@
     \centering
     \caption[谐振腔仿真与实验散射参数结果对比]{谐振腔仿真与实验散射参数结果对比\label{fig:helical_compares}}
     \subcaptionbox[50MHz]{50MHz}{
-        \includegraphics[width=0.8\linewidth]{helical/helical_50MHz_final}
+        \includegraphics[width=1.0\linewidth]{helical/helical_50MHz_final}
     }
     \subcaptionbox[30MHz]{30MHz}{
         \includegraphics[width=0.46\linewidth]{helical/helical_30MHz_final}
@@ -196,7 +196,7 @@
     \centering
     \caption[谐振腔仿真与实验散射参数结果对比]{谐振腔仿真与实验散射参数结果对比\label{fig:helical_main_coil_compares}}
     \subcaptionbox[主线圈轴向偏移]{主线圈轴向偏移\label{fig:helical_bias_axial}}{
-        \includegraphics[width=0.8\linewidth]{helical/helical_bias_axial}
+        \includegraphics[width=1.0\linewidth]{helical/helical_bias_axial}
     }
     \subcaptionbox[主线圈径向偏移（平行于接地端）]{主线圈径向偏移（平行于接地端）}{
         \includegraphics[width=0.46\linewidth]{helical/helical_bias_radial_gndalong}
