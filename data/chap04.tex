@@ -1,6 +1,6 @@
 % !TeX root = ../sustechthesis-example.tex
 
-\chapter[镱离子量子计算]{镱离子量子计算}
+\chapter[镱离子量子计算]{镱离子量子计算\label{section:yb_computation}}
 
 % \textcolor{red}{
 % 这部分讲解镱离子的基本情况以及镱离子用来做量子计算的各种基本操作原理... 
@@ -63,7 +63,7 @@
 \begin{figure}
     \centering
     \caption[离子冷却跃迁回路示意图]{离子冷却跃迁回路示意图\label{fig:doppler_cooling_level}}
-    \includegraphics[width=1.0\linewidth]{doppler_cooling_level}
+    \includegraphics[width=0.6\linewidth]{doppler_cooling_level}
 \end{figure}
 
 \section[镱离子的态初始化]{镱离子的态初始化\label{section:yb_state_init}}
@@ -73,7 +73,7 @@
 \begin{figure}
     \centering
     \caption[离子态初始化示意图]{离子态初始化示意图\label{fig:initialization}}
-    \includegraphics[width=1.0\linewidth]{initialization}
+    \includegraphics[width=0.6\linewidth]{initialization}
 \end{figure}
 
 如图\ref{fig:initialization}所示，在初始化过程中从$^2S_{1/2}\ket{F=1}$到$^2P_{1/2}\ket{F=1}$的跃迁被驱动。离子的状态很有可能衰减到$\ket{0}$状态，因此由于$12.6$GHz的失谐，处于$\ket{0}$态的离子不会参与进一步的激发。对于单个离子，这一过程在$5$μs内就可以以非常高的初始化保真度完成。这篇\cite[]{Harty_Allcock_Ballance_Guidoni_Janacek_Linke_Stacey_Lucas_2014}文献展示了状态初始化的误差小于可以$10^{−4}$
@@ -83,7 +83,7 @@
 \begin{figure}
     \centering
     \caption[离子态测量示意图]{离子态测量示意图\label{fig:detection}}
-    \includegraphics[width=1.0\linewidth]{detection}
+    \includegraphics[width=0.6\linewidth]{detection}
 \end{figure}
 
 态测量过程得到的离子影像可以用\emph{电子倍增电荷耦合器件(Electron-multiplying charge-coupled device, EMCCD)}或者\emph{光电倍增管(Photomultiplier Tube, PMT)}通过两步成像来显示，如图\ref{fig:two_step_imaging}所示。
@@ -92,7 +92,7 @@
 \begin{figure}
     \centering
     \caption[两步成像系统]{两步成像系统\label{fig:two_step_imaging}}
-    \includegraphics[width=1.0\linewidth]{two_step_imaging}
+    \includegraphics[width=0.6\linewidth]{two_step_imaging}
 \end{figure}
 
 以我们目前系统为例，入射光子数量的统计数据几乎遵循泊松分布，$\ket{0}$和$\ket{1}$状态的平均光子分别为$0.05$和$9.58$。分离良好的分布使我们能够将投影状态与固定阈值区分开来。对于单次检测，如果收集到的光子数大于1，则我们将投影状态分类为$\ket{1}$状态，否则投影状态被视为$\ket{0}$状态。
@@ -144,7 +144,7 @@
 
 
 
-\subsection[连续激光操控镱离子]{连续激光操控镱离子}
+\subsection[连续激光操控镱离子]{连续激光操控镱离子\label{section:raman_transition}}
 
 离子的内态也可以用激光通过称为\emph{受激拉曼跃迁(Stimulated Raman Transition, SRT)}的过程来操控。与微波场操控的方式相比，光学激光器的波长更短，提供了强大量子比特寻址的优势，这对于多量子比特情况下的单个量子比特操作至关重要，接下来的部分介绍了这种方法。
 
@@ -152,7 +152,7 @@
 \begin{figure}
     \centering
     \caption[镱离子受激拉曼跃迁示意图]{镱离子受激拉曼跃迁示意图\label{fig:raman_transition}}
-    \includegraphics[width=1.0\linewidth]{raman_transition}
+    \includegraphics[width=0.6\linewidth]{raman_transition}
 \end{figure}
 
 通过同时激发从$\ket{0}$和$\ket{1}$到一个中间激发态$\ket{e}$的电偶极跃迁，整个系统的自由空间哈密顿量可以写为：
@@ -199,7 +199,7 @@
     H_{rsb}&=\frac{i\eta\Omega}{2}(\sigma_+ae^{i\phi}+H.c.)\\
     H_{bsb}&=\frac{i\eta\Omega}{2}(\sigma_+a^\dagger e^{i\phi}+H.c.)
 \end{align}
-$H_{car}$， $H_{rsb}$， $H_{bsb}$分别被称为载带跃迁、红边带跃迁和蓝边带跃迁，如图\ref{fig:red_carray_blue_sideband}所示。
+$H_{car}$， $H_{rsb}$， $H_{bsb}$分别被称为载带跃迁、红边带跃迁和蓝边带跃迁，如图\ref{fig:red_carray_blue_sideband}所示。离子比特的两个内能级分别为$\ket{0},\ket{1}$；灰色先表示载带跃迁，其拉比频率为$\Omega$；红色线和蓝色线分别表示红边带和蓝边带跃迁，相应的拉比频率为$\eta \Omega$；$\nu$表示两个数态之间的能隙，也就是实现红蓝边带跃迁需调节的失谐量。
 \begin{figure}
     \centering
     \caption[载带跃迁、红边带跃迁和蓝边带跃迁示意图]{载带跃迁、红边带跃迁和蓝边带跃迁示意图。\label{fig:red_carray_blue_sideband}}
@@ -208,7 +208,7 @@ $H_{car}$， $H_{rsb}$， $H_{bsb}$分别被称为载带跃迁、红边带跃迁
 
 载带跃迁可以用来实现如微波操控一样（第\ref{section:microwave_operation}节）的单比特门翻转$R_\phi(\theta)$。
 红边带跃迁和蓝边带跃迁的哈密顿量分别称为\emph{Jaynes-Cummings}或\emph{anti-Jaynes-Cummings}模型\cite[]{Karnieli_Fan_2023}。这类跃迁可以将量子比特与其外部量化运动耦合，这对于实现多个离子量子比特纠缠至关重要。
-\subsection[脉冲激光操控镱离子]{脉冲激光操控镱离子}
+\subsection[脉冲激光操控镱离子]{脉冲激光操控镱离子\label{section:pulsed_laser_ion_operation}}
 如上一节所述的在用激光操控离子的技术方案下，$\ket{0}$和$\ket{1}$态耦合的主要方式是通过受激拉曼跃迁。脉冲激光控制离子的原理本质上与连续激光的情况没有不同。主要区别在于连续激光是通过驱动拉曼跃迁来控制的，而脉冲激光是通过同时驱动一系列小间隔的拉曼跃迁来控制的。原理图如图\ref{fig:pulsed_laser_interaction}所示。
 \begin{figure}
     \centering
