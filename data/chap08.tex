@@ -279,7 +279,7 @@ $x$轴和$y$轴分别为直径$d_1$和俯仰$\tau_1$，$z$轴为耦合线圈达�
 	C_{lout1}&=\frac{2\pi\epsilon_0 l_{out1}}{ln(D/d_0)} \label{eq:helical_lout1}\\ 
 	C_{lout2}&=\frac{2\pi\epsilon_0 l_{out2}}{ln(D_1/d_0)} \label{eq:helical_lout2}
 \end{align}
-其中输出线电容$C_(lout1)$（$C_(lout2)$）是长度为$l_out1$（$l_out2$）的输出线与内径为$D$（$D_1$）侧壁形成的电容。
+其中输出线电容$C_{lout1}$（$C_{lout2}$）是长度为$l_{out1}$（$l_{out2}$）的输出线与内径为$D$（$D_1$）侧壁形成的电容。
 
 然而，在补偿输出线长效应后，频率预测仍然低于数值模拟或实验结果。经过多次尝试，我们发现主要原因是对电容$C_c$和$C_s$的高估。最近的一项研究\cite[p52,f5.3]{article_2010}给出了一个螺线管电容$C_c$的新估计公式：
 \begin{align}
@@ -305,32 +305,83 @@ $x$轴和$y$轴分别为直径$d_1$和俯仰$\tau_1$，$z$轴为耦合线圈达�
 最后，我们通过更新上述所有估计的方法，得到了一个新的频率预测模型。我们比较了频率预测模型、Sussex模型\cite[]{Siverns_Simkins_Weidt_Hensinger_2012}、SUST模型（本文）和 HUST模型\cite[]{Deng_Sun_Yuan_Xu_Zhang_Lu_Luo_2014}的准确性。
 基于数值模拟结果，通过统计直方图对模型的有效性和准确性进行比较和评估，如图14(c)所示。频率误差的平均值和标准差越小，精度越好，误差离散越小。
 所有的模型都与仿真的结果为标准做比较。
-图中的每一个数据结果都是一些列可行的$d,\tau$参数组合的模型预测和仿真结果的差值$\delta f=f_{model}-f_{HFSS}$，最终绘制出误差的统计分布。
+图\ref{fig:helical_freqmodelcompare}中的每一个数据结果都是一些列可行的$d,\tau$参数组合的模型预测和仿真结果的差值$\delta f=f_{model}-f_{HFSS}$，最终绘制出误差的统计分布。
 针对不同的谐振频率组计算和模拟一系列离散的$d,\tau$参数（与表\ref{tb:helical_simulation_parameters}$30$MHz、$50$MHz、$75$MHz）。$d$的样本在$20-80$mm的范围内，步长为$10$mm；$\tau$的样本在$4-18$mm的范围内，步长为$2$mm。
 平均偏差和标准偏差都在每个图的顶部标记。平均值是一个有符号值，表示模型的整体频率预测效果。标准差表示频率误差的离散程度。
-\begin{figure}
-    \centering
-    \caption[HUST模型结果]{HUST模型结果\label{helical_freqmodelcompare_hust}}
-    \includegraphics[width=1.0\linewidth]{helical/helical_freqmodelcompare_hust}
-\end{figure}
 
 \begin{figure}
     \centering
-    \caption[Sussex模型结果]{Sussex模型结果\label{helical_freqmodelcompare_sussex}}
-    \includegraphics[width=1.0\linewidth]{helical/helical_freqmodelcompare_sussex}
-\end{figure}
+    \caption[三种理论模型的预测效果比较]{三种理论模型的预测效果比较\label{fig:helical_freqmodelcompare}}
+    \subcaptionbox[HUST模型结果]{HUST模型结果\label{fig:helical_freqmodelcompare_hust}}{
+        \includegraphics[width=0.6\linewidth]{helical/helical_freqmodelcompare_hust}
+    }
+    \subcaptionbox[Sussex模型结果]{Sussex模型结果\label{fig:helical_freqmodelcompare_sussex}}{
+        \includegraphics[width=0.6\linewidth]{helical/helical_freqmodelcompare_sussex}
+    }
+    \subcaptionbox[SUST模型结果]{SUST模型结果\label{fig:helical_freqmodelcompare_sust}}{
+        \includegraphics[width=0.6\linewidth]{helical/helical_freqmodelcompare_sust}
+    }
 
-\begin{figure}
-    \centering
-    \caption[SUST模型结果]{SUST模型结果\label{helical_freqmodelcompare_sust}}
-    \includegraphics[width=1.0\linewidth]{helical/helical_freqmodelcompare_sust}
 \end{figure}
+% \begin{figure}
+%     \centering
+%     \caption[HUST模型结果]{HUST模型结果\label{fig:helical_freqmodelcompare_hust}}
+%     \includegraphics[width=0.33\linewidth]{helical/helical_freqmodelcompare_hust}
+% \end{figure}
+
+% \begin{figure}
+%     \centering
+%     \caption[Sussex模型结果]{Sussex模型结果\label{fig:helical_freqmodelcompare_sussex}}
+%     \includegraphics[width=0.33\linewidth]{helical/helical_freqmodelcompare_sussex}
+% \end{figure}
+
+% \begin{figure}
+%     \centering
+%     \caption[SUST模型结果]{SUST模型结果\label{fig:helical_freqmodelcompare_sust}}
+%     \includegraphics[width=0.33\linewidth]{helical/helical_freqmodelcompare_sust}
+% \end{figure}
 
 直方图结果表明：对于$75$MHz组，本文中的模型的均值和标准差（SUST）在三个模型中都是最小的，预测的准确性是最好的。对于 $50$MHz组，SUST和HUST模型之间的平均偏差值和标准偏差值基本相似。它们都预测了比Sussex模型更准确的谐振频率。对于$30$MHz组，HUST频率预测的平均值最小，SUST模型准确率次之，但它们都优于Sussex模型。HUST和SUST模型的标准偏差相似，但它们都优于Sussex模型。需要注意的是，在30MHz组中，由于主线圈线长度约束，所有$56$种可能组合中只有$11$个可行数据，参见公式\eqref{eq:helical_fixed_constraints_1}和\eqref{eq:helical_fixed_constraints_2}，因此结果可能会波动和偏差很大。
 
 在上述结果中，对于$30-80$MHz频率范围内的情况，本文提出的LCR模型提高了预测精度。输出线效应（参见第\ref{section:helical_output_wire}节）作为对分布式电容效应的替代解释，给出了更简单直观的物理解释。
 
-\section[螺线管谐振腔的加工和制作]{螺线管谐振腔的加工和制作}
-
+% \section[螺线管谐振腔的加工和制作]{螺线管谐振腔的加工和制作}
+\newpage
 \section[螺线管谐振腔的机械结构优化]{螺线管谐振腔的机械结构优化}
 
+\subsection[旧版谐振腔]{旧版谐振腔}
+旧版的谐振腔设计如图\ref{fig:helical_old_design}所示。在该设计中，主线圈的接地/直流输入端口安装在谐振腔侧壁、即主屏蔽壳上。在采用以SMA为代表的射频连接头作为端口时，会产生额外的径向长度，导致配件之间的机械冲突，安装的时候主线圈很难直接放入外筒中。装配时一般需要先将输出头向内弯折，进入筒后再进行折回，将射频接头上紧固定；或者先将射频头固定在侧壁上，装入主线圈后再进行焊接。上述两种安装方式都缺乏便利性，比如弯折过程中射频连接头焊接会脱落、或壳内焊接的复杂度较高。更重要的是，安装时往往会破坏主线圈的结构，很难完全恢复到进筒前的结构参数。还有，该设计中对主线圈的支持较弱，主线圈易形变。这在装配时会导致难以将线圈按照目标设计参数准确地进行装配，增加调试成本。即使装配好了，在工作过程中也会对外界机械抖动等较为敏感、稳定性差。该设计的耦合方式也就奥维笨拙，在实际使用中需要华为大量时间来拆卸谐振腔、调整腔内小线圈的形状来实现最佳耦合。
+除此之外，该设计的主线圈输出端口的便利性、稳定性以及屏蔽性能较差。为了减小金属电容板与线圈之间的等效电容影响，通孔直径较大，使得谐振腔的信号泄露增加、屏蔽效果减弱。而谐振腔在与后级设备进行连接时，通过中空螺柱进行压接连接，稳定性较差。
+
+为此，我们设计了一款新的谐振腔来解决以上提到的一些问题。
+
+\begin{figure}
+    \centering
+    \caption[旧版的谐振腔设计]{旧版的谐振腔设计，有机械冲突、耦合方式较差。\label{fig:helical_old_design}}
+    \includegraphics[width=1.0\linewidth]{helical/helical_old_design}
+\end{figure}
+\subsection[易装配易耦合的新版谐振腔]{易装配易耦合的新版谐振腔}
+新的易装配易耦合的谐振腔设计如图\ref{fig:helical_new_design}所示。它解决了现有技术对主线圈的安装较为不便、对主线圈固定的稳定性差、对次级线圈耦合部分缺乏灵活调节的问题。新的设计主要包括以下结构：
+\begin{enumerate}
+    \item 主腔体屏蔽与支撑部分，包括：主屏蔽壳、底部和顶部两个固定板（记为固定板一与固定板二）、四个固定柱、一个输出屏蔽壳；
+    \item 线圈及其固定与调节结构，包括：一个或两个主线圈（以下图示说明均使用两个主线圈情况、但本结构同样适用于一个主线圈的情况）、一对主线圈固定支架、一个次级线圈、一个非旋转伸缩套筒、一个射频分压电路模块；
+    \item 电学相关接口与紧固零件，包括：射频输入与输出接头、直流输入接头、射频分压输出接头、及若干固定螺丝。
+\end{enumerate}
+
+新设计的实物图如图\ref{fig:helical_new_design_real}所示，将主线圈的接地/直流输入端口转移至底部固定板一。安装时可以直接固定好底座，然后将主屏蔽壳套上，再盖上顶部的固定板，最后用四个固定柱将上下两个固定板连接起来即可。安装过程不存在装配上的机械冲突。
+新设计采用一对主线圈固定支架对主线圈进行支撑与固定，通过固定支架上面的凹槽设计来约束线圈为目标参数（螺线的直径、螺距、长度）。这样在装配时易按照设计目标参数进行装配，在使用过程中也能够保持稳定。
+新设计巧妙地采用了非旋转伸缩套筒来实现小线圈的平动耦合。非旋转伸缩套筒可实现高精度的平动，常用于光学系统中透镜的高精度调节。套筒中心可以用来固定射频接头，并与次级线圈连接，方便次级线圈的固定和外部信号输入。非旋转伸缩套筒的表面可以镀上氧化层，形成次级线圈部分与其它部分的绝缘，很好地隔离了两者，保证了次级线圈与主线圈仅通过自由空间进行耦合，接地部分不会相互干扰。
+本设计通过主线圈末端焊接射频连接头、并固定至顶部固定板，来实现谐振腔的输出。该设计中，谐振腔主腔体几乎完全封闭，增加屏蔽效果，减少腔内信号泄露、以及腔外噪声的耦入。输出为标准射频接口，与后级设备连接的便利性更高，且稳定性也有了进一步的提升。
+
+与现有技术相比，本设计设计更为合理，元件装配更加方便，谐振耦合更加精细快捷，谐振腔长时工作的稳定性更高。
+\begin{figure}
+    \centering
+    \caption[易装配易耦合的谐振腔设计]{易装配易耦合的谐振腔设计\label{fig:helical_new_design}}
+    \includegraphics[width=1.0\linewidth]{helical/helical_new_design}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \caption[易装配易耦合的谐振腔设计]{易装配易耦合的谐振腔设计\label{fig:helical_new_design_real}}
+    \includegraphics[width=1.0\linewidth]{helical/helical_new_design_real}
+\end{figure}

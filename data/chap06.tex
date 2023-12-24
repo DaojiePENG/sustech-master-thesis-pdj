@@ -406,7 +406,7 @@ PID控制器的实现可以分为模拟PID和数字PID两种方式。模拟PID�
 \subsection[数字PID的增量表达式]{数字PID的增量表达式}
 \begin{figure}
     \centering
-    \caption[数字滤波器结构示意图]{数字滤波器结构示意图\label{fig:digital_pid_structure_16bits_s}}
+    \caption[数字PID结构示意图]{数字PID结构示意图\label{fig:digital_pid_structure_16bits_s}}
     \includegraphics[width=1.0\linewidth]{rtmq/digital_pid_structure_16bits_s}
 \end{figure}
 
@@ -437,7 +437,7 @@ PID控制器的实现可以分为模拟PID和数字PID两种方式。模拟PID�
 根据图\ref{fig:digital_pid_structure_16bits_s}所示的结构，可以在FPGA中实现硬件的PID。其中涉及到的数字加法器、数字乘法器在第\ref{section:carray_lookahead_adder}节和第\ref{section:booth_multiplier}节中已经有过介绍。对于高速时序电路，在开发过程中需要注意流水线的设置和对齐，最终的实现硬件框图如图\ref{fig:digital_pid_structure_16bits}所示。
 \begin{figure}
     \centering
-    \caption[16位数字滤波器FPGA实现结构图]{16位数字滤波器FPGA实现结构图\label{fig:digital_pid_structure_16bits}}
+    \caption[16位数字PID的FPGA实现结构图]{16位数字PID的FPGA实现结构图上\label{fig:digital_pid_structure_16bits}}
     \includegraphics[width=1.0\linewidth]{rtmq/digital_pid_structure_16bits}
 \end{figure}
 
@@ -448,13 +448,38 @@ PID控制器的实现可以分为模拟PID和数字PID两种方式。模拟PID�
 
 \newpage
 \section[基于FPGA的通用数字滤波器]{基于FPGA的通用数字滤波器\label{section:digital_iir}}
-\textcolor{red}{
-1. 介绍数字滤波器功能、种类、基本原理，比如有限冲激响应滤波器、无限冲激响应滤波器等等；}
+滤波器是一种选频装置，可以使信号中特定的频率成分通过，而极大地衰减其它频率成分。利用滤波器的这种选频作用，可以滤除干扰噪声或进行频谱分析。数字滤波器是一个离散时间系统，其输入、输出都是离散时间信号，它是通过对输入信号进行一定的运算处理，从而达到对信号进行滤波的目的。数字滤波器可以分为经典滤波器和现代滤波器两类。
+ 
+经典滤波器是假定输入信号$x(n)$中的有用成分和希望去除的成分各自占有不同的频带，当通过一个线性系统后即可将欲去除的成分有效地去除。在经典滤波器中，输入信号被分成不同的频带，然后通过一个低通滤波器或高通滤波器来实现滤波。
+ 
+现代滤波器是根据信号的随机过程模型，利用统计最优准则设计的一类滤波器。现代滤波器可以分为维纳滤波器、卡尔曼滤波器、自适应滤波器等。它们的共同特点是能够从含有噪声的数据中有效地提取信号，同时抑制噪声。
 
-\textcolor{red}{
-2. 介绍数字通用滤波器功能、逻辑图、Vivado中的实现、优势；}
 
-IIR滤波器结构如图\ref{fig:iir_filter_s}所示。
+\subsection[数字滤波器]{数字滤波器}
+% \textcolor{red}{
+% 1. 介绍数字滤波器功能、种类、基本原理，比如有限冲激响应滤波器、无限冲激响应滤波器等等；}
+
+数字滤波器的基本原理是利用离散系统的特性对输入信号进行加工和处理，改变输入信号的频率特性，从而达到选频、提高信噪比、消除干扰等目的。数字滤波器一般由延迟单元、加法器、乘法器、寄存器等基本运算单元组成。
+ 
+不同类型的数字滤波器有不同的实现方法和应用领域。在通信、语音处理、图像处理、信号处理等领域，数字滤波器都有着广泛的应用。整个离子阱系统中很多模块都有滤波器的需求以获取更高质量的信号来控制量子比特。为此，整个RTMQ系统中需要实现数字滤波器以供系统设计和实现使用。
+
+
+
+\subsection[无限冲激响应滤波器IIR]{无限冲激响应滤波器IIR}
+有限冲击响应滤波器（FIR滤波器）的冲激响应在有限时间内衰减为零，其输出仅取决于当前和过去的输入信号值。FIR滤波器在保证幅度特性的同时，很容易做到严格的线性相位特性。无限冲击响应滤波器（IIR滤波器）的冲激响应理论上应会无限持续，其输出不仅取决于当前和过去的输入信号值，也取决于过去的信号输出值。
+
+有限冲击响应滤波器（FIR滤波器）的优点是具有线性相位、稳定性好、容易实现等，缺点是阶数较高时，运算量较大，对存储空间要求较高。无限冲击响应滤波器（IIR滤波器）的优点是阶数较低时，运算量较小，对存储空间要求较低，缺点是相位非线性、稳定性较差、设计复杂等。实际滤波器设计经验表明，实现相同形状的滤波效果，IIR滤波器所需的计算资源远小于FIR滤波器。鉴于硬件实现是对资源十分敏感的，因此我们选用IIR滤波器来进行实现。
+
+IIR滤波器的冲激响应理论上应会无限持续，其输出不仅取决于当前和过去的输入信号值，也取决于过去的信号输出值，用差分方程来表示一个滤波器，其表达式为：
+\begin{align}
+    y(n)=\sum_{k=1}^Na_ky(n-k)+\sum_{k=0}^Nb_kx(n-k)\label{eq:iir_filter}
+\end{align}
+
+ % \textcolor{red}{
+% 2. 介绍数字通用滤波器功能、逻辑图、Vivado中的实现、优势；}
+
+其中，$y(n)$表示输出信号，$x(n)$表示输入信号，$a_k$和$b_k$表示滤波器系数。本质上来说，IIR滤波器就是将输入和过去的输出按照某种方式加权计算获得最终输出结果的。对于一个给定阶数和数字位数的IIR滤波器，它的形状完全取决于系数$a_k$和$b_k$。因此，为了维持通用性，在硬件实现的过程中，我们应该把系数（$a_k, b_k$）设计为可外部软件配置的。
+以四阶为例，通用四阶IIR滤波器的结构如图\ref{fig:iir_filter_s}所示，图中$a_0-a_3, b_0-b_3$为IIR滤波器的可配置系数，主要用到的模块有寄存器、乘法器、加法器等。
 \begin{figure}
     \centering
     \caption[IIR滤波器结构框图]{IIR滤波器结构框图\label{fig:iir_filter_s}}
@@ -462,4 +487,46 @@ IIR滤波器结构如图\ref{fig:iir_filter_s}所示。
 \end{figure}
 
 
+\subsection[数字IIR滤波器的FPGA实现]{数字IIR滤波器的FPGA实现}
 
+根据图\ref{fig:iir_filter_s}给出的结构图和公式\eqref{eq:iir_filter}，可以将其在FPGA中进行实现和验证。数字IIR滤波器在FPGA中的实现结果的结构图如图\ref{fig:iir_filter_vivado}所示，整体结构中超如了若干的流水线用于对齐$x(n)$和$y(n)$的时序。除此之外，流水线也被用于满足电路的时延要求。需要注意的是，由于上一时刻的输出结果$y(n-1)$需要参与到下一时刻的输出结果的计算中，因此从计算结果到迭代反馈之间仅能有一级流水线存在，否则输出结果就会出错。也正因此，这个IIR滤波器无法工作在较高的频率上，需要在板上额外配置工作频率，该32位通用IIR滤波器设计在FPGA板上的工作频率为25MHz。
+
+\begin{figure}
+    \centering
+    \caption[IIR滤波器实现结果的结构图]{IIR滤波器实现结果的结构图（Vivado）\label{fig:iir_filter_vivado}}
+    \includegraphics[width=1.0\linewidth]{rtmq/iir_filter_vivado}
+\end{figure}
+
+
+
+
+\subsection[滤波器形状测量]{滤波器形状测量}
+数字滤波器的形状设计可以采用MATLAB中的滤波器设计器来完成。在量子计算的试验系统中常常要应对的是高频信号噪声，低通滤波器是十分常见的需求，因此下面以低通滤波器为例进行说明。如图\ref{fig:filter_design_real1}，通过MATLAB设计了一个截止频率在100kHz附近的巴特沃斯型迭代滤波器，结果为一个3阶的迭代滤波器，参数为：$a_0=16777216;
+a_1=-33470572;
+a_2=16693565;
+a_3=0;
+b_0=52;
+b_1=105;
+b_2=52;
+b_3=0$。可以看到设计的理论截止频率（100kHz）和数字滤波器实际的截止频率（13.17kHz）有较大的差异。其原因主要有两方面：1. 数字滤波器的设计本身实际上是对模拟滤波器的近似，因而结果不绝对准确；2. 实际在FPGA中的硬件滤波器运算位宽有限，爹地啊过程中存在截断效应；3. 对数据的表征不够精确，测试的过程中用到模数转换（16位）等中间数字过程。
+
+\begin{figure}
+    \centering
+    \caption[IIR滤波器设计仿真和实际测试结果]{IIR滤波器设计仿真和实际测试结果\label{fig:filter_design_real1}}
+    \includegraphics[width=1.0\linewidth]{rtmq/filter_design_real1}
+\end{figure}
+
+在理论结果绘制中，对滤波器的结果进行类似FPGA硬件中的人工截断，得到的模拟结果如图\ref{fig:filter_design_real2}所示。可以看到此时理论设计的截止频率结果与实际硬件数字PID的截止频率结果变得更加接近了。尽管仍然存在一定的差异，已经可以给出比较有意义的指导信息了。整体上来看，硬件实现的数字滤波器在配置为低通滤波器的时候带宽会被压窄。因此如果需要100kHz的带宽，则需要在设计时适当放大这个带宽需求。最终实际的滤波器带宽可以通过测量来进一步验证是否符合使用要求，如果不符合则可以重新设计和测试。值得一提的是，在实现了通用的硬件IIR滤波的基础上，重新设计和配置$a_0-a_3, b_0-b_3$等参数是十分方便快捷的，仅需更改可配置寄存器的值即可。
+
+\begin{figure}
+    \centering
+    \caption[IIR滤波器考虑截断的仿真和实际测试结果]{IIR滤波器考虑截断的仿真和实际测试结果\label{fig:filter_design_real2}}
+    \includegraphics[width=1.0\linewidth]{rtmq/filter_design_real2}
+\end{figure}
+
+% IIR滤波器形状测量如图\ref{fig:iir_filter_shape}所示。
+% \begin{figure}
+%     \centering
+%     \caption[IIR滤波器设计仿真和不同参数下测试结果]{IIR滤波器设计仿真和不同参数下测试结果\label{fig:iir_filter_shape}}
+%     \includegraphics[width=1.0\linewidth]{rtmq/iir_filter_shape}
+% \end{figure}
