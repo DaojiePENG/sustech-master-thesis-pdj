@@ -4,10 +4,10 @@
 % \textcolor{red}{
 % 这部分从经典计算讲到量子计算，并简单介绍当前常见的实现量子计算的平台... 
 % }
-\section[量子计算基本原理介绍]{量子计算基本原理介绍\cite[]{Williams2011}}
+\section[量子计算基本原理介绍]{量子计算基本原理介绍}
 % \textcolor{red}{主要参考文献\cite[]{Williams2011}}
 
-目前，计算机的电路模型是计算过程最有用的抽象，广泛应用于计算机工业在实际计算硬件的设计和构建中。在电路模型中，计算机科学家将任何计算视为等同于由作用于某个二进制（\emph{比特串, Bit String}）输入的少数不同类型的\emph{布尔逻辑门(Boolean Logic Gates)}构建的电路的动作。每个逻辑门根据门的定义以某种确定性的方式将其输入位转换为一个或多个输出位。通过组合计算电路图中的门，使前一级门的输出作为一级门的输入，计算机科学家可以证明这可以完成任何可行的计算。
+目前，计算机的电路模型是计算过程最有用的抽象，广泛应用于计算机工业在实际计算硬件的设计和构建中。在电路模型中，计算机科学家将任何计算视为等同于由作用于某个二进制（\emph{比特串, Bit String}）输入的少数不同类型的\emph{布尔逻辑门(Boolean Logic Gates)}构建的电路的动作。每个逻辑门根据门的定义以某种确定性的方式将其输入位转换为一个或多个输出位。通过组合计算电路图中的门，使前一级门的输出作为一级门的输入，计算机科学家可以证明这可以完成任何可行的计算\cite[]{Williams2011}。
 
 \subsection[经典逻辑门]{经典逻辑门}
 逻辑是数学的一个子领域，主要关注论点的有效性，即通过从起始假设（称为公理）进行推理过程来确定命题的真实性或虚假性，并通过对它们应用有效的推理规则。逻辑不关心确定现实世界中实际为真或假的内容，因为现实世界是但我们可能选择推理的无限多个可能世界之一。相反，逻辑提供了数学框架，我们可以从给定的开始假设中得出有效的结论。
@@ -164,48 +164,89 @@ $OR$门有一种很常见变体，称为\emph{异或门(Exclusive-OR Gate)}(通�
 量子计算中非常重要的可逆门是\emph{受控非门($CNOT$)}。$CNOT$的真值表如表\ref{tb:cnot_gate}所示。$CNOT$门的电路图标如图2.9所示。$CNOT$门的效果是当且仅当第一个位设置为$1$时翻转第二个位的位值。也就是说，否定或不否定第二个位的决定由第一个位的值控制。这也是叫它受控非门的原因。
 \begin{figure}
     \centering
-    \caption{$NOT$门图标\label{fig:not_gate}}
-    \includegraphics[width=0.8\linewidth]{not_gate.png}
+    \caption[$NOT$门图标和真值表]{$NOT$门图标和真值表}
+    \subcaptionbox{$NOT$门图标\label{fig:not_gate}}{
+        \includegraphics[width=0.45\linewidth]{not_gate.png}
+    }
+    \subcaptionbox{\emph{NOT}门真值表\label{tb:not_gate}}{
+        \begin{tabular}{C{1.5cm}C{1.5cm}}
+            \toprule 
+            \multicolumn{2}{c}{\textbf{NOT}}\\
+            \toprule
+            a & $\neg a$  \\
+            \hline
+            0 & 1 \\
+            1 & 0 \\
+            \bottomrule
+        \end{tabular}
+    }
 \end{figure}
+% \begin{figure}
+%     \centering
+%     \caption{$NOT$门图标\label{fig:not_gate}}
+%     \includegraphics[width=0.8\linewidth]{not_gate.png}
+% \end{figure}
 
-\begin{table}
-    \centering
-    \caption[\emph{NOT}门真值表]{\emph{NOT}门真值表\label{tb:not_gate}}
-    \begin{tabular}{C{1.5cm}C{1.5cm}}
-        \toprule 
-        \multicolumn{2}{c}{\textbf{NOT}}\\
-        \toprule
-        a & $\neg a$  \\
-        \hline
-        0 & 1 \\
-        1 & 0 \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-
+% \begin{table}
+%     \centering
+%     \caption[\emph{NOT}门真值表]{\emph{NOT}门真值表\label{tb:not_gate}}
+%     \begin{tabular}{C{1.5cm}C{1.5cm}}
+%         \toprule 
+%         \multicolumn{2}{c}{\textbf{NOT}}\\
+%         \toprule
+%         a & $\neg a$  \\
+%         \hline
+%         0 & 1 \\
+%         1 & 0 \\
+%         \bottomrule
+%     \end{tabular}
+% \end{table}
 
 \begin{figure}
     \centering
-    \caption{$CNOT$门图标\label{fig:cnot_gate}}
-    \includegraphics[width=0.8\linewidth]{cnot_gate.png}
+    \caption[$CNOT$门图标和真值表]{$CNOT$门图标和真值表}
+    \subcaptionbox{$CNOT$门图标\label{fig:cnot_gate}}{
+        \includegraphics[width=0.45\linewidth]{cnot_gate}
+    }
+    \subcaptionbox{\emph{CNOT}门真值表\label{tb:cnot_gate}}{
+        \begin{tabular}{C{1cm}C{1cm}C{1cm}C{1cm}}
+            \toprule 
+            \multicolumn{4}{c}{\textbf{CNOT}}\\
+            \toprule
+            a & b & $a'$ & $b'$  \\
+            \hline
+            0 & 0 & 0 & 0 \\
+            0 & 1 & 1 & 0 \\
+            1 & 0 & 0 & 1 \\
+            1 & 1 & 1 & 1 \\
+            \bottomrule
+        \end{tabular}
+    }
 \end{figure}
 
-\begin{table}
-    \centering
-    \caption[\emph{CNOT}门真值表]{\emph{CNOT}门\label{tb:cnot_gate}}
-    \begin{tabular}{C{1cm}C{1cm}C{1cm}C{1cm}}
-        \toprule 
-        \multicolumn{4}{c}{\textbf{CNOT}}\\
-        \toprule
-        a & b & $a'$ & $b'$  \\
-        \hline
-        0 & 0 & 0 & 0 \\
-        0 & 1 & 1 & 0 \\
-        1 & 0 & 0 & 1 \\
-        1 & 1 & 1 & 1 \\
-        \bottomrule
-    \end{tabular}
-\end{table}
+% \begin{figure}
+%     \centering
+%     \caption{$CNOT$门图标\label{fig:cnot_gate}}
+%     \includegraphics[width=0.8\linewidth]{cnot_gate.png}
+% \end{figure}
+
+% \begin{table}
+%     \centering
+%     \caption[\emph{CNOT}门真值表]{\emph{CNOT}门\label{tb:cnot_gate}}
+%     \begin{tabular}{C{1cm}C{1cm}C{1cm}C{1cm}}
+%         \toprule 
+%         \multicolumn{4}{c}{\textbf{CNOT}}\\
+%         \toprule
+%         a & b & $a'$ & $b'$  \\
+%         \hline
+%         0 & 0 & 0 & 0 \\
+%         0 & 1 & 1 & 0 \\
+%         1 & 0 & 0 & 1 \\
+%         1 & 1 & 1 & 1 \\
+%         \bottomrule
+%     \end{tabular}
+% \end{table}
+
 % \begin{figure}
 %     \centering
 %     \caption[可逆逻辑门]{可逆逻辑门}
@@ -253,31 +294,56 @@ $OR$门有一种很常见变体，称为\emph{异或门(Exclusive-OR Gate)}(通�
 
 
 注意$CNOT$门不仅是一种RLG，还是一种\emph{通用逻辑门(Universal Logic Gate, ULG)}。也就是说以它为基础可以实现任何其它类型的门，比如$AND$、$OR$等等，进一步地可以只用$CNOT$搭建网络实现任何计算。ULG除了$CNOT$门外，还有$TOFFOLI$门\cite[]{Maslov_Dueck_Miller_2005}、$FREDKIN$门\cite[]{Adamatzky_2017}等等。$TOFFOLI$门和$FREDKIN$门都属于RLG，比如$TOFFOLI$门的真值表如表\ref{tb:toffoli_gate}所示，它的图标如图\ref{fig:toffoli_gate}所示。
-\begin{table}
-    \centering
-    \caption[TOFFOLI门真值表]{\emph{TOFFOLI}门真值表}
-    \label{tb:toffoli_gate}
-    \begin{tabular}{C{1cm}C{1cm}C{1cm}C{1cm}C{1cm}C{1cm}}
-        \toprule
-        a & b & c & $a'$ & $b'$ & $c'$\\
-        \toprule 
-        0 & 0 & 0 & 0 & 0 & 0\\
-        0 & 0 & 1 & 0 & 0 & 1\\
-        0 & 1 & 0 & 0 & 1 & 0\\
-        0 & 1 & 1 & 0 & 1 & 1\\
-        1 & 0 & 0 & 1 & 0 & 0\\
-        1 & 0 & 1 & 1 & 0 & 1\\
-        1 & 1 & 0 & 1 & 1 & 1\\
-        1 & 1 & 1 & 1 & 1 & 0\\
-        \bottomrule
-    \end{tabular}
-\end{table}
+
 \begin{figure}
     \centering
-    \caption[\emph{TOFFOLI}门图标]{\emph{TOFFOLI}门图标}
-    \label{fig:toffoli_gate}
-    \includegraphics[width=0.8\linewidth]{toffoli_gate.png}
+    \caption[TOFFOLI门图标和真值表]{TOFFOLI门图标和真值表}
+    \subcaptionbox{\emph{TOFFOLI}门图标\label{fig:toffoli_gate}}{
+        \includegraphics[width=0.45\linewidth]{toffoli_gate}
+    }
+    \subcaptionbox{\emph{TOFFOLI}门真值表\label{tb:toffoli_gate}}{
+        \begin{tabular}{C{1cm}C{1cm}C{1cm}C{1cm}C{1cm}C{1cm}}
+            \toprule
+            a & b & c & $a'$ & $b'$ & $c'$\\
+            \toprule 
+            0 & 0 & 0 & 0 & 0 & 0\\
+            0 & 0 & 1 & 0 & 0 & 1\\
+            0 & 1 & 0 & 0 & 1 & 0\\
+            0 & 1 & 1 & 0 & 1 & 1\\
+            1 & 0 & 0 & 1 & 0 & 0\\
+            1 & 0 & 1 & 1 & 0 & 1\\
+            1 & 1 & 0 & 1 & 1 & 1\\
+            1 & 1 & 1 & 1 & 1 & 0\\
+            \bottomrule
+        \end{tabular}
+    }
 \end{figure}
+
+% \begin{table}
+%     \centering
+%     \caption[TOFFOLI门真值表]{\emph{TOFFOLI}门真值表}
+%     \label{tb:toffoli_gate}
+%     \begin{tabular}{C{1cm}C{1cm}C{1cm}C{1cm}C{1cm}C{1cm}}
+%         \toprule
+%         a & b & c & $a'$ & $b'$ & $c'$\\
+%         \toprule 
+%         0 & 0 & 0 & 0 & 0 & 0\\
+%         0 & 0 & 1 & 0 & 0 & 1\\
+%         0 & 1 & 0 & 0 & 1 & 0\\
+%         0 & 1 & 1 & 0 & 1 & 1\\
+%         1 & 0 & 0 & 1 & 0 & 0\\
+%         1 & 0 & 1 & 1 & 0 & 1\\
+%         1 & 1 & 0 & 1 & 1 & 1\\
+%         1 & 1 & 1 & 1 & 1 & 0\\
+%         \bottomrule
+%     \end{tabular}
+% \end{table}
+% \begin{figure}
+%     \centering
+%     \caption[\emph{TOFFOLI}门图标]{\emph{TOFFOLI}门图标}
+%     \label{fig:toffoli_gate}
+%     \includegraphics[width=0.8\linewidth]{toffoli_gate.png}
+% \end{figure}
 
 \subsection[量子逻辑门]{量子逻辑门}
 前面我们已经讨论过经典的不可逆和经典的可逆门，这使我们能够更好地理解量子门的优越性。就像任何经典计算都可以分解成一系列经典逻辑门，这些门一次只作用于几个经典比特，因此任何量子计算也可以分解成一系列量子逻辑门，这些门一次只作用于几个量子比特。主要区别在于，虽然经典逻辑门操纵经典位值$0$或$1$，但量子门可以操纵任意多量子态，包括计算基态的任意叠加，这些量子态也经常纠缠在一起。因此，量子计算的逻辑门比经典计算的逻辑门更加多样化。
