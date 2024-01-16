@@ -51,27 +51,24 @@ RTMQ架构中包含的微处理器可受指令控制进入挂起状态，而挂�
 而配置指令插入中断的机制确保了节点对其下级节点的绝对控制，即使下级节点的微处理器处于挂起状态，依然不受影响。配置指令插入中断配合具有确定通信延迟的实时通信链路系统，即可实现时序确定的跨节点的即时反馈控制。
 
 此外，RTMQ架构中每个节点都具有通用计算和时序控制能力，如此，大多数通用计算和时序生成都可以在叶节点或较近的中间结点完成，对于大规模系统不存在拥塞的问题，具有良好的可扩展性。
+% \section[测控硬件组成]{测控硬件组成}
+% \textcolor{red}{
+% 1. 展示实物板卡照片；}
+RTMQ测控板实物图如附录图\ref{fig:rtmq_board_real}所示。
+% \begin{figure}
+%     \centering
+%     \caption[RTMQ测控板实物图]{RTMQ测控板实物图\label{fig:rtmq_board_real}}
+%     \includegraphics[width=1.0\linewidth]{rtmq/rtmq_board_real}
+% \end{figure}
 
-
-\section[测控硬件组成]{测控硬件组成}
-\textcolor{red}{
-1. 展示实物板卡照片；}
-
-RTMQ测控板实物图如图\ref{fig:rtmq_board_real}所示。
-\begin{figure}
-    \centering
-    \caption[RTMQ测控板实物图]{RTMQ测控板实物图\label{fig:rtmq_board_real}}
-    \includegraphics[width=1.0\linewidth]{rtmq/rtmq_board_real}
-\end{figure}
-
-\textcolor{red}{
-2. 结合照片给出主要器件清单及其介绍（参考专利：一种量子物理实验平台的实时测控系统架构）；}
+% \textcolor{red}{
+% 2. 结合照片给出主要器件清单及其介绍（参考专利：一种量子物理实验平台的实时测控系统架构）；}
 
 
 
-\section[软件API]{软件API}
-\textcolor{red}{
-1. 介绍软件API的功能和使用（可选，根据情况看吧，怎么介绍还没想好）；}
+% \section[软件API]{软件API}
+% \textcolor{red}{
+% 1. 介绍软件API的功能和使用（可选，根据情况看吧，怎么介绍还没想好）；}
 
 
 \section[基于FPGA的数字超前进位加法器]{基于FPGA的数字超前进位加法器}

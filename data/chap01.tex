@@ -27,10 +27,10 @@
 DiVincenzo的原始论文还为量子通信目的指定了两个额外的标准:能平稳地进行量子比特和所谓的“飞行”量子比特之间的相互转换(这可能是光子，量子信息编码在偏振、频率或相位)，以及将这些飞行量子比特从一个位置高保真地传输到另一个位置的能力。如果目标不是构建一个平稳的大规模量子计算机，这些标准并不重要，但对于包括量子网络在内的其它一些应用来说是十分必要的。在这方面，一些方案采用捕获离子的中尺度模块之间的光子互连来实现量子处理器的互联\cite[]{Monroe_Raussendorf_Ruthven_Brown_Maunz_Duan_Kim_2014}。虽然离子本身不太可能作为长距离量子通信或量子网络的飞行量子比特，但离子和光子之间的高保真纠缠已被实现\cite[]{Moehring_Blinov_Madsen_Duan_Monroe_2004}。
 总之，离子满足QC的五个主要DiVincenzo标准，也验证了将它们的量子信息转移到飞行量子比特的能力。事实上，早在2004，所有这些标准在离子量子比特平台基本上都得到满足\cite[]{Leibfried_DeMarco_Meyer_Lucas_Barrett_Britton_Itano_Jelenković_Langer_Rosenband_et_al_2003,Moehring_Blinov_Madsen_Duan_Monroe_2004}。
 
-\textcolor{red}{随后这里可以再补充一些量子测控方面的内容...参考文献？}
+% \textcolor{red}{随后这里可以再补充一些量子测控方面的内容...参考文献？}
 量子物理实验系统常常涉及到一些物理量的精确调控和测量，这既包括量上的精确性，也包括时间上的精确性。随着量子技术的发展，量子物理实验系统也开始产生对数据处理、复杂流程控制和实时控制的需求。不同于传统行业，量子物理实验系统对时间控制的精度和分辨率的要求在纳秒量级、延迟要求在百纳秒至数十微秒量级，与当前微处理器的主频相当，这对量子物理实现的测控系统提出了很多新的要求。
 
 尽管到目前为止离子阱量子计算发展迅速，但在实现通用量子计算机之前仍有许多问题有待解决。最近，许多研究这致力于芯片离子阱\cite[]{Mehta_Eltony_Bruzewicz_Chuang_Ram_Sage_Chiaverini_2014}、离子穿梭和规模化\cite[]{Monroe_Kim_2013, Sterling_Rattanasonti_Weidt_Lake_Srinivasan_Webster_Kraft_Hensinger_2014, Lee_Jeong_Park_Jung_Kim_Cho_2021}、光学集成\cite[]{Niffenegger_Stuart_Sorace_Agaskar_Kharas_Bramhavar_Bruzewicz_Loh_Maxson_McConnell_Reens_et_al_2020, Mehta_Zhang_Malinowski_Nguyen_Stadler_Home_2020}、多离子的单独寻址\cite[]{Ivory_Setzer_Karl_McGuinness_DeRose_Blain_Stick_Gehl_Parazzoli_2020}和量子比特纠错\cite[]{Cramer_Kalb_Rol_Hensen_Blok_Markham_Twitchen_Hanson_Taminiau_2016,Reichardt_2021}等技术，以实现最终目标——\emph{通用量子计算机(Universal Quantum Computer, UQC)}。
 
-\textcolor{red}{简要阐述一下后续章节的主要内容...}
+% \textcolor{red}{简要阐述一下后续章节的主要内容...}
 在接下来的章节中，我将从近点计算将从经典计算的原理讲起逐步过渡到量子计算的基本概念的介绍。随后，我将在第3章介绍基于离子阱的量子计算系统的重要理论，比如离子的囚禁、离子的量子化态、离子与光场的耦合等。接着，针对镱离子具体介绍它用于量子计算的能级结构和编码方式、电离与囚禁、激光冷却、量子态操控、量子门构成等。在第5章中我将介绍一种通用的实时量子测控系统RTMQ，包括它的架构、硬件组成等，还有一些重要的高速硬件电路实现，如超前进位加法器、Booth乘法器、数字PID、通用IIR数字滤波器等。一种离子阱囚禁系统中十分重要的器件——螺线管谐振腔的仿真、测试、优化、设计等内容会在第6章具体阐述。用于离子量子比特操控的脉冲激光拍频锁定和激光功率稳定的原理及实现将分别在第7章和第8章给出。
