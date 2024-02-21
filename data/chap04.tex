@@ -6,13 +6,13 @@
 % 这部分讲解镱离子的基本情况以及镱离子用来做量子计算的各种基本操作原理... 
 % }
 目前所有实现的用于离子量子计算的离子都属于\emph{类氢离子(Hydrogen-like ions)}， 比如$Be^+$（NIST\cite[]{Monroe_Meekhof_King_Itano_Wineland_2002,Lin_Gaebler_Reiter_Tan_Bowler_Wan_Keith_Knill_Glancy_Coakley_et_al_2016}），$Mg^+$（NIST\cite[]{Barrett_Schaetz_DeMarco_Britton_Chiaverini_Itano_Jelenkovic_Jost_Langer_Leibfried_et_al_2003, Wan_Kienzler_Erickson_Mayer_Tan_Wu_Vasconcelos_Glancy_Knill_Wineland_et_al_2019}），$Ca^+$（Univer-sity of Innsbruck\cite[]{Lanyon_Hempel_Nigg_Müller_Gerritsma_Zähringer_Schindler_Barreiro_Rambach_Kirchmair_et_al_2011,Monz_Nigg_Martinez_Brandl_Schindler_Rines_Wang_Chuang_Blatt_2016}, University of Oxford\cite[]{Ballance_Harty_Linke_Sepiol_Lucas_2016,Schäfer_Ballance_Thirumalai_Stephenson_Ballance_Steane_Lucas_2018}），$Ba^+$（Washington University\cite[]{Dietrich_2009,Dietrich_Kurz_Noel_Shu_Blinov_2010},UCLA\cite[]{Hucul_Christensen_Hudson_Campbell_2017}），$Yb^+$（University of Maryland\cite[]{Olmschenk_Younge_Moehring_Matsukevich_Maunz_Monroe_2007,Debnath_Linke_Figgatt_Landsman_Wright_Monroe_2016}, University of Sussex\cite[]{Weidt_Randall_Webster_Lake_Webb_Cohen_Navickas_Lekitsch_Retzker_Hensinger_2016}）。
-类氢离子具有最简单的能量结构，处理起来相对其它类型的离子要简单很多。它们具有的内态$S_{1/2}$到$P_{1/2}$之间的闭环光学跃迁，能方便地实现激光冷却、高保真初始化和内态读出操作\cite[]{Harty_Allcock_Ballance_Guidoni_Janacek_Linke_Stacey_Lucas_2014}，这对于量子计算的实现至关重要。要挑选出合适的类氢离子，还有一些其它的参数需要被考虑，如离子的质量、循环跃迁的波长、核自旋的值和$^2D$能级的亚稳态的寿命等\cite[]{Bruzewicz_Chiaverini_McConnell_Sage_2019}。
+类氢离子具有最简单的能量结构，处理起来相对其它类型的离子要简单很多。它们具有的内态$^2S_{1/2}$到$^2P_{1/2}$之间的闭环光学跃迁，能方便地实现激光冷却、高保真初始化和内态读出操作\cite[]{Harty_Allcock_Ballance_Guidoni_Janacek_Linke_Stacey_Lucas_2014}，这对于量子计算的实现至关重要。要挑选出合适的类氢离子，还有一些其它的参数需要被考虑，如离子的质量、循环跃迁的波长、核自旋的值和$^2D$能级的亚稳态的寿命等\cite[]{Bruzewicz_Chiaverini_McConnell_Sage_2019}。
 
 出于历史和现实的原因，我们实验室选择$Yb^+$离子作为实现量子计算的物理平台。
 在接下的几节中，我将阐述用镱离子实现量子计算的一些重要的概念，如镱离子的能级结构和比特编码方式、镱离子的态初始化、镱离子的探测、镱离子的操控等。
 
 \section[镱离子的能级结构和和比特编码方式]{镱离子的能级结构和和比特编码方式}
-在第\ref{section:introduction}章介绍中我们介绍过实现量子计算对物理平台的要求，最基本的要求是要能找到合适的量子系统来编码量子比特，即$\ket{0}$、$\ket{1}$。离子的内态是十分稳定并且易于操控的，因此一般选择离子的两个内部状态来编码量子信息并执行计算。对于我们现在系统中采用的$^{171}Yb^+$离子来说，用来编码量子比特的是有着$1/2$自旋的处于$S_{1/2}$基态的超精细能级\cite[]{Olmschenk_Younge_Moehring_Matsukevich_Maunz_Monroe_2007}。如图\ref{fig:energy_structure}所示，$\ket{0}$和$\ket{1}$分别被编码到了基态的相应状态，具体来说是分别是$\ket{0}=\ket{F=0,m_F=0}$和$\ket{1}=\ket{F=1,m_F=0}$，当$B=0$两个能级的能量差为$12.64$GHz。
+在第\ref{section:introduction}章介绍中我们介绍过实现量子计算对物理平台的要求，最基本的要求是要能找到合适的量子系统来编码量子比特，即$\ket{0}$、$\ket{1}$。离子的内态是十分稳定并且易于操控的，因此一般选择离子的两个内部状态来编码量子信息并执行计算。对于我们现在系统中采用的$^{171}Yb^+$离子来说，用来编码量子比特的是有着$1/2$自旋的处于$^2S_{1/2}$基态的超精细能级\cite[]{Olmschenk_Younge_Moehring_Matsukevich_Maunz_Monroe_2007}。如图\ref{fig:energy_structure}所示，$\ket{0}$和$\ket{1}$分别被编码到了基态的相应状态，具体来说是分别是$\ket{0}=\ket{F=0,m_F=0}$和$\ket{1}=\ket{F=1,m_F=0}$，当$B=0$两个能级的能量差为$12.64$GHz。
 
 \begin{figure}
     \centering
@@ -24,7 +24,7 @@
 
 \section[镱离子的电离和囚禁]{镱离子的电离和囚禁}
 为了能够研究离子的特性我们首先需要将离子电离并稳定地囚禁住。离子的囚禁采用的是如第\ref{section:ion_classical_motion}节中介绍的动态囚禁的方式，离子的电离一般是通过激光电离的方式实现的。对于$Yb^+$离子来说，电离的方式是采用的是\emph{两步电离法(two-step ionization)}\cite[]{Olmschenk_Younge_Moehring_Matsukevich_Maunz_Monroe_2007}，这种方法可以避免紫外激光的使用。
-首先，我们使用$398.991$nm波长的激光将镱原子重$^1S_0$能级激发到$^1P_1$能级；然后再使用一个低于$394.088$nm波长的激光将最外层电子激发到连续态区域中去，比如通常采用的$369.526$nm波长激光，或者$355$nm波长、$375$nm波长。在实践中，镱原子一般填充在原子炉中并被放置在真空室中。需要激发时就通过施加恒定电流加热原子，使原子从烤箱中热喷射出来的，其中会有一小部分穿过离子阱的中心。$398.911$nm和$369.525$nm波长的激光束在离子阱中心与原子炉中喷射出的原子重叠。于是，该区域的原子就可以被电离，并在高效冷却后被离子阱动态囚禁。由于同位素位移，我们可以通过微调$398.911$nm激光的波长来选择性地电离镱离子不同的同位素。为了抑制多普勒频移的影响，激光器的路径最好垂直于原子流。
+首先，我们使用$398.991$nm波长的激光将镱原子重$^1S_0$能级激发到$^1P_1$能级；然后再使用一个低于$394.088$nm波长的激光将最外层电子激发到连续态区域中去，比如通常采用的$369.526$nm波长激光，或者$355$nm波长、$375$nm波长。在实践中，镱原子一般填充在原子炉中并被放置在真空室中。需要激发时就通过施加恒定电流加热原子，使原子从原子炉中热喷射出来的，其中会有一小部分穿过离子阱的中心。$398.911$nm和$369.525$nm波长的激光束在离子阱中心与原子炉中喷射出的原子重叠。于是，该区域的原子就可以被电离，并在高效冷却后被离子阱动态囚禁。由于同位素位移，我们可以通过微调$398.911$nm激光的波长来选择性地电离镱离子不同的同位素。为了抑制多普勒频移的影响，激光器的路径最好垂直于原子流。
 
 \begin{figure}
     \centering
@@ -41,7 +41,7 @@
 这个电势的结果是在所有方向上都有正的系数 ($\alpha_m^2>0$)，直观地揭示了囚禁带电离子的能力。同时还可以从中得到有效的阱频率$\nu_m=eV\alpha_m/\sqrt{2}MR^2\Omega_{rf}$。
 
 \section[镱离子的激光冷却]{镱离子的激光冷却\label{section:yb_laser_cooling}}
-从原子炉中喷出的原子是十分“热”的（标准大气压下原子的平均融化温度高达$824 ^o C$），由麦克斯韦运动分布可知它们的速度能达到超过一百米每秒。如此热的电子很容易从离子阱的囚禁电势中逃脱，很难被囚禁更不用说惊醒什么别的操作了。因此，我们需要某种冷却手段来给离子“降温”。
+从原子炉中喷出的原子是十分“热”的（标准大气压下原子的平均融化温度高达$824 ^o C$），由麦克斯韦运动分布可知它们的速度能达到超过一百米每秒。如此热的电子很容易从离子阱的囚禁电势中逃脱，很难被囚禁更不用说进行什么别的操作了。因此，我们需要某种冷却手段来给离子“降温”。
 
 \begin{figure}
     \centering
@@ -106,7 +106,7 @@
     \hat{H}=\frac{\omega_q}{2}\hat{\sigma}_z + \Omega\cos\left(\vec{k}\cdot\vec{r}-\omega t + \phi\right)\hat{\sigma}_x
 \end{align}
 
-第一项是简化的离子比特二能级系统的希尔伯特空间，二能级系统的能量差为$\omega_q$；第二项是磁偶极跃迁的导出项，其中磁场的振动频率为$\omega$，初始相位为$\phi$；$\Omega$是代表耦合强度的拉比频率；当$\omega\approx 12.6$GHz时有$\vec{k}\approx3\times ^{-4}um^{-1}$，所以空间项$\vec{k}\cdot \vec{r}$相对比较小，可以被忽略。通过一个重映射变换$\hat{H}_I=e^{iH_0t}(\hat{H}-\hat{H}_0)e^{-iH_0t}$，其中$\hat{H}_0=\omega\hat{\sigma}_z/2$，可以将自由空间哈密顿量转化到相互作用表象\textcolor{red}{(dressed-state)}下：
+第一项是简化的离子比特二能级系统的希尔伯特空间，二能级系统的能量差为$\omega_q$；第二项是磁偶极跃迁的导出项，其中磁场的振动频率为$\omega$，初始相位为$\phi$；$\Omega$是代表耦合强度的拉比频率；当$\omega\approx 12.6$GHz时有$\vec{k}\approx3\times ^{-4}um^{-1}$，所以空间项$\vec{k}\cdot \vec{r}$相对比较小，可以被忽略。通过一个重映射变换$\hat{H}_I=e^{iH_0t}(\hat{H}-\hat{H}_0)e^{-iH_0t}$，其中$\hat{H}_0=\omega\hat{\sigma}_z/2$，可以将自由空间哈密顿量转化到相互作用表象(dressed-state)下：
 \begin{align}
     \hat{H}_I&=e^{iH_0t}(\hat{H}-\hat{H}_0)e^{-iH_0t}\\
     &=-\frac{\mu}{2}\hat{\sigma}_z+\frac{\Omega}{2}\left(\hat{\sigma}_+e^{i\omega t}+\hat{\sigma}_-e^{-i\omega t}\right)\left(e^{i(\omega t-\phi)}+e^{-i(\omega t-\phi)}\right)\\
@@ -114,7 +114,7 @@
     &=-\frac{\mu}{2}\hat{\sigma}_z+\frac{\Omega\cos{\phi}}{2}\hat{\sigma}_x+\frac{\Omega\sin{\phi}}{2}\hat{\sigma}_y\label{eq:interaction_hamiltonian_microwave}
 \end{align}
 
-其中$\mu=\omega=\omega_q$是量子比特和单微波光子之间的能量差。在$\approx$这步，我们采用了在第\ref{section:total_hamiltonian}节中介绍过的\emph{旋波近似}，将含$2\omega$的快速振动项忽略掉了。相互作用表象\textcolor{red}{(dressed-state)}的优点在于最终的哈密顿量是不含时的，这样各个泡利矩阵的成分的概率幅就完全由施加的微波场决定了。
+其中$\mu=\omega=\omega_q$是量子比特和单微波光子之间的能量差。在$\approx$这步，我们采用了在第\ref{section:total_hamiltonian}节中介绍过的\emph{旋波近似}，将含$2\omega$的快速振动项忽略掉了。相互作用表象(dressed-state)的优点在于最终的哈密顿量是不含时的，这样各个泡利矩阵的成分的概率幅就完全由施加的微波场决定了。
 
 对于一个给定的状态$\ket{\Psi(0)}=c_0(0)\ket{0}+c_1(0)\ket{1}$，其中$|c_0(0)|^2+|c_1(0)|^2=1$，它的时间演化由演化算符$U(t)$决定：
 \begin{align}

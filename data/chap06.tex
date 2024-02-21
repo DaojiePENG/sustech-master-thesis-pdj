@@ -1,6 +1,6 @@
 % !TeX root = ../sustechthesis-example.tex
 
-\chapter[基于FPGA的RTMQ测控系统]{基于FPGA的RTMQ测控系统}
+\chapter[基于FPGA的RTMQ测控系统]{基于FPGA的RTMQ测控系统\label{section:fpga_rtmq}}
 
 % \textcolor{red}{
 % 这部分参考RTMQ的相关专利和文档介绍整个测控系统的情况... 
@@ -45,7 +45,7 @@ RTMQ（用于量子物理实验的实时微系统，RealTime Microsystem for Qua
     \includegraphics[width=1.0\linewidth]{rtmq/rtmq_board_inner_structure}
 \end{figure}
 
-一个RTMQ节点的内部模块儿如图\ref{fig:rtmq_board_inner_structure}所示，包含一个32位的微处理器、一个寄存器文件、一系列外设模块和一个链路管理模块。其中微处理器包含流控制器、计时器、异常管理模块、触发管理模块和算术逻辑单元5个子模块；寄存器文件包含多个寄存器；外设可分为系统外设和功能外设，系统外设包括指令缓存、数据缓存、节点信息只读存储器以及地址栈和数据栈，功能外设用于实现具体的逻辑或时序功能，可包含多个。
+一个RTMQ节点的内部模块如图\ref{fig:rtmq_board_inner_structure}所示，包含一个32位的微处理器、一个寄存器文件、一系列外设模块和一个链路管理模块。其中微处理器包含流控制器、计时器、异常管理模块、触发管理模块和算术逻辑单元5个子模块；寄存器文件包含多个寄存器；外设可分为系统外设和功能外设，系统外设包括指令缓存、数据缓存、节点信息只读存储器以及地址栈和数据栈，功能外设用于实现具体的逻辑或时序功能，可包含多个。
 
 RTMQ架构中包含的微处理器可受指令控制进入挂起状态，而挂起状态可受计时器或触发管理模块的控制恢复正常运行，如此，微处理器的指令流便可以按一定的时间间隔对齐或与外部信号对齐。同时，节点中的系统外设和功能外设的行为受关联寄存器的读写控制，即微处理器的指令与系统各模块的功能和时序有严格的对应关系。因此，本发明提供的架构可实现实时控制与通用计算在指令流层面的结合。
 而配置指令插入中断的机制确保了节点对其下级节点的绝对控制，即使下级节点的微处理器处于挂起状态，依然不受影响。配置指令插入中断配合具有确定通信延迟的实时通信链路系统，即可实现时序确定的跨节点的即时反馈控制。
@@ -123,11 +123,11 @@ RTMQ测控板实物图如附录图\ref{fig:rtmq_board_real}所示。
 \begin{align}
     o_d=&i_c \oplus i_a \oplus i_b\\
     Case1:
-    o_c=&(i_a \cdot i_b) + (i_a \cdot i_c) + (i_b \cdot i_c)\\
+    o_c=&(i_a \cdot i_b) + (i_a \cdot i_c) + (i_b \cdot i_c)\label{eq:adder1}\\
     Case2:
-    o_c=&i_c \cdot (i_a \oplus i_b) + i_a \cdot i_b\\
+    o_c=&i_c \cdot (i_a \oplus i_b) + i_a \cdot i_b\label{eq:adder2}\\
     Case3:
-    o_c =& i_c \cdot (i_a + i_b) + i_a \cdot i_b
+    o_c =& i_c \cdot (i_a + i_b) + i_a \cdot i_b\label{eq:adder3}
 \end{align}
 
 其中“$\oplus$”表示“异或”运算，“$\cdot$”表示“与”运算，“$+$”表示“或”运算。
@@ -135,9 +135,12 @@ RTMQ测控板实物图如附录图\ref{fig:rtmq_board_real}所示。
 \begin{figure}
     \centering
     \caption[串行进位加法器的FPGA实现结构图]{串行进位加法器的FPGA实现结构图\label{fig:carry_ripple_adder}（Vivado）}
-    \includegraphics[width=0.9\linewidth]{rtmq/adder_case1}
-    \includegraphics[width=0.9\linewidth]{rtmq/adder_case2}
-    \includegraphics[width=0.9\linewidth]{rtmq/adder_case3}
+    \subcaptionbox{第一种加法器实现情况，对应公式\eqref{eq:adder1}}{
+    \includegraphics[width=0.9\linewidth]{rtmq/adder_case1}}
+    \subcaptionbox{第二种加法器实现情况，对应公式\eqref{eq:adder2}}{
+    \includegraphics[width=0.9\linewidth]{rtmq/adder_case2}}
+    \subcaptionbox{第三种加法器实现情况，对应公式\eqref{eq:adder3}}{
+    \includegraphics[width=0.9\linewidth]{rtmq/adder_case3}}
 \end{figure}
 
 三种串行进位加法器实现的结构图如图\ref{fig:carry_ripple_adder}所示。从结果可以看到，第一种写法用了7个元件，输入到输出需要三级门电路得到结果；第二种写法用了5个器件，输入到输出需要三级门电路得到结果；第三种写法用了6个元件，输入到输出需要三级门电路得到结果；从器件数量角度优选地应该使用第二种写法，具体还取决于系统可用的元器件情况。可以看出当前位对下一位的数据和进位逻辑如下：
@@ -211,7 +214,7 @@ Booth乘法器在数字信号处理、计算机算术、密码学等领域中具
     \includegraphics[width=1.0\linewidth]{rtmq/multiple_process}
 \end{figure}
 
-如果将乘法过程表示成通式，比如4位乘法器，如图\ref{fig:multiple_process_general}所示。这样原始的乘法在设计上是可以实现的，但在工程应用上几乎不会采用，在时延与面积上都需要优化。一个$n_1=n_2=N$位的乘法运算，需要产生$N$个部分积，并对它们进行全加处理，位宽越大，部分积个数越多，需要的加法器也越多，加法器延时也越大，这对高速芯片来说是很不有好的。实际上乘法过程拆解开来就是获得部分积和处理部分积相加的过程。由于在二进制中获得部分积的过程可以通过简单的移位来实现，因此针对乘法运算的优化，主要就集中在两个方面：一是减少部分积的个数，二是减少加法器带来的延时。
+如果将乘法过程表示成通式，比如4位乘法器，如图\ref{fig:multiple_process_general}所示。这样原始的乘法在设计上是可以实现的，但在工程应用上几乎不会采用，在时延与面积上都需要优化。一个$n_1=n_2=N$位的乘法运算，需要产生$N$个部分积，并对它们进行全加处理，位宽越大，部分积个数越多，需要的加法器也越多，加法器延时也越大，这对高速芯片来说是很不有好的。实际上乘法过程拆解开来就是获得部分积和处理部分积相加的过程。由于在二进制中获得部分积的过程可以通过简单的移位来实现，因此针对乘法运算的优化，主要就集中在两个方面：一是减少部分积的个数，二是减少加法器带来的延时。而Booth编码的方式就是从减少部分积的个数的角度来优化乘法运算的，下一小节将介绍Booth编码相关概念。
 
 \begin{figure}
     \centering
