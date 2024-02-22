@@ -34,11 +34,11 @@
 受环境振动和温度变化影响，谐振腔的几何形状，主要是螺旋线的长度和腔体长度会发生变化，进而导致谐振腔的中心频率发生偏移。从谐振腔的S参数图\ref{fig:helical_compares}中可以看出螺线管谐振腔的Q值很大，透过峰较尖锐，即中心频率附近信号透过衰减较大。因此在输入信号频率抖动极小的情况下，受谐振腔中心频率偏移影响，信号的透过幅度将会发生较大的变化。
 文献\cite[]{Johnson_Wong_Campos_Restelli_Landsman_Neyenhuis_Mizrahi_Monroe_2016}中介绍了采用模拟系统实现的离子阱频率稳定方案。该方案的简化版采用了鉴频器、射频功率放大器、模拟PID控制器、电容分压器、混频器、本地振荡源等器件。采用模拟方案涉及到的器件较多、灵活性差，因此我们采用基于数字系统的稳定方式。
 
-基于RTMQ系统的数字PID离子阱频率稳定原理图如图\ref{fig:trap_frequency_lock}所示。信号通过PID对DDS进行幅度调制产生，随后经过射频功率放大器进入谐振腔耦合输入端。通过调节谐振腔耦合输入端对谐振腔进行阻抗匹配耦合，使得输出功率最大化。随后，在输出端焊接一个射频分压电路，按照100:1的分压比采集射频电压作为检测信号送入鉴频器。接着鉴频器的输出接入RTMQ板卡的16位AD转换芯片，进而转换成数字信号作为PID输入，完成整个控制回路闭环。其中，分压电路图如图\ref{fig:trap_frequency_lock}中小图所示，$C_1=C_2\approx10uF$用于同步两个输出端的射频相位；$C_3\approx0.5pF, C_4\approx50pF$构成理论上为$100:1$射频分压电路（实际上受到焊接电容影响测得的分压比约为$53:1$）。
+基于RTMQ系统的数字PID离子阱频率稳定原理图如图\ref{fig:trap_frequency_lock}所示。信号通过PID对DDS进行幅度调制产生，随后经过射频功率放大器进入谐振腔耦合输入端。通过调节谐振腔耦合输入端对谐振腔进行阻抗匹配耦合，使得输出功率最大化。随后，在输出端焊接一个射频分压电路，按照100:1的分压比采集射频电压作为检测信号送入鉴频器。接着鉴频器的输出接入RTMQ板卡的16位AD转换芯片，进而转换成数字信号作为PID输入，完成整个控制回路闭环。其中，分压电路图如图\ref{fig:trap_frequency_lock}中小图所示，$C_1=C_2\approx10$uF用于同步两个输出端的射频相位；$C_3\approx0.5$pF，$C_4\approx50$pF构成理论上为$100:1$射频分压电路（实际上受到焊接电容影响测得的分压比约为$53:1$）。
 
 \begin{figure}
     \centering
-    \caption[数字PID离子阱频率稳定原理图]{基于RTMQ系统的数字PID离子阱频率稳定原理图\label{fig:trap_frequency_lock}}
+    \caption[数字PID离子阱频率稳定原理图]{基于RTMQ系统的数字PID离子阱频率稳定原理图。DDS：数字频率发生器；PID：比例微分积分控制器；ADC：模拟数字转换器；$C_1,C_2$：相位同步电容；$C_3,C_4$：射频分压电容。\label{fig:trap_frequency_lock}}
     \includegraphics[width=1.0\linewidth]{trap_frequency_lock}
 \end{figure}
 
@@ -49,7 +49,7 @@
 
 \begin{figure}
     \centering
-    \caption[DDS输出功率和放大器输出功率]{DDS输出功率和放大器输出功率\label{fig:helical_lock_amplifier}}
+    \caption[DDS输出功率和放大器输出功率]{DDS输出功率和放大器输出功率。横坐标为DDS输出功率（单位dBm），纵坐标为测量得到的放大后的射频功率（单位dBm）。蓝色实心点是测得的数据点，蓝色虚线是从数据点中拟合出的直线，系数$a=0.9644$，截距$b=32.83$表示功率放大器的放大dBm数。\label{fig:helical_lock_amplifier}}
     \includegraphics[width=1.0\linewidth]{helical_lock_amplifier}
 \end{figure}
 
@@ -61,7 +61,7 @@
 
 \begin{figure}
     \centering
-    \caption[谐振腔输出稳定效果测量结果]{谐振腔输出稳定效果测量结果\label{fig:helical_lock_measure}}
+    \caption[谐振腔输出稳定效果测量结果]{谐振腔输出稳定效果测量结果。横坐标为DDS的设定输出功率数字值（非实际功率值），纵坐标我板卡上ADC测得的输出电压数字值（非实际功率值）。该图个数据点测量的是PID参考功率数值一定的情况下，改变输入的射频功率大小，看实际输出功率大小的变化。整体上斜率越小表明控制器对功率大小的变化有抑制作用。\label{fig:helical_lock_measure}}
     \includegraphics[width=1.0\linewidth]{helical_lock_measure}
 \end{figure}
 

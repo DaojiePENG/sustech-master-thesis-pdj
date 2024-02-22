@@ -12,10 +12,10 @@
 
 
 \subsection[锁模（脉冲）激光器]{锁模（脉冲）激光器}
-如第\ref{section:pulsed_laser_ion_operation}节中所述，锁模（脉冲）激光器可用于产生宽带光学频率梳，总带宽从$10$GHz到$100 THz$，梳齿由激光的重复速率$\omega_{rep}$间隔，通常在$0.1-1 $GHz范围内。量子比特的能级劈裂会匹配到重复频率的整数倍数附近，为了弥合与特定量子比特的频率差距，需要使用额外的光调制器完成微调\cite[]{Hayes_Matsukevich_Maunz_Hucul_Quraishi_Olmschenk_Campbell_Mizrahi_Senko_Monroe_2010}。为了在量子系统中保持长期相干性，与激光源相关的光学频率差必须稳定\cite[]{Stick_Hensinger_Olmschenk_Madsen_Schwab_Monroe_2006}。
+如第\ref{section:pulsed_laser_ion_operation}节中所述，锁模（脉冲）激光器可用于产生宽带光学频率梳，总带宽从$10$GHz到$100 $THz，梳齿由激光的重复速率$\omega_{rep}$间隔，通常在$0.1-1 $GHz范围内。量子比特的能级劈裂会匹配到重复频率的整数倍数附近，为了弥合与特定量子比特的频率差距，需要使用额外的光调制器完成微调\cite[]{Hayes_Matsukevich_Maunz_Hucul_Quraishi_Olmschenk_Campbell_Mizrahi_Senko_Monroe_2010}。为了在量子系统中保持长期相干性，与激光源相关的光学频率差必须稳定\cite[]{Stick_Hensinger_Olmschenk_Madsen_Schwab_Monroe_2006}。
 
 产生稳定频率差的一种方便方法是将光源的光分成两条路径，将其中一束光进行微调，然后让它们在离子比特处交汇。这种方式可以避免激光共模波动引起的频率抖动问题\cite[]{Thomas_Hemmer_Ezekiel_Leiby_Picard_Willis_2002}。
-一般来说，对于跃迁频率$\nu_{ab}\leq 1GHz$的情况，可以使用声光调制器(Acousto-Optic Modulator, AOM)产生相应的频率；对于高达$\nu_{ab} \sim 10 GHz$的较大跃迁频率，可以使用电光调制器(Electro-Optic Modulator, EOM)，尽管由于频率调制边带会受到相位偏移模式影响被抑制\cite[]{Lee_Blinov_Brickman_Deslauriers_Madsen_Miller_Moehring_Stick_Monroe_2003}。锁模（脉冲）激光器可以产生不受此相位问题影响的调幅(AM)边带，成为生成调控边带的极佳方案。锁模（脉冲）激光器的带宽通常足够大，可以解决频率$\nu_{ab} < 100 THz$的能级劈裂。与AOM的适度频移相结合，可用于在该带宽内达到任意频率。
+一般来说，对于跃迁频率$\nu_{ab}\leq 1$GHz的情况，可以使用声光调制器(Acousto-Optic Modulator, AOM)产生相应的频率；对于高达$\nu_{ab} \sim 10 $GHz的较大跃迁频率，可以使用电光调制器(Electro-Optic Modulator, EOM)，尽管由于频率调制边带会受到相位偏移模式影响被抑制\cite[]{Lee_Blinov_Brickman_Deslauriers_Madsen_Miller_Moehring_Stick_Monroe_2003}。锁模（脉冲）激光器可以产生不受此相位问题影响的调幅(AM)边带，成为生成调控边带的极佳方案。锁模（脉冲）激光器的带宽通常足够大，可以解决频率$\nu_{ab} < 100 $THz的能级劈裂。与AOM的适度频移相结合，可用于在该带宽内达到任意频率。
 
 
 \subsection[脉冲激光的探测原理]{脉冲激光的探测原理}
@@ -168,7 +168,7 @@
 
 \begin{figure}
     \centering
-    \caption[脉冲激光拍频锁定系统框图]{脉冲激光拍频锁定系统框图\label{fig:beat_note_stabilization}}
+    \caption[脉冲激光拍频锁定系统框图]{脉冲激光拍频锁定系统框图。AOM：声光调制器；PD：光功率探测器；DDS：数字频率生成器；PID：比例积分微分控制器；FOL：频率低通滤波器；ADC：模拟数字转化器。\label{fig:beat_note_stabilization}}
     \includegraphics[width=1.0\linewidth]{beat_note_stabilization}
 \end{figure}
 
@@ -191,13 +191,13 @@
 
 \begin{figure}
     \centering
-    \caption[受激拉曼跃迁示意图]{受激拉曼跃迁示意图\label{fig:raman_transition1}}
+    \caption[受激拉曼跃迁示意图]{受激拉曼跃迁示意图。$\ket{e}$：上级激发态能级；$\ket{a},\ket{b}$：编码量子信息的高低能级；$\nu_{ab}$：编码量子信息的能级能隙；$\nu_{a}$：$\ket{e}$能级与$\ket{b}$能级的能隙；$\nu_a^L$：$\ket{a}$能级与虚拟能级的能隙；$\nu_b^L$：$\ket{b}$能级与虚拟能级的能隙。\label{fig:raman_transition1}}
     \includegraphics[width=0.6\linewidth]{raman_transition1}
 \end{figure}
 
 驱动量子比特需要梳齿之间的光学相干性在量子比特操作的毫秒或更快的时间尺度上保持，这对于锁模（脉冲）激光源来说很容易实现\cite[]{Hayes_Matsukevich_Maunz_Hucul_Quraishi_Olmschenk_Campbell_Mizrahi_Senko_Monroe_2010}。然而，由于激光腔长中的热应变或其它机械应变，激光重复频率会产生漂移[$\nu_{rep}=\nu_{rep}(t)$]，导致施加的边带频率$\nu_{sb}$也跟着漂移，进一步地对量子比特驱动也将偏离共振。因此需要一定的措施来稳定用于操控量子比特的边带频率。
 
-可以像密封或光纤激光器的情况一样直接将误差信号反馈给激光腔长，从而稳定重复率，不过当激光腔不容易访问时，这将十分困难。此外，这样的锁的带宽将有限，因为测量激光重复率的采集时间和使用机械换能器调制激光腔长度的延迟可能比激光腔波动的特征时间长。例如，$^{171}Yb$（$12.642819 GHz$）电子基态的超精细跃迁在$ \nu_{rep} \sim 80.65$MHz处接近锁模频率激光器的第 157 梳齿。
+可以像密封或光纤激光器的情况一样直接将误差信号反馈给激光腔长，从而稳定重复率，不过当激光腔不容易访问时，这将十分困难。此外，这样的锁的带宽将有限，因为测量激光重复率的采集时间和使用机械换能器调制激光腔长度的延迟可能比激光腔波动的特征时间长。例如，$^{171}Yb$（$12.642819 $GHz）电子基态的超精细跃迁在$ \nu_{rep} \sim 80.65$MHz处接近锁模频率激光器的第 157 梳齿。
 想要将上述频率稳定在1kHz以内的话，一种经典的方法是测量$\nu_{rep}(t)$使其达到几赫兹的分辨率，而这需要的积分时间将超过1s。这种过于慢的锁定方式并不适合用来锁定频率梳齿的拍频边带。
 
 作为替代，我们选择使用频率梳齿的$n\nu_{rep}(t)$与本地标准参考信号$\nu_{LO}$进行拍频的方式来检测频率的漂动。如图\ref{fig:beat_note_stabilization}所示，我们将锁模（脉冲）激光分出一部分与用FPD进行探测，然后经过一个12.5GHz为中心的带通滤波器并放大后，将其与在12.56GHz附近的本地振荡源拍频。两者拍频之后经过一个合适的低通或带通滤波器就可以获得一个差频信号$|n\nu_{rep}-\nu_{LO}|$（两者的绝对大小不重要，我们总是可以观测到正的差频）。接着将这个差频信号放大并与板卡的DDS输出频率进行拍频和滤波获得一个更小的差频信号，将这个信号送入板卡的AD进行模数转换，随后经过数字滤波器和数字PID的处理对DDS的频率进行调节。整个控制器是采用数字系统实现的，主要涉及模块包括16位AD转换器（Linear Technology, LTC2216）、16位滤波器（第\ref{section:digital_iir}节）、16位PID（第\ref{section:digital_pid}节）、32位DDS（Analog Device, AD9910）。
@@ -232,10 +232,10 @@
 
 该系统结合了大量数字系统，它的控制器和频率输出都由数字系统实现，这及大地提高了系统的稳定性和灵活性。控制器采用了数字PID，调节频率输出采用了DDS。因此理论上只要DDS的输出可以跟得上，应该能锁定接近DDS输出的可调节频率幅度。系统中采用的DDS的频率编码为32bit，频率范围为400MHz。寄存器的数值$R_{DDS}$和实际输出的模拟频率$f_{DDS}$的换算关系为：
 \begin{align}
-    f_{DDS}=\frac{R_{DDS}}{2^{32}}\times 400\ MHz
+    f_{DDS}=\frac{R_{DDS}}{2^{32}}\times 400\ \textnormal{MHz}
 \end{align}
 
-DDS数字对应的\emph{频率步长}为$f_{resolution}=\frac{400MHz}{2^{32}}\approx0.093Hz$。然而，DDS芯片中给出的并行频率调制位数是16位，而实际的频率分辨率是32位，这意味着没有办法并行进行全部（0-400MHz）范围内的频率调制。
+DDS数字对应的\emph{频率步长}为$f_{resolution}=\frac{400\textnormal{MHz}}{2^{32}}\approx0.093\textnormal{Hz}$。然而，DDS芯片中给出的并行频率调制位数是16位，而实际的频率分辨率是32位，这意味着没有办法并行进行全部（0-400MHz）范围内的频率调制。
 实际的使用中可以设定一个中心频率$f_{c}$，然后通过16位并行调制字再对这个频率进行微调$\Delta f$。另外，这16位并行调制字可以通过移位$N_{shift}$来对应的32位频率调制字的不同位数，以获得不同的调节范围。每左移一位，并行调制字的权重乘2，最大可移位数为15。也即，16位频率调制字的调制效果$\Delta f$为：
 \begin{align}
     \Delta f=f_{resolution}\times n \times 2^{N_{shift}}

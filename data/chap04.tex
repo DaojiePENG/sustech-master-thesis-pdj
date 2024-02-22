@@ -76,7 +76,7 @@
     \includegraphics[width=0.6\linewidth]{initialization}
 \end{figure}
 
-如图\ref{fig:initialization}所示，在初始化过程中从$^2S_{1/2}\ket{F=1}$到$^2P_{1/2}\ket{F=1}$的跃迁被驱动。离子的状态很有可能衰减到$\ket{0}$状态，因此由于$12.6$GHz的失谐，处于$\ket{0}$态的离子不会参与进一步的激发。对于单个离子，这一过程在$5$μs内就可以以非常高的初始化保真度完成。这篇\cite[]{Harty_Allcock_Ballance_Guidoni_Janacek_Linke_Stacey_Lucas_2014}文献展示了状态初始化的误差小于可以$10^{−4}$
+如图\ref{fig:initialization}所示，在初始化过程中从$^2S_{1/2}\ket{F=1}$到$^2P_{1/2}\ket{F=1}$的跃迁被驱动。离子的状态很有可能衰减到$\ket{0}$状态，因此由于$12.6$GHz的失谐，处于$\ket{0}$态的离子不会参与进一步的激发。对于单个离子，这一过程在$5$μs内就可以以非常高的初始化保真度完成。这篇\cite[]{Harty_Allcock_Ballance_Guidoni_Janacek_Linke_Stacey_Lucas_2014}文献展示了状态初始化的误差小于可以$10^{−4}$。
 
 \section[镱离子的态探测]{镱离子的态探测\label{section:yb_state_detection}}
 在经过各种中间操控后，量子计算的结果需要被读出，这一过程通过离子的态测量实现。如图\ref{fig:detection}所示，通常采用状态相关的荧光检测技术进行高保真读出\cite[]{Blinov_Leibfried_Monroe_Wineland_2004}。在这个过程中使用的是$^2S_{1/2}\ket{F=0}$到$^2P_{1/2}\ket{F=1}$之间的跃迁（$^2S_{1/2}\ket{F=0}$到$^2P_{1/2}\ket{F=0}$之间的跃迁是偶极禁止跃迁的）。因此，我们可以通过数收集散射光子的数量的多少来区分投影状态。
@@ -151,7 +151,7 @@
 信息储存在镱离子的超精细能级上，$\ket{0}$和$\ket{1}$能级之间有着$12.6$GHz的能量差。尽管激光的能量远大于这个能级间隔以至于无法用激光直接操控$\ket{0}$态和$\ket{1}$态之间的跃迁，我们仍然可以通过两光子的受激拉曼跃迁来实现对离子内态的操控，如图\ref{fig:raman_transition}所示。
 \begin{figure}
     \centering
-    \caption[镱离子受激拉曼跃迁示意图]{镱离子受激拉曼跃迁示意图\label{fig:raman_transition}}
+    \caption[镱离子受激拉曼跃迁示意图]{镱离子受激拉曼跃迁示意图。$\ket{e}$：上级激发态能级；$\ket{0},\ket{1}$：编码量子信息的高低能级；$\omega_{q}$：编码量子信息的能级能隙；$\Delta$：激光相对于上级激发态能级的失谐；$\mu$：用于施加数态跃迁的失谐；$\omega_e$：$\ket{1}$和$\ket{e}$能级的能隙；$\omega_1,\phi_1,\vec{k}_1, \Omega_1$和$\omega_2,\phi_2,\vec{k}_2, \Omega_2$：施加到离子量子信息编码能级上的激光频率、相位、波矢、耦合强度等参数。\label{fig:raman_transition}}
     \includegraphics[width=0.6\linewidth]{raman_transition}
 \end{figure}
 
@@ -202,7 +202,7 @@
 $H_{car}$， $H_{rsb}$， $H_{bsb}$分别被称为载带跃迁、红边带跃迁和蓝边带跃迁，如图\ref{fig:red_carray_blue_sideband}所示。离子比特的两个内能级分别为$\ket{0},\ket{1}$；灰色先表示载带跃迁，其拉比频率为$\Omega$；红色线和蓝色线分别表示红边带和蓝边带跃迁，相应的拉比频率为$\eta \Omega$；$\nu$表示两个数态之间的能隙，也就是实现红蓝边带跃迁需调节的失谐量。
 \begin{figure}
     \centering
-    \caption[载带跃迁、红边带跃迁和蓝边带跃迁示意图]{载带跃迁、红边带跃迁和蓝边带跃迁示意图。\label{fig:red_carray_blue_sideband}}
+    \caption[载带跃迁、红边带跃迁和蓝边带跃迁示意图]{载带跃迁、红边带跃迁和蓝边带跃迁示意图。$\ket{0},\ket{1}$：编码量子信息的高低能级；$\Omega$：驱动激光耦合强度；$\eta \Omega$：数态跃迁的耦合强度；$\nu$：数态之间的失谐能隙；$\ket{0}_F,\ket{1}_F,\ket{2}_F,\dots$：不同的数态的编号。\label{fig:red_carray_blue_sideband}}
     \includegraphics[width=1.0\linewidth]{red_carray_blue_sideband}
 \end{figure}
 
@@ -212,7 +212,7 @@ $H_{car}$， $H_{rsb}$， $H_{bsb}$分别被称为载带跃迁、红边带跃迁
 如上一节所述的在用激光操控离子的技术方案下，$\ket{0}$和$\ket{1}$态耦合的主要方式是通过受激拉曼跃迁。脉冲激光控制离子的原理本质上与连续激光的情况没有不同。主要区别在于连续激光是通过驱动拉曼跃迁来控制的，而脉冲激光是通过同时驱动一系列小间隔的拉曼跃迁来控制的。原理图如图\ref{fig:pulsed_laser_interaction}所示。
 \begin{figure}
     \centering
-    \caption[脉冲激光操控镱离子]{脉冲激光操控镱离子\label{fig:pulsed_laser_interaction}}
+    \caption[脉冲激光操控镱离子]{脉冲激光操控镱离子。$\ket{0},\ket{1}$：编码量子信息的高低能级；$\omega_R$：激光重复频率间隙；$\omega_q$：编码量子信息的能级能隙；$\omega_0$：脉冲激光中心频率；$\Delta$：与上级激发态能级的失谐量。\label{fig:pulsed_laser_interaction}}
     \includegraphics[width=1.0\linewidth]{pulsed_laser_interaction}
 \end{figure}
 
