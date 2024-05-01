@@ -5,13 +5,13 @@
 \begin{abstract}
   量子计算因其强大的计算能力和潜在的应用前景而受到广泛关注。在量子算法的配合下，量子计算机可以实现许多通过经典计算机难以实现的计算，如大素数分解、量子多体系统仿真等。
 
-  离子阱量子计算是一种利用离子的两个稳定能级，作为量子比特“0”和“1”的状态，并利用激光或微波来控制能级之间的跃迁实现量子逻辑门的技术。离子阱量子计算机采用被“囚禁”在真空中的离子（带单个电荷的原子）作为量子比特，相比其他技术路线，离子阱量子计算具有相干时间长、保真度高、连通性好、编程方便等优点。
+  % 离子阱量子计算是一种利用离子的两个稳定能级，作为量子比特“0”和“1”的状态，并利用激光或微波来控制能级之间的跃迁实现量子逻辑门的技术。离子阱量子计算机采用被“囚禁”在真空中的离子（带单个电荷的原子）作为量子比特，相比其他技术路线，离子阱量子计算具有相干时间长、保真度高、连通性好、编程方便等优点。
+  % 离子阱量子计算的是将特定离子的两个稳定的内能级分别编码为‘0’态和‘1’态，量子态的操作一般使用激光或者微波来实现，相比其它技术路线离子阱量子算具有量子门保真度高、量子态相干时间长、比特之间连通性好、编程方便等优点。
 
-  用脉冲激光实现量子门有着操作频谱范围广、可实现超快量子门等诸多优势。量子测控系统是量子计算系统中的一个重要组成部分，它负责对量子比特进行精确的控制和测量，以实现量子计算的各种操作。在离子阱量子计算中，量子测控系统包括离子捕获、囚禁和冷却装置，激光器和微波源，探测器和放大器等。
-  % 其中，离子捕获、囚禁和冷却装置用于捕获和囚禁离子，并将其冷却到极低的温度，以保证量子比特的相干性和稳定性；激光器和微波源用于对离子进行量子态的制备、演化和测量，实现量子逻辑门和量子算法；探测器和放大器用于探测离子的量子态，并将信号放大，以便进行后续处理。
-  量子测控系统的设计需要综合诸多相关领域知识，如量子力学、光学、电子学等等。量子测控系统的性能直接影响着量子计算的准确性和可靠性，因此，如何提高量子测控系统的性能，是量子计算研究中的一个重要问题。
-
-  本文以使用脉冲激光实现离子量子门为长远目标，以量子测控系统为中心，重点关注离子比特控制系统中电子学和光学相关的子系统，如谐振腔、阱频率稳定、脉冲激光拍频锁定、激光功率稳定等系统的原理和实现问题。
+  用脉冲激光实现量子门有着操作频谱范围广、可实现超快量子门等诸多优势。量子测控系统是量子计算系统中的一个重要组成部分，它负责对量子比特进行精确的控制和测量，以实现量子计算的各种操作。脉冲激光实现量子门的方案涉及光学、电学、真空、测控等多方面系统。
+  
+  本文重点研究了电学系统中谐振腔，创新性地开发和引入了一种可支持分布式计算的用于量子物理实验的实时微系统（RTMQ），并且基于测控系统和光电系统对用脉冲激光实现量子门的关键子系统进行了搭建和原理验证。
+  以使用脉冲激光实现离子量子门为目标，在电学方面对微波系统中的关键器件——谐振腔进行了系统的仿真和实验研究；在测控系统方面协助开发了RTMQ系统并将其应用到了脉冲光离子量子比特门的几个关键的子系统，实现了阱频率稳定、脉冲激光拍频锁定、激光功率稳定等系统的原理和实现，用RTMQ系统及相应外设对这些系统进行了集成化、数字化的升级。
 
   % 关键词用“英文逗号”分隔，输出时会自动处理为正确的分隔符
   \thusetup{
@@ -22,13 +22,13 @@
 \begin{abstract*}
   Quantum computing has attracted extensive attention due to its potentially powerful computing capabilities. With the cooperation of quantum algorithm,quantum computer can realize many calculations that are difficult to be realized by classical computers like factorization of large prime numbers, simulation of quantum many body systems. 
 
-  % Quantum computing has received widespread attention due to its potential application prospects and powerful computing capabilities. With the cooperation of quantum algorithms, quantum computers can achieve many calculations that are difficult to achieve through classical computers, such as large prime factorization, quantum multibody system simulation, etc.
+  % Ion trap quantum computing is a technique that utilizes two stable energy levels of an ion as the states of quantum bits "0" and "1", and uses laser or microwave to control the transitions between energy levels to achieve quantum logic gates. Ion trap quantum computers use ions (atoms with a single charge) trapped in a vacuum as quantum bits. Compared to other technological routes, ion trap quantum computing has advantages such as long coherence time, high fidelity, good connectivity, and convenient programming.
+  % Ion trap quantum computing encodes two stable internal energy levels of a specific ion into a '0' state and a '1' state, respectively. The operation of quantum states is generally achieved using lasers or microwaves. Compared with other technical routes, ion trap quantum computing has advantages such as high quantum gate fidelity, long quantum state coherence time, good bit to bit connectivity, and convenient programming.
 
-  Ion trap quantum computing is a technique that utilizes two stable energy levels of an ion as the states of quantum bits "0" and "1", and uses laser or microwave to control the transitions between energy levels to achieve quantum logic gates. Ion trap quantum computers use ions (atoms with a single charge) trapped in a vacuum as quantum bits. Compared to other technological routes, ion trap quantum computing has advantages such as long coherence time, high fidelity, good connectivity, and convenient programming.
-
-  The use of pulsed laser to achieve quantum gates has many advantages, such as a wide operating spectrum range and the ability to achieve ultrafast quantum gates. Quantum measurement and control system is an important component of quantum computing system, which is responsible for precise control and measurement of quantum bits to achieve various operations of quantum computing. In ion trap quantum computing, quantum measurement and control systems include ion capture, trapping, and cooling devices, lasers and microwave sources, detectors and amplifiers, etc.
-
-  This article aims at the use of pulsed laser to achieve ion quantum gates, leading by the quantum measurement and control system. It focuses on the principles and implementation issues of electronic and optical subsystems in ion-qubit control systems, such as resonant cavities, trap frequency stabilization, pulse laser beat frequency locking, and laser power stabilization.
+  The use of pulsed laser to achieve quantum gates has many advantages, such as a wide operating spectrum range and the ability to achieve ultrafast quantum gates. Quantum measurement and control system is an important component of quantum computing system, which is responsible for precise control and measurement of quantum bits to achieve various operations of quantum computing. The scheme for implementing quantum gates using pulsed laser involves various systems such as optics, electronics, vacuum, measurement and control. 
+  
+  This paper focuses on the study of resonant cavities in electrical systems and innovatively develops and introduces a Real Time Microsystem for Quantum physics(RTMQ) that can support distributed computing. Based on the measurement and control system and optoelectronic system, the key subsystems for implementing quantum gates using pulsed laser are built and verified in principle.
+  We conducted systematic simulation and experimental research on the key device in microwave systems - resonant cavity - in terms of electricity, with the goal of using pulsed laser to achieve ion quantum gates; Assisted in the development of the RTMQ system in the measurement and control system and applied it to several key subsystems of the pulse photoionization quantum bit gate, achieving the principles and implementation of well frequency stability, pulse laser beat frequency locking, laser power stability, and other systems. These systems were integrated and digitized using the RTMQ system and corresponding peripherals.
 
   % Use comma as seperator when inputting
   \thusetup{

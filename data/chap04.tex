@@ -8,8 +8,8 @@
 目前所有实现的用于离子量子计算的离子都属于\emph{类氢离子(Hydrogen-like ions)}， 比如$Be^+$（NIST\cite[]{Monroe_Meekhof_King_Itano_Wineland_2002,Lin_Gaebler_Reiter_Tan_Bowler_Wan_Keith_Knill_Glancy_Coakley_et_al_2016}），$Mg^+$（NIST\cite[]{Barrett_Schaetz_DeMarco_Britton_Chiaverini_Itano_Jelenkovic_Jost_Langer_Leibfried_et_al_2003, Wan_Kienzler_Erickson_Mayer_Tan_Wu_Vasconcelos_Glancy_Knill_Wineland_et_al_2019}），$Ca^+$（Univer-sity of Innsbruck\cite[]{Lanyon_Hempel_Nigg_Müller_Gerritsma_Zähringer_Schindler_Barreiro_Rambach_Kirchmair_et_al_2011,Monz_Nigg_Martinez_Brandl_Schindler_Rines_Wang_Chuang_Blatt_2016}, University of Oxford\cite[]{Ballance_Harty_Linke_Sepiol_Lucas_2016,Schäfer_Ballance_Thirumalai_Stephenson_Ballance_Steane_Lucas_2018}），$Ba^+$（Washington University\cite[]{Dietrich_2009,Dietrich_Kurz_Noel_Shu_Blinov_2010},UCLA\cite[]{Hucul_Christensen_Hudson_Campbell_2017}），$Yb^+$（University of Maryland\cite[]{Olmschenk_Younge_Moehring_Matsukevich_Maunz_Monroe_2007,Debnath_Linke_Figgatt_Landsman_Wright_Monroe_2016}, University of Sussex\cite[]{Weidt_Randall_Webster_Lake_Webb_Cohen_Navickas_Lekitsch_Retzker_Hensinger_2016}）。
 类氢离子具有最简单的能量结构，处理起来相对其它类型的离子要简单很多。它们具有的内态$^2S_{1/2}$到$^2P_{1/2}$之间的闭环光学跃迁，能方便地实现激光冷却、高保真初始化和内态读出操作\cite[]{Harty_Allcock_Ballance_Guidoni_Janacek_Linke_Stacey_Lucas_2014}，这对于量子计算的实现至关重要。要挑选出合适的类氢离子，还有一些其它的参数需要被考虑，如离子的质量、循环跃迁的波长、核自旋的值和$^2D$能级的亚稳态的寿命等\cite[]{Bruzewicz_Chiaverini_McConnell_Sage_2019}。
 
-出于历史和现实的原因，我们实验室选择$Yb^+$离子作为实现量子计算的物理平台。
-在接下的几节中，我将阐述用镱离子实现量子计算的一些重要的概念，如镱离子的能级结构和比特编码方式、镱离子的态初始化、镱离子的探测、镱离子的操控等。
+
+要实现用离子实现量子门，尤其是用脉冲激光实现离子量子比特门，首先需要选择合适的离子体系，并且需要对选定离子的能级结构和量子态控制原理和方法有着充分的了解。出于历史和现实的原因，我们实验室选择$Yb^+$离子作为实现量子计算的物理平台。在接下的几节中，我将阐述用镱离子实现量子计算的一些重要的概念，如镱离子的能级结构和比特编码方式、镱离子的态初始化、镱离子的探测、镱离子的操控等。
 
 \section[镱离子的能级结构和和比特编码方式]{镱离子的能级结构和和比特编码方式}
 在第\ref{section:introduction}章介绍中我们介绍过实现量子计算对物理平台的要求，最基本的要求是要能找到合适的量子系统来编码量子比特，即$\ket{0}$、$\ket{1}$。离子的内态是十分稳定并且易于操控的，因此一般选择离子的两个内部状态来编码量子信息并执行计算。对于我们现在系统中采用的$^{171}Yb^+$离子来说，用来编码量子比特的是有着$1/2$自旋的处于$^2S_{1/2}$基态的超精细能级\cite[]{Olmschenk_Younge_Moehring_Matsukevich_Maunz_Monroe_2007}。如图\ref{fig:energy_structure}所示，$\ket{0}$和$\ket{1}$分别被编码到了基态的相应状态，具体来说是分别是$\ket{0}=\ket{F=0,m_F=0}$和$\ket{1}=\ket{F=1,m_F=0}$，当$B=0$两个能级的能量差为$12.64$GHz。
@@ -23,7 +23,10 @@
 通过在阱外向阱中离子施加的约$6$高斯的静磁场会使离子产生约$11$Hz的二阶\emph{Zeeman}能级劈裂。从$\ket{1}$态向$^2P_{1/2}$能级跃迁回路的驱动波长在$369.526$nm附近，这个波段的激光有成熟的商业激光系统供应，同时对光纤传输也很友好。略有遗憾的是这个$\ket{1}{^2P}_{1/2}$跃迁回路并不是完全闭合的，因为存在从$^2P_{1/2}$到$^2D_{3/2}$的微弱态泄露，分支比约为$0.5$\%\cite[]{Olmschenk_Younge_Moehring_Matsukevich_Maunz_Monroe_2007}。不过这个可以通过使用一个带$3.07$GHz边带的$935$nm波长的激光来将泄露的态再回泵浦到整个回路中。另外，背景撞击可能导致离子跑到$^2F_{7/2}$使离子“熄灭”，这个可以通过一个$638$nm波长的激光器来克服，重新将离子“点亮”。值得注意的是，这个任务除了$638$nm波长的激光器可以完成外，$760$nm\cite[]{Huntemann_Okhapkin_Lipphardt_Weyers_Tamm_Peik_2012}、$355$nm\cite[]{Senko_2014}。另外，由于从$^2F_{7/2}$到$^3F[1/2]_{3/2}$的跃迁大部分共振在$375.856$nm波长上，因此$375$nm波长的激光也可以完成。
 
 \section[镱离子的电离和囚禁]{镱离子的电离和囚禁}
-为了能够研究离子的特性我们首先需要将离子电离并稳定地囚禁住。离子的囚禁采用的是如第\ref{section:ion_classical_motion}节中介绍的动态囚禁的方式，离子的电离一般是通过激光电离的方式实现的。对于$Yb^+$离子来说，电离的方式是采用的是\emph{两步电离法(two-step ionization)}\cite[]{Olmschenk_Younge_Moehring_Matsukevich_Maunz_Monroe_2007}，这种方法可以避免紫外激光的使用。
+为了能够研究离子的特性我们首先需要将离子电离并稳定地囚禁住。
+离子的囚禁采用的是
+% 如第\ref{section:ion_classical_motion}节中介绍的
+动态囚禁的方式，离子的电离一般是通过激光电离的方式实现的。对于$Yb^+$离子来说，电离的方式是采用的是\emph{两步电离法(two-step ionization)}\cite[]{Olmschenk_Younge_Moehring_Matsukevich_Maunz_Monroe_2007}，这种方法可以避免紫外激光的使用。
 首先，我们使用$398.991$nm波长的激光将镱原子重$^1S_0$能级激发到$^1P_1$能级；然后再使用一个低于$394.088$nm波长的激光将最外层电子激发到连续态区域中去，比如通常采用的$369.526$nm波长激光，或者$355$nm波长、$375$nm波长。在实践中，镱原子一般填充在原子炉中并被放置在真空室中。需要激发时就通过施加恒定电流加热原子，使原子从原子炉中热喷射出来的，其中会有一小部分穿过离子阱的中心。$398.911$nm和$369.525$nm波长的激光束在离子阱中心与原子炉中喷射出的原子重叠。于是，该区域的原子就可以被电离，并在高效冷却后被离子阱动态囚禁。由于同位素位移，我们可以通过微调$398.911$nm激光的波长来选择性地电离镱离子不同的同位素。为了抑制多普勒频移的影响，激光器的路径最好垂直于原子流。
 
 \begin{figure}
@@ -32,7 +35,8 @@
     \includegraphics[width=1.0\linewidth]{trap_blads.jpg}
 \end{figure}
 
-如第\ref{section:ion_classical_motion}节中给介绍的，由\emph{Earnshaw's theorem}\cite[]{Earnshaw}我们知道离子没有办法被静态地囚禁在三维空间中，好在我们仍然可以动态地将离子囚禁。实际实验中囚禁离子的离子阱如\ref{fig:trap_blads}图所示，这中类型的离子阱一般被称为刀片阱。它会产生如下形式的赝势$\Phi_p$：
+% 如第\ref{section:ion_classical_motion}节中给介绍的，
+由\emph{Earnshaw's theorem}\cite[]{Earnshaw}我们知道离子没有办法被静态地囚禁在三维空间中，好在我们仍然可以动态地将离子囚禁。实际实验中囚禁离子的离子阱如\ref{fig:trap_blads}图所示，这中类型的离子阱一般被称为刀片阱。它会产生如下形式的赝势$\Phi_p$：
 \begin{align}
     \Phi_p=\frac{eV^2}{4MR^4\Omega_{rf}^2}\sum_{m}^{}\alpha_m^2r_m^2
 \end{align}
@@ -184,7 +188,9 @@
 \end{align}
 这个是量子比特能级的差分光位移，由于在一般的实验设置中$\omega_a/|\Delta|\sim 10^{-3}\ll 1$，$\delta_{diff}$的值非常小。这项可以通过将原来的旋转坐标$\omega_q$重新选择为$(\omega_q+\delta_{diff})$来吸收掉。
 
-另外注意，这里的有效哈密顿量与公式\eqref{eq:interaction_hamiltonian_microwave}的共振情况相同，后者是用微波进行的操控。因此如果我们让$\vec{k}_1=\vec{k}_2$且$\mu=\delta_{diff}\approx0$，那么这两种离子比特的操控方式从结果上看没有什么不同。不过实际上，两者还有所不同。除了上面提高过的受激发的拉曼跃迁方法有单比特寻址的能力外，它还通过改变传播拉曼光束的角度$\vec{k}\in[0,4\pi/\lambda]$（激光方向从同向到反向传播）来提供波矢$\vec{k}$的操控自由度。因为波长$\lambda$是在光学波段，最大的波矢模$|\vec{k}|$能达到$10um^{-1}$，这为离子的运动耦合提供了可能性。离子也可以看作是一个以频率$\nu$振动的量化的谐振子（第\ref{section:ion_classical_motion}节），这时公式\eqref{eq:effective_hamiltonian_raman}中的哈密顿量为:
+另外注意，这里的有效哈密顿量与公式\eqref{eq:interaction_hamiltonian_microwave}的共振情况相同，后者是用微波进行的操控。因此如果我们让$\vec{k}_1=\vec{k}_2$且$\mu=\delta_{diff}\approx0$，那么这两种离子比特的操控方式从结果上看没有什么不同。不过实际上，两者还有所不同。除了上面提高过的受激发的拉曼跃迁方法有单比特寻址的能力外，它还通过改变传播拉曼光束的角度$\vec{k}\in[0,4\pi/\lambda]$（激光方向从同向到反向传播）来提供波矢$\vec{k}$的操控自由度。因为波长$\lambda$是在光学波段，最大的波矢模$|\vec{k}|$能达到$10um^{-1}$，这为离子的运动耦合提供了可能性。离子也可以看作是一个以频率$\nu$振动的量化的谐振子
+% （第\ref{section:ion_classical_motion}节）
+，这时公式\eqref{eq:effective_hamiltonian_raman}中的哈密顿量为:
 \begin{align}
     H_{eff}=\nu a^\dagger a+\frac{\Omega}{2}\left(\sigma_+e^{i(\eta(a^\dagger a)-\mu t+\phi)}+H.c.\right) \label{eq:effective_hamiltonian_rotating}
 \end{align}
